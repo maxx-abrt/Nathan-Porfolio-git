@@ -1,0 +1,65 @@
+{
+  "title": "Vinéales",
+  "description": "Nous avons pris partie d'une esthétique des années 80 avec un style minimaliste puis nous avons décliné l'affiche en plusieurs versions correspondant aux différentes catégories de vins. Pour le fond, nous sommes partis sur des couleurs pouvant représenter les différentes saisons. \\n **En collaboration** : Liéna Guérout",
+  "medium": "Autres",
+  "year": "2024",
+  "cover": "VinRouge",
+  "link": "https://www.bienpublic.com/culture-loisirs/2024/02/13/voici-la-nouvelle-affiche-des-vineales",
+  "linkText": "Lire l'article",
+  "pdfs": {
+    "nom-du-fichier-pdf-sans-extension": {
+      "title": "Titre du PDF",
+      "description": "Description du document"
+    }
+  },
+    "photos": {
+    "VinRouge": {
+      "title": "VinRouge",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "",
+      "date": "06-02-2024",
+      "width": 1200,
+      "height": 800
+    },
+        "VinBlanc": {
+      "title": "VinBlanc",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "",
+      "date": "06-02-2024",
+      "width": 1200,
+      "height": 800
+    },
+        "VinRosé": {
+      "title": "VinRosé",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "",
+      "date": "06-02-2024",
+      "width": 1200,
+      "height": 800
+    },
+        "VinJaune": {
+      "title": "VinJaune",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "",
+      "date": "06-02-2024",
+      "width": 1200,
+      "height": 800
+    },
+        "Rendu": {
+      "title": "Rendu",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "",
+      "date": "06-02-2024",
+      "width": 1200,
+      "height": 800
+    },
+        "Journal": {
+      "title": "Journal",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "",
+      "date": "06-02-2024",
+      "width": 1200,
+      "height": 800
+    }
+  }
+}

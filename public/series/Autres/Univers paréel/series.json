@@ -1,0 +1,21 @@
+{
+  "title": "Univers paréel",
+  "description": "Je voulais créer une sorte de dimension parallèle sonore, mystique et fictionnel à partir d un son classique. après avoir enregistrer le son des roues d une voiture sur les pavés, j ai observer qu il y avait une sorte de vibrement qui pouvait être intéressant à exagérer pour créer cet univers. Pour ce faire, j ai importer mon enregistrement dans un logiciel pour le retravailler . Je l ai dupliquer deux fois pour passé de 25 secondes à plus d une minute. J ai utiliser plusieurs effets sonores notamment l écho, la reverb ou encore ralentir le son ou l inverser pour créer cet univers. Jai également jouer avec le volume pour créer une sorte de texture.",
+  "medium": "Autres",
+  "year": "2026",
+  "cover": "Univers paréel",
+  "pdfs": {
+    "nom-du-fichier-pdf-sans-extension": {
+      "title": "Titre du PDF",
+      "description": "Description du document"
+    }
+  },
+  "videos": {
+    "Univers paréel": {
+      "title": "Univers paréel",
+      "description": "Les bruits des roues d'une voiture sur les pavés.",
+      "thumbnail": "public/series/Cinéma, vidéos et sons/Ce que racontent les ancêtres - documentaire (ne pas mettre)/Ce que racontent les ancêtres - pitch vidéo l Arc documentaire.webp",
+      "duration": "1:16"
+    }
+  }
+}

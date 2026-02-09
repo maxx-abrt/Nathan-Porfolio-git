@@ -1,0 +1,33 @@
+{
+  "title": "Formes",
+  "description": "",
+  "medium": "photos",
+  "year": "2025",
+  "cover": "DSCF0180",
+  "pdfs": {
+    "nom-du-fichier-pdf-sans-extension": {
+      "title": "Titre du PDF",
+      "description": "Description du document"
+    }
+  },
+  "photos": {
+    "IMG_9452": {
+      "title": "IMG_9452",
+      "intentionNote": "Impression jet d'encre sur papier - 21 x 29.7 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "03-04-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "DSCF0180": {
+      "title": "DSCF0180",
+      "intentionNote": "Impression jet d'encre sur papier - 21 x 29.7 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "03-04-2025",
+      "width": 1200,
+      "height": 800
+  
+    }
+  }
+  } 
+

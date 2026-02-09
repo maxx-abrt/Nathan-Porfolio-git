@@ -1,0 +1,21 @@
+{
+  "title": "Speed",
+  "description": "Exercice sur l'accéléraion au cinéma. \\n **Deuxième réalisatrice** : Sarah François-Rodrigues \\n**Acteur.ices** : Nathan Dumont, Sarah François-Rodrigues, Cassandra Boivin et Élisa Pillut-Mohamedi",
+  "medium": "Cinéma",
+  "year": "2026",
+  "cover": "Speed - cover",
+  "pdfs": {
+    "nom-du-fichier-pdf-sans-extension": {
+      "title": "Titre du PDF",
+      "description": "Description du document"
+    }
+  },
+  "videos": {
+    "Speed": {
+      "title": "Speed",
+      "description": "**Deuxième réalisatrice** : Sarah François-Rodrigues **Actrices** : Sarah François-Rodrigues, Cassandra Boivin et Élisa Pillut-Mohamedi",
+      "thumbnail": "public/series/Cinéma, vidéos et sons/Ce que racontent les ancêtres - documentaire (ne pas mettre)/Ce que racontent les ancêtres - pitch vidéo l Arc documentaire.webp",
+      "duration": "5:45"
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "title": "Titre de la série",
+  "description": "Description détaillée du projet",
+  "medium": "Photographie / Vidéo / Installation / etc.",
+  "year": "2024",
+  "cover": "nom-du-fichier-cover-sans-extension",
+  "pdfs": {
+    "nom-du-fichier-pdf-sans-extension": {
+      "title": "Titre du PDF",
+      "description": "Description du document"
+    }
+  },
+  "videos": {
+    "nom-du-fichier-video-sans-extension": {
+      "title": "Titre de la vidéo",
+      "description": "Description de la vidéo",
+      "thumbnail": "/path/to/thumbnail.webp",
+      "duration": "12:34"
+    }
+  },
+  "audios": {
+    "nom-du-fichier-audio-sans-extension": {
+      "title": "Titre de la piste audio",
+      "description": "Description de la piste",
+      "duration": "3:45"
+    }
+  },
+  "photos": {
+    "nom-du-fichier-1-sans-extension": {
+      "title": "Titre de la photo",
+      "intentionNote": "Note d'intention / concept",
+      "technical": "Infos techniques (appareil, objectif, film...)",
+      "date": "2024-01-15",
+      "width": 1200,
+      "height": 800
+    },
+    "nom-du-fichier-2-sans-extension": {
+      "title": "Titre de la photo 2",
+      "intentionNote": "Note d'intention",
+      "technical": "Infos techniques",
+      "date": "2024-02-20",
+      "width": 800,
+      "height": 1200
+    }
+  }
+}

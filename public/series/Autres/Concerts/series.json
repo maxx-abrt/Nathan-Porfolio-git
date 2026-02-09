@@ -1,0 +1,603 @@
+{
+  "title": "Concerts",
+  "description": "**Concerts** : __Pierre Garnier__ - première partie : __Daysy__, __Adèle Castillon__ - première partie : __Nina Versyp__, __Carbonne__ - première partie : __Alien__, __Solann__ - première partie : __Tchako__",
+  "medium": "autres",
+  "year": "2025",
+  "cover": "adèle 2",
+  "pdfs": {
+    "nom-du-fichier-pdf-sans-extension": {
+      "title": "Titre du PDF",
+      "description": "Description du document"
+    }
+  },
+   "photos":
+   {"adèle 1": {
+      "title": "adèle 1",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+
+    "adèle 2": {
+      "title": "adèle 2",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "adèle 3": {
+      "title": "adèle 3",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "adèle 4": {
+      "title": "adèle 4",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "adèle 5": {
+      "title": "adèle 5",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "adèle 6": {
+      "title": "adèle 6",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "adèle 7": {
+      "title": "adèle 7",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "adèle 8": {
+      "title": "adèle 8",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "adèle 9": {
+      "title": "adèle 9",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "adèle 10": {
+      "title": "adèle 10",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "adèle 11": {
+      "title": "adèle 11",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "adèle 12": {
+      "title": "adèle 12",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "adèle 13": {
+      "title": "adèle 13",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "adèle 14": {
+      "title": "adèle 14",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "adèle 15": {
+      "title": "adèle 15",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "alien": {
+      "title": "alien",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "carbonne 1": {
+      "title": "carbonne 1",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "carbonne 2": {
+      "title": "carbonne 2",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "carbonne 3": {
+      "title": "carbonne 3",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "carbonne 4": {
+      "title": "carbonne 4",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "carbonne 5": {
+      "title": "carbonne 5",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "carbonne 6": {
+      "title": "carbonne 6",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "carbonne 7": {
+      "title": "carbonne 7",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "daysy 1": {
+      "title": "daysy 1",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "daysy 2": {
+      "title": "daysy 2",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "daysy 3": {
+      "title": "daysy 3",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "daysy 4": {
+      "title": "daysy 4",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "la vapeur 1": {
+      "title": "la vapeur 1",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "la vapeur 2": {
+      "title": "la vapeur 2",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "la vapeur 3": {
+      "title": "la vapeur 3",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "nina versyp 1": {
+      "title": "nina versyp 1",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "nina versyp 2": {
+      "title": "nina versyp 2",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "nina versyp 3": {
+      "title": "nina versyp 3",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "nina versyp 4": {
+      "title": "nina versyp 4",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "nina versyp 5": {
+      "title": "nina versyp 5",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "pierre 1": {
+      "title": "pierre 1",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "pierre 2": {
+      "title": "pierre 2",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "pierre 3": {
+      "title": "pierre 3",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "pierre 4": {
+      "title": "pierre 4",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "pierre 5": {
+      "title": "pierre 5",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "pierre 6": {
+      "title": "pierre 6",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "pierre 7": {
+      "title": "pierre 7",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "pierre 8": {
+      "title": "pierre 8",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "pierre 9": {
+      "title": "pierre 9",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "pierre 10": {
+      "title": "pierre 10",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+  
+    "pierre 12": {
+      "title": "pierre 12",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "pierre 13": {
+      "title": "pierre 13",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "pierre 14": {
+      "title": "pierre 14",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "pierre 15": {
+      "title": "pierre 15",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "pierre 16": {
+      "title": "pierre 16",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+     "pierre 17": {
+      "title": "pierre 17",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "pierre 18": {
+      "title": "pierre 18",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+     "pierre 19": {
+      "title": "pierre 19",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "pierre 20": {
+      "title": "pierre 20",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+     "pierre 21": {
+      "title": "pierre 21",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "pierre 22": {
+      "title": "pierre 22",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+     "pierre 23": {
+      "title": "pierre 23",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "pierre 24": {
+      "title": "pierre 24",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+     "solann 0": {
+      "title": "solann 0",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "solann 1": {
+      "title": "solann 1",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+     "solann 2": {
+      "title": "solann 2",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "solann 3": {
+      "title": "solann 3",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+     "solann 4": {
+      "title": "solann 4",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "solann 5": {
+      "title": "solann 5",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+
+    "solann 7": {
+      "title": "solann 7",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+     "solann 8": {
+      "title": "solann 8",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "solann 9": {
+      "title": "solann 9",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+     "solann 10": {
+      "title": "solann 10",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "solann 11": {
+      "title": "solann 11",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+     "solann 12": {
+      "title": "solann 12",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "solann 13": {
+      "title": "solann 13",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+     "solann 14": {
+      "title": "solann 14",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "tchako": {
+      "title": "tchako",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    }
+
+
+}}

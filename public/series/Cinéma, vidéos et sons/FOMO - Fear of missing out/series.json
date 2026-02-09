@@ -1,0 +1,21 @@
+{
+  "title": "FOMO : Fear of missing out",
+  "description": "La FOMO n est pas une simple tendance générationnelle, même si plus évoqué au cours de ce dernier siècle. Avec les réseaux sociaux, l'hyperconnexion et l'économie de l'attention, touche toutes les sphères de nos vies : travail, amitiés, amour, loisirs, vie sociale. Aujourd hui, alors que nos repères se brouillent et que le futur paraît incertain, comprendre la FOMO, c'est interroger notre rapport au temps, à la réussite et à nous-mêmes. Parler de FOMO maintenant, c'est mettre des mots sur un malaise collectif dont on ne parle pas forcément qui influence nos comportements sans que nous en ayons toujours conscience. \\n **Réalisation** : Sarah François-Rodrigues et Cassandra Boivin \\n **Acteur** : Nathan Dumont \\n **Références** : __Martin Parr__, __Nan Goldin__ et __Christian Marclay__",
+  "medium": "Vidéo",
+  "year": "2025",
+  "cover": "FOMO : Fear of missing out - cover",
+  "pdfs": {
+    "nom-du-fichier-pdf-sans-extension": {
+      "title": "Titre du PDF",
+      "description": "Description du document"
+    }
+  },
+  "videos": {
+    "FOMO : Fear of missing out": {
+      "title": "FOMO : Fear of missing out",
+      "description": "**Réalisation** : Sarah François-Rodrigues et Cassandra Boivin \\n **Musique** : *SIRAT*, *La Route* \\n *(Original Motion Picture Soundtrack)* \\n **Artiste** : __Kangding Ray__ \\n **Label** : Invada Records",
+      "thumbnail": "public/series/Cinéma, vidéos et sons/Ce que racontent les ancêtres - documentaire (ne pas mettre)/Ce que racontent les ancêtres - pitch vidéo l Arc documentaire.webp",
+      "duration": "1:05"
+    }
+  }
+}

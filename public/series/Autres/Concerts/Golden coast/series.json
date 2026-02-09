@@ -1,0 +1,121 @@
+{
+  "title": "Golden coast",
+  "description": "**Concerts** : __AMK__, __Adèle Castillon__, __Rilès__, __Tayc__, __Théodora__",
+  "medium": "autres",
+  "year": "2025",
+  "cover": "IMG_8067",
+  "pdfs": {
+    "nom-du-fichier-pdf-sans-extension": {
+      "title": "Titre du PDF",
+      "description": "Description du document"
+    }
+  },
+   "photos":
+   {"IMG_7778": {
+      "title": "Golden coast 1",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+
+    "IMG_7780": {
+      "title": "Golden coast 2",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "IMG_7831": {
+      "title": "Golden coast 3",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "IMG_7840": {
+      "title": "Golden coast 4",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "IMG_7851": {
+      "title": "Golden coast 5",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "IMG_7883": {
+      "title": "Golden coast 6",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "IMG_7887": {
+      "title": "Golden coast 7",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "IMG_7933": {
+      "title": "Golden coast 8",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "IMG_7941": {
+      "title": "Golden coast 9",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "IMG_7979": {
+      "title": "Golden coast 10",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "IMG_8018": {
+      "title": "Golden coast 11",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "IMG_8065": {
+      "title": "Golden coast 12",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "IMG_8067": {
+      "title": "Golden coast 13",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    }
+
+
+}}

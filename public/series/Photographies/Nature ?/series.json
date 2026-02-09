@@ -1,0 +1,39 @@
+{
+  "title": "Nature ?",
+  "description": "Avec ce projet, j'ai voulu questionner la nature à travers la pollution. Cette série cherche à questionner la place de l'homme et sa cohabitation ? \\n « Au lieu de cette philosophie spéculative qu'on enseigne dans les écoles, on en peut trouver une pratique, par laquelle, connaissant la force et les actions du feu, de l'eau, de l'air, des astres, des cieux et de tous les autres corps qui nous environnent, aussi distinctement que nous connaissons les divers métiers de nos artisans, nous les pourrions employer en même façon à tous les usages auxquels ils sont propres, et ainsi nous rendre comme maîtres et possesseurs de la nature. » \\n *Discours de la méthode, sixième partie*, __Descartes__ (1637)",
+  "medium": "photos",
+  "year": "2025",
+  "cover": "P1020856",
+  "pdfs": {
+    "nom-du-fichier-pdf-sans-extension": {
+      "title": "Titre du PDF",
+      "description": "Description du document"
+    }
+  },
+  "photos":
+   {"P1020856": {
+      "title": "P1020856",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+
+    "P1020881": {
+      "title": "P1020881",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "P1020904": {
+      "title": "P1020904",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    }
+}}

@@ -1,0 +1,21 @@
+{
+  "title": "Les avions en papier",
+  "description": "J'ai voulu donner un sens précis à ce lancé d'avion. Mais je préfère que chaque spectateur puisse donner sa propre interprétation. \\n **Réalisation** : Anaïs Elefteriou",
+  "medium": "vidéo",
+  "year": "2023",
+  "cover": "Les avions en papier",
+  "pdfs": {
+    "nom-du-fichier-pdf-sans-extension": {
+      "title": "Titre du PDF",
+      "description": "Description du document"
+    }
+  },
+  "videos": {
+    "les avions en papier": {
+      "title": "Ce que racontent les ancêtres",
+      "description": "**Réalisation** : Anaïs Elefteriou",
+      "thumbnail": "public/series/Cinéma, vidéos et sons/Ce que racontent les ancêtres - documentaire (ne pas mettre)/Ce que racontent les ancêtres - pitch vidéo l Arc documentaire.webp",
+      "duration": "1:35"
+    }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "title": "Desver",
+  "description": "Notre projet consiste à suivre un personnage principal dans l'un de ses rêves, en passant par certaines étapes du deui. À travers un chemin au royaume de ses songes, les personnages traverseront des paysages chimériques, sensorielles et surréalistes. Le spectateur voyagera à travers l'imaginaire des personnages afin de retracer un cheminement vers une délivrance (mue imaginale) révélatrice où fiction et réalité se mélangeront. Notre projet ressemble à un mélange de nos idées après les avoir mises en commun pour qu'une part de chacun d'entre nous se retrouve dans ce projet. \\n **Deuxième réalisatrice** : Eryne Brisson Saint-Onge \\n **Actrices** : Sarah François-Rodrigues, Élisa PIllut-Mohamedi et Cassandra Boivin \\n **Captation sonore** : Léna Gorlier \\n **Références** : __Wes Anderson__ : *Moonrise Kingdom*, __Tim Burton__ : *Les noces funèbres* - *Beetlejuice* - *Alice aux pays des merveilles*, __Stanko Repac__ - __Max Baby__ : *I can t do anything*, __Melchior Leroux__ - __Théodora__ : *Fashion Designa* - *Des mythos*, __Masahiro Shinoda__ : *Himiko* - *Under the Blossoming Cherry Trees*, __Gregory Crewdson__ \\n **Typographie** : *Seagram TFB* - __Kaiserzharkhan__",
+  "medium": "Cinéma",
+  "year": "2025 - 2026 (en cours)",
+  "cover": "Desver - cover",
+  "bigger": "Desver - Affiche",
+  "pdfs": {
+    "nom-du-fichier-pdf-sans-extension": {
+      "title": "Titre du PDF",
+      "description": "Description du document"
+    }
+  },
+  "videos": {
+    "Desver - Résumé": {
+      "title": "Desver - Résumé",
+      "description": "**Deuxième réalisatrice** : Eryne Brisson Saint-Onge **Actrices** : Sarah François-Rodrigues, Élisa PIllut-Mohamedi et Cassandra Boivin **Captation sonore** : Léna Gorlier",
+      "thumbnail": "public/series/Cinéma, vidéos et sons/Ce que racontent les ancêtres - documentaire (ne pas mettre)/Ce que racontent les ancêtres - pitch vidéo l Arc documentaire.webp",
+      "duration": "1:55"
+    },
+    "Desver - Visualizer": {
+      "title": "Desver - Visualizer",
+      "description": "**Deuxième réalisatrice** : Eryne Brisson Saint-Onge **Actrices** : Sarah François-Rodrigues, Élisa PIllut-Mohamedi et Cassandra Boivin **Captation sonore** : Léna Gorlier",
+      "thumbnail": "public/series/Cinéma, vidéos et sons/Ce que racontent les ancêtres - documentaire (ne pas mettre)/Ce que racontent les ancêtres - pitch vidéo l Arc documentaire.webp",
+      "duration": "4:26"
+    }
+  },
+  "photos": {
+    "Desver - invitation n°1": {
+      "title": "Invitation n°1 - Groupe",
+      "intentionNote": "Invitation n°1",
+      "technical": "CanonEOS 6D, 1/1600, f/4, ISO 1000, 38 mm",
+      "date": "02-12-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "Desver - invitation n°2": {
+      "title": "Invitation n°2 - Diablotin",
+      "intentionNote": "Invitation n°2",
+      "technical": "CanonEOS 6D, 1/1600, f/4, ISO 1000, 38 mm",
+      "date": "02-12-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "Desver - invitation n°3": {
+      "title": "Invitation n°3 - Personnage principal",
+      "intentionNote": "Invitation n°2",
+      "technical": "CanonEOS 6D, 1/1600, f/4, ISO 1000, 38 mm",
+      "date": "02-12-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "Desver - invitation n°4": {
+      "title": "Invitation n°4 - Corbeau",
+      "intentionNote": "Invitation n°2",
+      "technical": "CanonEOS 6D, 1/1600, f/4, ISO 1000, 38 mm",
+      "date": "02-12-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "Desver - Affiche": {
+      "title": "Desver - Affiche",
+      "intentionNote": "Desver - Affiche",
+      "technical": "CanonEOS 6D, 1/1600, f/4, ISO 1000, 38 mm",
+      "date": "02-12-2025",
+      "width": 1200,
+      "height": 800
+    
+  }
+}}

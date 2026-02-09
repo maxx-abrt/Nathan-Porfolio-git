@@ -1,0 +1,39 @@
+{
+  "title": "Lumières",
+  "description": "Dans ce projet vidéo, je souhaitais apporter une nouvelle vision sur le monde qui nous entoure, à travers la superposition de différentes vidéos, où l'on peut voir de la lumière tout en jouant sur une colorimétrie assez forte et inhabituelle pour l'oeil. Ce mélange créer un nouvel espace pouvant ressembler à un tableau.",
+  "medium": "Vidéo",
+  "year": "2026",
+  "cover": "Lumières - cover",
+  "pdfs": {
+    "nom-du-fichier-pdf-sans-extension": {
+      "title": "Titre du PDF",
+      "description": "Description du document"
+    }
+  },
+  "videos": {
+    "Lumière (v. feu)": {
+      "title": "Lumière (v. feu)",
+      "description": "",
+      "thumbnail": "public/series/Cinéma, vidéos et sons/Ce que racontent les ancêtres - documentaire (ne pas mettre)/Ce que racontent les ancêtres - pitch vidéo l Arc documentaire.webp",
+      "duration": "1:27"
+    },
+    "Lumière (v. pont)": {
+      "title": "Lumière (v. pont)",
+      "description": "",
+      "thumbnail": "public/series/Cinéma, vidéos et sons/Ce que racontent les ancêtres - documentaire (ne pas mettre)/Ce que racontent les ancêtres - pitch vidéo l Arc documentaire.webp",
+      "duration": "0:30"
+    },
+        "Lumières (v. artifices)": {
+      "title": "Lumière (v. artifices)",
+      "description": "",
+      "thumbnail": "public/series/Cinéma, vidéos et sons/Ce que racontent les ancêtres - documentaire (ne pas mettre)/Ce que racontent les ancêtres - pitch vidéo l Arc documentaire.webp",
+      "duration": "0:57"
+    },
+    "Lumière (v. couleur)": {
+      "title": "Lumière (v. couleur)",
+      "description": "",
+      "thumbnail": "public/series/Cinéma, vidéos et sons/Ce que racontent les ancêtres - documentaire (ne pas mettre)/Ce que racontent les ancêtres - pitch vidéo l Arc documentaire.webp",
+      "duration": "0:56"
+    }
+  }
+}

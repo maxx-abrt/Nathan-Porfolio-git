@@ -1,0 +1,49 @@
+{
+  "title": "Beaune",
+  "description": "",
+  "medium": "photos",
+  "year": "2024",
+  "cover": "DSCN1333",
+  "pdfs": {
+    "nom-du-fichier-pdf-sans-extension": {
+      "title": "Titre du PDF",
+      "description": "Description du document"
+    }
+  },
+  "photos": {
+    "DSCN1333": {
+      "title": "DSCN1333",
+      "intentionNote": "Impression jet d'encre sur papier - 21 x 29.7 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "08-05-2024",
+      "width": 1200,
+      "height": 800
+    },
+    "P1020545": {
+      "title": "P1020545",
+      "intentionNote": "Impression jet d'encre sur papier - 21 x 29.7 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "08-05-2024",
+      "width": 1200,
+      "height": 800
+    },
+    "P1020556": {
+      "title": "P1020556",
+      "intentionNote": "Impression jet d'encre sur papier - 21 x 29.7 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "08-05-2024",
+      "width": 1200,
+      "height": 800
+    },
+    "P1022477": {
+      "title": "P1022477",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "08-05-2024",
+      "width": 1200,
+      "height": 800
+    }
+    
+  } 
+}
+

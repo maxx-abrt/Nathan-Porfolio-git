@@ -1,0 +1,49 @@
+{
+  "title": "Abandonner",
+  "description": "Cette série de photographie de lieu sans vie donne un sentiment de solitude et d'abandon. Malgré tout, je sens une atmosphère calme et paisible.",
+  "medium": "photos",
+  "year": "2024",
+  "cover": "P1021241",
+  "pdfs": {
+    "nom-du-fichier-pdf-sans-extension": {
+      "title": "Titre du PDF",
+      "description": "Description du document"
+    }
+  },
+  "photos": {
+    "P1021241": {
+      "title": "P1021241",
+      "intentionNote": "Impression jet d'encre sur papier - 21 x 29.7 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "02-02-2024",
+      "width": 1200,
+      "height": 800
+    },
+    "P1021289": {
+      "title": "P1021289",
+      "intentionNote": "Impression jet d'encre sur papier - 21 x 29.7 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "02-02-2024",
+      "width": 1200,
+      "height": 800
+    },
+    "P1021298": {
+      "title": "P1021298",
+      "intentionNote": "Impression jet d'encre sur papier - 21 x 29.7 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "02-02-2024",
+      "width": 1200,
+      "height": 800
+    },
+    "P1021311": {
+      "title": "P1021311",
+      "intentionNote": "Impression jet d'encre sur papier - 21 x 29.7 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "02-02-2024",
+      "width": 1200,
+      "height": 800
+    }
+    
+  } 
+}
+

@@ -1,0 +1,47 @@
+{
+  "title": "Notre Dame d'Étang",
+  "description": "",
+  "medium": "autres",
+  "year": "2025",
+  "cover": "IMG_7695",
+  "pdfs": {
+    "nom-du-fichier-pdf-sans-extension": {
+      "title": "Titre du PDF",
+      "description": "Description du document"
+    }
+  },
+  "photos":
+   {"IMG_7695": {
+      "title": "IMG_7695",
+      "intentionNote": "Impression jet d'encre sur papier - 21 x 29.7 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+
+    "IMG_7699": {
+      "title": "IMG_7699",
+      "intentionNote": "Impression jet d'encre sur papier - 21 x 29.7 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "IMG_7702": {
+      "title": "IMG_7702",
+      "intentionNote": "Impression jet d'encre sur papier - 21 x 29.7 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+      "IMG_7704": {
+      "title": "IMG_7704",
+      "intentionNote": "Impression jet d'encre sur papier - 21 x 29.7 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    }
+}}

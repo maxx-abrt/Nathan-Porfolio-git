@@ -1,0 +1,55 @@
+{
+  "title": "Infra-ordinaire #2",
+  "description": "«Les journaux parlent de tout, sauf du journalier. Les journaux m'ennuient, ils ne m'apprennent rien. Ce qui se passe vraiment, ce que nous vivons, le reste, tout le reste, où est-il ? Ce qui se passe chaque jour et qui revient chaque jour, le banal, le quotidien, l'évident, le commun, l'ordinaire, le bruit de fond, l'habituel, comment en rendre compte, comment l'interroger, comment le décrire ? Peut-être s'agit-il de fonder enfin notre propre anthropologie : celle qui parlera de nous, qui ira chercher en nous ce que nous avons si longtemps pillé chez les autres. Non plus l'exotique, mais l'endotique.» \n *Tentative d'épuisement d'un lieu parisien*, __Georges Perec__ (1975)",
+  "medium": "photos",
+  "year": "2025",
+  "cover": "P1020456",
+  "pdfs": {
+    "nom-du-fichier-pdf-sans-extension": {
+      "title": "Titre du PDF",
+      "description": "Description du document"
+    }
+  },
+  "photos": {
+    "P1020543": {
+      "title": "P1020543",
+      "intentionNote": "Impression jet d'encre sur papier - 21 x 29.7 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "P1020831": {
+      "title": "P1020831",
+      "intentionNote": "Impression jet d'encre sur papier - 21 x 29.7 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "P1021023": {
+      "title": "P1021023",
+      "intentionNote": "Impression jet d'encre sur papier - 21 x 29.7 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "P1021042": {
+      "title": "P1021042",
+      "intentionNote": "Impression jet d'encre sur papier - 21 x 29.7 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    
+  },
+   "P1020456": {
+      "title": "P1020456",
+      "intentionNote": "Impression jet d'encre sur papier - 21 x 29.7 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+   }  
+}}

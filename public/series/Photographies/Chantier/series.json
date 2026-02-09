@@ -1,0 +1,81 @@
+{
+  "title": "Chantier",
+  "description": "Mon intention pour ce projet était de faire ressortir les élèments de chantier face aux bâtiment qu'il recouvrent. J'ai choisi de travailler en noir et blanc pour accentuer la construction grâce à la craie grâce pour mettre les bâtiments en second plan.",
+  "medium": "photos",
+  "year": "2025",
+  "cover": "IMG_3008",
+  "pdfs": {
+    "nom-du-fichier-pdf-sans-extension": {
+      "title": "Titre du PDF",
+      "description": "Description du document"
+    }
+  },
+  "photos": {
+    "IMG_3008": {
+      "title": "IMG_3008",
+      "intentionNote": "Impression lazer noir et blanc, craies grases - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "03-04-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "IMG_3009": {
+      "title": "IMG_3009",
+      "intentionNote": "Impression lazer noir et blanc, craies grases - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "03-04-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "IMG_3010": {
+      "title": "IMG_3010",
+      "intentionNote": "Impression lazer noir et blanc, craies grases - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "03-04-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "IMG_3011": {
+      "title": "IMG_3011",
+      "intentionNote": "Impression lazer noir et blanc, craies grases - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "03-04-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "IMG_3012": {
+      "title": "IMG_3012",
+      "intentionNote": "Impression lazer noir et blanc, craies grases - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "03-04-2025",
+      "width": 1200,
+      "height": 800
+    
+  },
+   "IMG_3013": {
+      "title": "IMG_3013",
+      "intentionNote": "Impression lazer noir et blanc, craies grases - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "03-04-2025",
+      "width": 1200,
+      "height": 800
+    
+  }, "IMG_3014": {
+      "title": "IMG_3014",
+      "intentionNote": "Impression lazer noir et blanc, craies grases - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "03-04-2025",
+      "width": 1200,
+      "height": 800
+    
+  } ,
+  "IMG_3018": {
+      "title": "IMG_3018",
+      "intentionNote": "Impression lazer noir et blanc, craies grases - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "03-04-2025",
+      "width": 1200,
+      "height": 800
+}} }
+
+

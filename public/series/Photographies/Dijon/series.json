@@ -1,0 +1,66 @@
+{
+  "title": "Dijon",
+  "description": "**Références** : __Saul Leiter__, __Billy Dinh__ et __Fred Herzog__",
+  "medium": "photos",
+  "year": "2025",
+  "cover": "IMG_0142",
+  "pdfs": {
+    "nom-du-fichier-pdf-sans-extension": {
+      "title": "Titre du PDF",
+      "description": "Description du document"
+    }
+  },
+  "photos": {
+    "IMG_0142": {
+      "title": "IMG_0142",
+      "intentionNote": "Impression jet d'encre sur papier - 21 x 29.7 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "03-04-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "IMG_0144": {
+      "title": "IMG_0144",
+      "intentionNote": "Impression jet d'encre sur papier - 21 x 29.7 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "03-04-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "IMG_0146": {
+      "title": "IMG_0146",
+      "intentionNote": "Impression jet d'encre sur papier - 21 x 29.7 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "03-04-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "IMG_0151": {
+      "title": "IMG_0151",
+      "intentionNote": "Impression jet d'encre sur papier - 21 x 29.7 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "03-04-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "IMG_0158": {
+      "title": "IMG_0158",
+      "intentionNote": "Impression jet d'encre sur papier - 21 x 29.7 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "03-04-2025",
+      "width": 1200,
+      "height": 800
+    
+  },
+   "IMG_0161": {
+      "title": "IMG_0161",
+      "intentionNote": "Impression jet d'encre sur papier - 21 x 29.7 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "03-04-2025",
+      "width": 1200,
+      "height": 800
+    
+  }
+}} 
+
+

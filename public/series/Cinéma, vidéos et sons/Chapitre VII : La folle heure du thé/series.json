@@ -1,0 +1,21 @@
+{
+  "title": "CHAPITRE VII : La folle heure du thé",
+  "description": "Exercice sur des plans en 180° au cinéma. \n **Référence** : Alice au pays des merveilles \n **Écrit par** : __Lewis Carroll__ \n **Traduction du roman par** : __Marie Darrieussecq__ \n **Actrices** : Sarah François-Rodrigues, Cassandra Boivin et Élisa Pillut-Mohamedi",
+  "medium": "Cinéma",
+  "year": "2025",
+  "cover": "CHAPITRE VII : La folle heure du thé - cover",
+    "pdfs": {
+    "Alice, un thé chez les fous": {
+      "title": "Alice, un thé chez les fous",
+      "description": "**Écrit par** : __Lewis Carroll__ \n **Traduction du roman par** : __Marie Darrieussecq__ "
+    }
+  },
+  "videos": {
+    "Chapitre VII : La Folle Heure Du Thé": {
+      "title": "Chapitre VII : La Folle Heure Du Thé - Vidéo",
+      "description": "**Actrices** : Sarah François-Rodrigues, Cassandra Boivin et Élisa Pillut-Mohamedi \\n **Musique de** : *La folle heure du thé, Alice au pays des merveilles* - __Kathryn Beaumont__, __Ed Wynn__, __James Macdonald__ et __Jerry Colonna__ \\n *© 1951 Walt Disney Records*",
+      "thumbnail": "public/series/Cinéma, vidéos et sons/CHAPITRE VII : La folle heure du thé - cover.webp",
+      "duration": "1:35"
+    }
+  }
+}

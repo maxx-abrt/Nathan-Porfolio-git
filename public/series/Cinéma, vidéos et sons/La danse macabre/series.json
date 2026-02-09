@@ -1,0 +1,21 @@
+{
+  "title": "La danse macabre",
+  "description": "Cette bande annonce parle du sentiment de se sentir impuissant face à soi-même et face aux autres. Le personnage que l'on suit se sent souvent écarter du reste du monde, comme s'il vivait sa propre vie d'un regard extérieur. La solitude, l'angoisse lui fait se parler à soi-même. À travers cette vidéo inspiré du *Joker* de __Todd Phillips__ incarné par __Joaquin Phoenix__, le personnage traverse diverses sentiments l'amenant à la folie. J'ai joué sur des scènes illustré d'une colorimétrie plus forte et inhabituelle pour emporter le spectateur dans une nouvelle vision du monde comme si l'on rentrait dans la tête du personnage. \\n **Actrices** : Jeanne Ridoret, Sarah François-Rodrigues et Elisa Pillut-Mohamedi \\n**Voix** : Charline Bouchoux",
+  "medium": "Cinéma",
+  "year": "2024",
+  "cover": "La danse macabre - cover",
+  "pdfs": {
+    "nom-du-fichier-pdf-sans-extension": {
+      "title": "Titre du PDF",
+      "description": "Description du document"
+    }
+  },
+  "videos": {
+    "La danse macabre": {
+      "title": "La danse macabre",
+      "description": "**Actrices** : Jeanne Ridoret, Sarah François-Rodrigues et Élisa Pillut-Mohamedi **Voix** : Charline Bouchoux",
+      "thumbnail": "public/series/Cinéma, vidéos et sons/Ce que racontent les ancêtres - documentaire (ne pas mettre)/Ce que racontent les ancêtres - pitch vidéo l Arc documentaire.webp",
+      "duration": "3:51"
+    }
+  }
+}

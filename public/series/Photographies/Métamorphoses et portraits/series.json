@@ -1,0 +1,48 @@
+{
+  "title": "Métamorphoses et portraits",
+  "description": "",
+  "medium": "photos",
+  "year": "2025",
+  "cover": "métamorphose#1",
+  "pdfs": {
+    "nom-du-fichier-pdf-sans-extension": {
+      "title": "Titre du PDF",
+      "description": "Description du document"
+    }
+  },
+  "photos":
+   {"métamorphose#1": {
+      "title": "métamorphose#1",
+      "intentionNote": "Impression jet d'encre sur papier - 60 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+
+    "métamorphose#2": {
+      "title": "métamorphose#2",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "portrait#1": {
+      "title": "portrait#1",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "portrait#2": {
+      "title": "portrait#2",
+      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "14-06-2025",
+      "width": 1200,
+      "height": 800
+    
+  }
+}}
