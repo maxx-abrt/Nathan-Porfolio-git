@@ -593,7 +593,7 @@ function VideoItem({ video }: { video: VideoFile }) {
           playsInline
         />
       </div>
-      <div className="p-4 bg-card/50 backdrop-blur-sm">
+      <div className="p-4 bg-card/80">
         <div className="flex items-center gap-3 mb-2">
           <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center">
             <Play className="w-4 h-4 text-accent" />
