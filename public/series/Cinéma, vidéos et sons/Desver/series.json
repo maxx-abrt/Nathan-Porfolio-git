@@ -1,14 +1,19 @@
 {
   "title": "Desver",
+  "priority": 1,
   "description": "Notre projet consiste à suivre un personnage principal dans l'un de ses rêves, en passant par certaines étapes du deui. À travers un chemin au royaume de ses songes, les personnages traverseront des paysages chimériques, sensorielles et surréalistes. Le spectateur voyagera à travers l'imaginaire des personnages afin de retracer un cheminement vers une délivrance (mue imaginale) révélatrice où fiction et réalité se mélangeront. Notre projet ressemble à un mélange de nos idées après les avoir mises en commun pour qu'une part de chacun d'entre nous se retrouve dans ce projet. \\n **Deuxième réalisatrice** : Eryne Brisson Saint-Onge \\n **Actrices** : Sarah François-Rodrigues, Élisa PIllut-Mohamedi et Cassandra Boivin \\n **Captation sonore** : Léna Gorlier \\n **Références** : __Wes Anderson__ : *Moonrise Kingdom*, __Tim Burton__ : *Les noces funèbres* - *Beetlejuice* - *Alice aux pays des merveilles*, __Stanko Repac__ - __Max Baby__ : *I can t do anything*, __Melchior Leroux__ - __Théodora__ : *Fashion Designa* - *Des mythos*, __Masahiro Shinoda__ : *Himiko* - *Under the Blossoming Cherry Trees*, __Gregory Crewdson__ \\n **Typographie** : *Seagram TFB* - __Kaiserzharkhan__",
   "medium": "Cinéma",
   "year": "2025 - 2026 (en cours)",
   "cover": "Desver - cover",
   "bigger": "Desver - Affiche",
   "pdfs": {
-    "nom-du-fichier-pdf-sans-extension": {
-      "title": "Titre du PDF",
-      "description": "Description du document"
+    "Desver - Photos de tournage": {
+      "title": "Desver - Photos de tournage",
+      "description": "Photos prises durant le tournage du court-métrage Desver."
+    },
+    "Desver - Recherches et préparations": {
+      "title": "Desver - Recherches et préparations",
+      "description": "Document de recherches et préparations pour le projet Desver."
     }
   },
   "videos": {
@@ -65,6 +70,6 @@
       "date": "02-12-2025",
       "width": 1200,
       "height": 800
-    
+    }
   }
-}}
+}

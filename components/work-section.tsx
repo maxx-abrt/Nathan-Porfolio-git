@@ -267,6 +267,12 @@ export function WorkSection({ series }: { series: Series[] }) {
     return series.filter((s) => {
       const medium = s.medium.toLowerCase()
       return medium.includes("vidéo") || medium.includes("cinéma")
+    }).sort((a, b) => {
+      // Sort by priority: lower number = higher priority (shown first/bigger)
+      // Items without priority default to Infinity (shown last)
+      const pa = a.priority ?? Infinity
+      const pb = b.priority ?? Infinity
+      return pa - pb
     })
   }, [series])
 
@@ -477,6 +483,10 @@ function OtherProjectsSection({ series, onProjectModal }: { series: Series[]; on
     return series.filter((s) => {
       const medium = s.medium.toLowerCase()
       return (medium.includes("autres") || medium.includes("audio") || medium === "") && s.hasJson
+    }).sort((a, b) => {
+      const pa = a.priority ?? Infinity
+      const pb = b.priority ?? Infinity
+      return pa - pb
     })
   }, [series])
 

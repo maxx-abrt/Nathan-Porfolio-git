@@ -559,9 +559,24 @@ function PDFItem({ pdf }: { pdf: { id: string; src: string; title: string; descr
               {parseMarkdownPreview(pdf.description, 150)}
             </div>
           )}
-          <span className="font-mono text-[9px] text-accent mt-3 inline-block">
-            Ouvrir le document →
-          </span>
+          <div className="flex items-center gap-3 mt-3">
+            <span className="font-mono text-[9px] text-accent">
+              Ouvrir le document →
+            </span>
+            <span
+              className="font-mono text-[9px] text-muted-foreground hover:text-accent transition-colors cursor-pointer"
+              onClick={(e) => {
+                e.preventDefault()
+                e.stopPropagation()
+                const a = document.createElement("a")
+                a.href = pdf.src
+                a.download = pdf.title || "document"
+                a.click()
+              }}
+            >
+              Télécharger ↓
+            </span>
+          </div>
         </div>
       </div>
 
@@ -579,19 +594,53 @@ function PDFItem({ pdf }: { pdf: { id: string; src: string; title: string; descr
   )
 }
 
+// Détermine le type MIME d'une vidéo à partir de son extension
+function getVideoMimeType(src: string): string {
+  const lower = src.toLowerCase()
+  if (lower.endsWith(".mp4")) return "video/mp4"
+  if (lower.endsWith(".webm")) return "video/webm"
+  if (lower.endsWith(".mov")) return "video/quicktime"
+  return "video/mp4"
+}
+
 // Composant interne : lecteur vidéo
 // Affiche une vidéo avec contrôles natifs du navigateur
+// Gère les formats non supportés (.mov) avec un fallback de téléchargement
 function VideoItem({ video }: { video: VideoFile }) {
+  const [playbackError, setPlaybackError] = useState(false)
+  const mimeType = getVideoMimeType(video.src)
+  const isMov = video.src.toLowerCase().includes(".mov")
+
   return (
     <div className="group relative overflow-hidden border border-border/20 bg-card/30">
       <div className="relative aspect-video bg-black/50">
-        <video
-          src={video.src}
-          controls
-          preload="metadata"
-          className="w-full h-full object-contain"
-          playsInline
-        />
+        {playbackError ? (
+          <div className="w-full h-full flex flex-col items-center justify-center gap-4 p-6">
+            <Play className="w-10 h-10 text-muted-foreground/40" />
+            <p className="font-mono text-xs text-muted-foreground text-center">
+              Ce format vidéo (.mov) n'est pas supporté par votre navigateur.
+            </p>
+            <a
+              href={video.src}
+              download
+              className="inline-flex items-center gap-2 px-4 py-2 bg-accent/10 hover:bg-accent/20 border border-accent/20 hover:border-accent/40 rounded-lg transition-all duration-300"
+            >
+              <ExternalLink className="w-3.5 h-3.5 text-accent" />
+              <span className="font-mono text-xs text-accent">Télécharger la vidéo</span>
+            </a>
+          </div>
+        ) : (
+          <video
+            controls
+            preload="metadata"
+            className="w-full h-full object-contain"
+            playsInline
+            onError={() => setPlaybackError(true)}
+          >
+            <source src={video.src} type={mimeType} />
+            {isMov && <source src={video.src} type="video/mp4" />}
+          </video>
+        )}
       </div>
       <div className="p-4 bg-card/80">
         <div className="flex items-center gap-3 mb-2">
@@ -609,11 +658,20 @@ function VideoItem({ video }: { video: VideoFile }) {
             {parseMarkdownPreview(video.description, 150)}
           </div>
         )}
-        {video.duration && (
-          <span className="font-mono text-[9px] text-accent mt-2 inline-block">
-            Durée: {video.duration}
-          </span>
-        )}
+        <div className="flex items-center gap-3 mt-2">
+          {video.duration && (
+            <span className="font-mono text-[9px] text-accent">
+              Durée: {video.duration}
+            </span>
+          )}
+          <a
+            href={video.src}
+            download
+            className="font-mono text-[9px] text-muted-foreground hover:text-accent transition-colors"
+          >
+            Télécharger ↓
+          </a>
+        </div>
       </div>
     </div>
   )

@@ -71,6 +71,7 @@ interface SeriesJson {
   linkText?: string
   cover?: string
   bigger?: string // Image to display as the large "Couverture" in project detail
+  priority?: number // Optional priority for bento grid ordering (lower = higher priority)
   pdfs?: Record<
     string,
     {
@@ -329,6 +330,7 @@ export function getSeriesBySlug(slug: string): Series | null {
     videoFiles: videos.length > 0 ? videos : undefined,
     audioFiles: audios.length > 0 ? audios : undefined,
     hasJson: fs.existsSync(jsonPath), // Track if series has a JSON file
+    priority: json.priority,
   }
 }
 
