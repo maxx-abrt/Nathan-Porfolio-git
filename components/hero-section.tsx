@@ -110,6 +110,66 @@ export function HeroSection() {
             <ScrambleTextOnHover text="Mon CV →" as="span" duration={0.6} />
           </a>
         </div>
+        {/* Logiciels maîtrisés - sleek compact bar */}
+        <div className="mt-12 pt-8 border-t border-border/20">
+          <div className="flex flex-wrap items-center gap-6 md:gap-8">
+            <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-muted-foreground">Logiciels Maîtrisés</span>
+            
+            <div className="flex flex-wrap items-center gap-4 md:gap-6">
+              {/* Affinity */}
+              <div className="group flex items-center gap-2">
+                <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="9" />
+                  <path d="M9 9l3 6l3-6" />
+                  <path d="M10 12h4" />
+                </svg>
+                <span className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground group-hover:text-foreground transition-colors">Affinity</span>
+              </div>
+
+              {/* Canva */}
+              <div className="group flex items-center gap-2">
+                <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="4" y="6" width="6" height="12" rx="1" />
+                  <rect x="14" y="4" width="6" height="8" rx="1" />
+                  <rect x="14" y="14" width="6" height="6" rx="1" />
+                </svg>
+                <span className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground group-hover:text-foreground transition-colors">Canva</span>
+              </div>
+
+              {/* Davinci */}
+              <div className="group flex items-center gap-2">
+                <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="6" y="6" width="12" height="12" />
+                  <path d="M9 9h2v6H9z" />
+                  <path d="M13 9h2v6h-2z" />
+                  <circle cx="12" cy="18" r="1.5" />
+                </svg>
+                <span className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground group-hover:text-foreground transition-colors">Davinci</span>
+              </div>
+
+              {/* Photoshop */}
+              <div className="group flex items-center gap-2">
+                <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="3" y="3" width="18" height="18" rx="2" />
+                  <path d="M7 17V7h4c2 0 3 1 3 3s-1 3-3 3H9" />
+                  <circle cx="16" cy="13" r="1.5" />
+                </svg>
+                <span className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground group-hover:text-foreground transition-colors">Ps</span>
+              </div>
+
+              {/* Procreate */}
+              <div className="group flex items-center gap-2">
+                <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 3l8 6v6l-8 6l-8-6V9l8-6z" />
+                  <path d="M12 15c1.66 0 3-1.34 3-3s-1.34-3-3-3" />
+                  <path d="M12 15c-1.66 0-3-1.34-3-3s1.34-3 3-3" />
+                  <path d="M12 9v12" />
+                </svg>
+                <span className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground group-hover:text-foreground transition-colors">Procreate</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Étiquette flottante décorative en bas à droite */}

@@ -389,10 +389,10 @@ export default function SeriesPageClient({ seriesData, allSeries }: { seriesData
             type="button"
             onClick={handleRandomProject}
             className="group inline-flex items-center gap-3 border border-foreground/20 px-6 py-3 font-mono text-xs uppercase tracking-widest text-foreground hover:border-accent hover:text-accent transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
-            aria-label={isVideoOrCinema ? "Voir un autre film/vidéo" : "Voir les autres séries"}
-            title={isVideoOrCinema ? "Voir un autre film/vidéo" : "Voir les autres séries"}
+            aria-label={isVideoOrCinema ? "Voir un autre film/vidéo" : "Voir les autres projets"}
+            title={isVideoOrCinema ? "Voir un autre film/vidéo" : "Voir les autres projets"}
           >
-            {isVideoOrCinema ? "VOIR UN AUTRE FILM/VIDÉO" : "Voir les autres séries"}
+            {isVideoOrCinema ? "VOIR UN AUTRE FILM/VIDÉO" : "Voir les autres projets"}
             <span className="transition-transform duration-300 group-hover:translate-x-1 inline-block">→</span>
           </button>
         ) : (
