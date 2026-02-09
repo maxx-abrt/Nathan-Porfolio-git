@@ -32,9 +32,9 @@ const archivoNarrow = Archivo_Narrow({
 
 // Métadonnées SEO de la page (titre et description pour les moteurs de recherche)
 export const metadata: Metadata = {
-  title: "Nathan Dumont — Photographe & Vidéaste",
+  title: "Nathan Dumont — Étudiant",
   description:
-    "Portfolio de Nathan Dumont, photographe et vidéaste, étudiant à l'ENSAD de Dijon. Photographie artistique, studio et reportage.",
+    "Portfolio de Nathan Dumont, étudiant à l'ENSAD de Dijon. Photographie artistique, studio et reportage.",
   keywords: ["Nathan Dumont", "photographe", "vidéaste", "ENSAD", "Dijon", "portfolio", "photographie artistique", "studio"],
   authors: [{ name: "Nathan Dumont" }],
   creator: "Nathan Dumont",
@@ -42,14 +42,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "fr_FR",
-    title: "Nathan Dumont — Photographe & Vidéaste",
-    description: "Portfolio de Nathan Dumont, photographe et vidéaste, étudiant à l'ENSAD de Dijon.",
+    title: "Nathan Dumont — Étudiant",
+    description: "Portfolio de Nathan Dumont, étudiant à l'ENSAD de Dijon.",
     siteName: "Nathan Dumont",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nathan Dumont — Photographe & Vidéaste",
-    description: "Portfolio de Nathan Dumont, photographe et vidéaste, étudiant à l'ENSAD de Dijon.",
+    title: "Nathan Dumont — Étudiant",
+    description: "Portfolio de Nathan Dumont, étudiant à l'ENSAD de Dijon.",
   },
   robots: {
     index: true,
@@ -81,7 +81,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Person",
               name: "Nathan Dumont",
-              jobTitle: "Photographe & Vidéaste",
+              jobTitle: "Étudiant",
               affiliation: {
                 "@type": "EducationalOrganization",
                 name: "ENSAD Dijon",

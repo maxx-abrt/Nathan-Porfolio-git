@@ -154,7 +154,7 @@ export function HeroSection() {
                   <path d="M7 17V7h4c2 0 3 1 3 3s-1 3-3 3H9" />
                   <circle cx="16" cy="13" r="1.5" />
                 </svg>
-                <span className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground group-hover:text-foreground transition-colors">Ps</span>
+                <span className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground group-hover:text-foreground transition-colors">Adobe</span>
               </div>
 
               {/* Procreate */}
