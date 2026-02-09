@@ -4,6 +4,7 @@ import { useState, useRef, useEffect, useMemo, type ReactNode } from "react"
 import { cn } from "@/lib/utils"
 import type { Series, Photo } from "@/lib/data"
 import Link from "next/link"
+import { OptimizedImage } from "@/components/optimized-image"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { PhotoLightbox } from "@/components/photo-lightbox"
@@ -712,12 +713,12 @@ function WorkCard({
     >
       {/* Background image */}
       <div className="absolute inset-0">
-        <img
+        <OptimizedImage
           src={item.photo.src}
           alt={item.photo.alt}
-          loading="lazy"
-          decoding="async"
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          className="w-full h-full transition-transform duration-700 group-hover:scale-105"
+          wrapperClassName="w-full h-full"
+          sizes="(max-width: 768px) 50vw, 33vw"
         />
         <div className={cn(
           "absolute inset-0 transition-opacity duration-500",

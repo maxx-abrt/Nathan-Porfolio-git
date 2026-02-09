@@ -6,7 +6,7 @@
 
 import type React from "react"
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import Lenis from "lenis"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
@@ -15,36 +15,47 @@ gsap.registerPlugin(ScrollTrigger)
 
 export function SmoothScroll({ children }: { children: React.ReactNode }) {
   const lenisRef = useRef<Lenis | null>(null)
+  const [isMobile, setIsMobile] = useState(false)
 
-  // Initialisation de Lenis au montage du composant
   useEffect(() => {
-    // Configuration de Lenis : durée, courbe d'aisé, orientation verticale
+    // Detect mobile/touch devices
+    const checkMobile = () => {
+      const isTouchDevice = window.matchMedia('(pointer: coarse)').matches || 
+                           'ontouchstart' in window || 
+                           navigator.maxTouchPoints > 0
+      setIsMobile(isTouchDevice)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  useEffect(() => {
+    if (isMobile) return // Skip Lenis on mobile for better performance
+
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 0.8,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: "vertical",
       smoothWheel: true,
+      autoResize: true,
     })
 
     lenisRef.current = lenis
 
-    // Connexion de Lenis à GSAP ScrollTrigger pour synchroniser les animations
     lenis.on("scroll", ScrollTrigger.update)
 
-    // Ajout de Lenis au ticker GSAP pour un rafraîchissement continu
+    // Use GSAP ticker instead of separate RAF — avoids double RAF loop overhead
     gsap.ticker.add((time) => {
       lenis.raf(time * 1000)
     })
-
-    // Désactivation du lissage de latence GSAP (Lenis gère déjà le lissage)
     gsap.ticker.lagSmoothing(0)
 
-    // Nettoyage à la destruction du composant
     return () => {
+      gsap.ticker.remove(lenis.raf as any)
       lenis.destroy()
-      gsap.ticker.remove(lenis.raf)
     }
-  }, [])
+  }, [isMobile])
 
   return <>{children}</>
 }

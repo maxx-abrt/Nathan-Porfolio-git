@@ -13,6 +13,7 @@ import { cn } from "@/lib/utils"
 import { PhotoLightbox } from "@/components/photo-lightbox"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { MobileNav } from "@/components/mobile-nav"
+import { OptimizedImage } from "@/components/optimized-image"
 import Link from "next/link"
 import { FileText, ArrowLeft, Play, Volume2, ExternalLink } from "lucide-react"
 import gsap from "gsap"
@@ -266,13 +267,15 @@ export default function SeriesPageClient({ seriesData, allSeries }: { seriesData
           </div>
           
           <div className="relative border border-border rounded-lg overflow-hidden bg-card">
-            <img
+            <OptimizedImage
               src={seriesData.photos[seriesData.biggerIndex]?.src}
               alt={seriesData.photos[seriesData.biggerIndex]?.alt}
-              className="w-full object-contain"
-              style={{ height: `${coverHeight}px` }}
+              className="w-full"
+              wrapperClassName="w-full"
+              objectFit="contain"
               loading="eager"
-              decoding="async"
+              fadeDuration={300}
+              sizes="(max-width: 768px) 100vw, 80vw"
             />
             {seriesData.photos[seriesData.biggerIndex]?.intentionNote && (
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
@@ -426,15 +429,12 @@ function GalleryItem({
     >
       {/* Image avec zoom léger au survol */}
       <div className="relative overflow-hidden">
-        <img
+        <OptimizedImage
           src={photo.src}
           alt={photo.alt}
-          loading="lazy"
-          decoding="async"
-          className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-          style={{
-            aspectRatio: `${photo.width}/${photo.height}`,
-          }}
+          className="w-full h-auto transition-transform duration-700 group-hover:scale-[1.03]"
+          wrapperClassName="w-full"
+          sizes="(max-width: 640px) 100vw, 50vw"
         />
 
         {/* Overlay sombre au survol avec aperçu de la note d'intention */}
@@ -456,7 +456,7 @@ function GalleryItem({
       </div>
 
       {/* Informations de la photo sous l'image */}
-      <div className="p-3 bg-card/50 backdrop-blur-sm">
+      <div className="p-3 bg-card/80">
         <p className="font-mono text-[10px] text-muted-foreground truncate">{photo.alt}</p>
         {photo.technical && (
           <p className="font-mono text-[9px] text-muted-foreground/50 mt-1">{photo.technical}</p>

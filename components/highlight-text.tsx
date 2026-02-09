@@ -46,12 +46,12 @@ export function HighlightText({ children, className = "", parallaxSpeed = 0.3 }:
         },
         {
           scaleX: 1,
-          duration: 1.2,
-          ease: "power3.out",
+          duration: 0.8, // Optimized: was 1.2
+          ease: "power2.out", // Optimized: was power3.out
         },
       )
 
-      // Changement de la couleur du texte après l'apparition du surlignage (décalé de 0.5s)
+      // Changement de la couleur du texte après l'apparition du surlignage (décalé de 0.3s)
       tl.fromTo(
         textRef.current,
         {
@@ -59,20 +59,20 @@ export function HighlightText({ children, className = "", parallaxSpeed = 0.3 }:
         },
         {
           color: "var(--accent-foreground)",
-          duration: 0.6,
+          duration: 0.4, // Optimized: was 0.6
           ease: "power2.out",
         },
-        0.5,
+        0.3, // Optimized: was 0.5
       )
 
       // Effet parallaxe : le fond se déplace verticalement lors du scroll
       gsap.to(highlightRef.current, {
-        yPercent: -20 * parallaxSpeed,
+        yPercent: -12 * parallaxSpeed, // Optimized: was -20 (less movement = less repaints)
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top bottom",
           end: "bottom top",
-          scrub: 1,
+          scrub: 0.5, // Optimized: was 1 (snappier, less calculation)
         },
       })
     }, containerRef)
@@ -84,7 +84,7 @@ export function HighlightText({ children, className = "", parallaxSpeed = 0.3 }:
     <span ref={containerRef} className={`relative inline-block ${className}`}>
       <span
         ref={highlightRef}
-        className="absolute inset-0 bg-accent"
+        className="absolute inset-0 bg-accent will-change-transform"
         style={{
           left: "-0.1em",
           right: "-0.1em",

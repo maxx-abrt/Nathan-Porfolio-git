@@ -12,7 +12,7 @@
 
 import type React from "react"
 import { motion } from "framer-motion"
-import { useMemo, useState, useCallback, useEffect, useRef, createContext, useContext } from "react"
+import { useMemo, useState, useCallback, useEffect, useRef, createContext, useContext, memo } from "react"
 import { Volume2, VolumeX } from "lucide-react"
 
 // Type du contexte audio partagé entre les composants split-flap
@@ -221,7 +221,7 @@ interface SplitFlapCharProps {
 
 // Composant interne : un seul caractère split-flap avec animation de volet 3D
 // Simule un volet mécanique qui tourne pour révéler le bon caractère
-function SplitFlapChar({ char, index, animationKey, skipEntrance, speed, playClick, size }: SplitFlapCharProps) {
+const SplitFlapChar = memo(function SplitFlapChar({ char, index, animationKey, skipEntrance, speed, playClick, size }: SplitFlapCharProps) {
   const displayChar = CHARSET.includes(char) ? char : " "
   const isSpace = char === " "
   // Caractère actuellement affiché (change pendant le défilement)
@@ -375,4 +375,4 @@ function SplitFlapChar({ char, index, animationKey, skipEntrance, speed, playCli
       </motion.div>
     </motion.div>
   )
-}
+})

@@ -56,7 +56,7 @@ export function HeroSection() {
       </div>
 
       {/* Contenu principal : nom en split-flap, sous-titre, description et boutons d'action */}
-      <div ref={contentRef} className="flex-1 w-full">
+      <div ref={contentRef} className="flex-1 w-full will-change-transform">
         <SplitFlapAudioProvider>
           <div className="relative">
             {/* Desktop: Single line */}

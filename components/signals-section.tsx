@@ -5,15 +5,18 @@
 
 "use client"
 
-import { useRef, useState, useEffect } from "react"
+import { useRef, useState, useEffect, useCallback } from "react"
 import { cn } from "@/lib/utils"
 import type { Series } from "@/lib/data"
 import type { ReactNode } from "react"
 import Link from "next/link"
+import { OptimizedImage } from "@/components/optimized-image"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 
 gsap.registerPlugin(ScrollTrigger)
+
+// ... markdown parser functions remain the same ...
 
 // Simple markdown parser for descriptions
 // Supports: **bold**, *italic*, __underline__, and \\n for line breaks
@@ -189,30 +192,49 @@ export function SignalsSection({ series }: { series: Series[] }) {
   const cursorRef = useRef<HTMLDivElement>(null)
   const [isHovering, setIsHovering] = useState(false)
 
-  // Gestion du curseur personnalisé : suit la position de la souris dans la section avec GSAP
+  // Gestion du curseur personnalisé : suit la position de la souris avec CSS transforms (performant)
+  const cursorX = useRef(0)
+  const cursorY = useRef(0)
+  const targetX = useRef(0)
+  const targetY = useRef(0)
+  const rafId = useRef<number | null>(null)
+  
   useEffect(() => {
     if (!sectionRef.current || !cursorRef.current) return
 
     const section = sectionRef.current
     const cursor = cursorRef.current
 
-    const handleMouseMove = (e: MouseEvent) => {
-      const rect = section.getBoundingClientRect()
-      const x = e.clientX - rect.left
-      const y = e.clientY - rect.top
-
-      gsap.to(cursor, {
-        x: x,
-        y: y,
-        duration: 0.5,
-        ease: "power3.out",
-      })
+    // Smooth cursor animation with RAF (better performance than GSAP for continuous updates)
+    // Only run RAF loop when hovering — stops wasting CPU when cursor is elsewhere
+    const animateCursor = () => {
+      cursorX.current += (targetX.current - cursorX.current) * 0.15
+      cursorY.current += (targetY.current - cursorY.current) * 0.15
+      
+      cursor.style.transform = `translate3d(${cursorX.current}px, ${cursorY.current}px, 0) translate(-50%, -50%)`
+      
+      rafId.current = requestAnimationFrame(animateCursor)
     }
 
-    const handleMouseEnter = () => setIsHovering(true)
-    const handleMouseLeave = () => setIsHovering(false)
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = section.getBoundingClientRect()
+      targetX.current = e.clientX - rect.left
+      targetY.current = e.clientY - rect.top
+    }
 
-    section.addEventListener("mousemove", handleMouseMove)
+    const handleMouseEnter = () => {
+      setIsHovering(true)
+      if (!rafId.current) rafId.current = requestAnimationFrame(animateCursor)
+    }
+    const handleMouseLeave = () => {
+      setIsHovering(false)
+      if (rafId.current) {
+        cancelAnimationFrame(rafId.current)
+        rafId.current = null
+      }
+    }
+
+    section.addEventListener("mousemove", handleMouseMove, { passive: true })
     section.addEventListener("mouseenter", handleMouseEnter)
     section.addEventListener("mouseleave", handleMouseLeave)
 
@@ -220,6 +242,7 @@ export function SignalsSection({ series }: { series: Series[] }) {
       section.removeEventListener("mousemove", handleMouseMove)
       section.removeEventListener("mouseenter", handleMouseEnter)
       section.removeEventListener("mouseleave", handleMouseLeave)
+      if (rafId.current) cancelAnimationFrame(rafId.current)
     }
   }, [])
 
@@ -285,9 +308,9 @@ export function SignalsSection({ series }: { series: Series[] }) {
       <div
         ref={cursorRef}
         className={cn(
-          "pointer-events-none absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 z-50",
+          "pointer-events-none absolute top-0 left-0 z-50",
           "w-12 h-12 rounded-full border-2 border-accent bg-accent",
-          "transition-opacity duration-300",
+          "transition-opacity duration-300 will-change-transform",
           isHovering ? "opacity-100" : "opacity-0",
         )}
       />
@@ -341,12 +364,12 @@ function RecentSeriesCard({
         <div className="relative bg-card border border-border/50 md:border-t md:border-l md:border-r-0 md:border-b-0 overflow-hidden h-full flex flex-col">
           {/* Image de couverture avec dégradé vers le contenu */}
           <div className="relative w-full aspect-[4/3] overflow-hidden">
-            <img
+            <OptimizedImage
               src={coverPhoto.src}
               alt={coverPhoto.alt}
-              loading="lazy"
-              decoding="async"
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              className="w-full h-full transition-transform duration-700 group-hover:scale-105"
+              wrapperClassName="w-full h-full"
+              sizes="(max-width: 640px) 288px, 320px"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-card/80 via-transparent to-transparent" />
           </div>

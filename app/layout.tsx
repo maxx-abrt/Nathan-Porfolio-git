@@ -15,16 +15,19 @@ const archivo = Archivo({
   weight: ["400", "500", "600", "700", "900"],
   subsets: ["latin"],
   variable: "--font-archivo",
+  display: "swap",
 })
 const archivoBlack = Archivo_Black({
   weight: "400",
   subsets: ["latin"],
   variable: "--font-archivo-black",
+  display: "swap",
 })
 const archivoNarrow = Archivo_Narrow({
   weight: ["400", "500"],
   subsets: ["latin"],
   variable: "--font-archivo-narrow",
+  display: "swap",
 })
 
 // Métadonnées SEO de la page (titre et description pour les moteurs de recherche)
@@ -68,6 +71,9 @@ export default function RootLayout({
   return (
     <html lang="fr" suppressHydrationWarning>
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
