@@ -609,8 +609,10 @@ function getVideoMimeType(src: string): string {
 function VideoItem({ video }: { video: VideoFile }) {
   const [playbackError, setPlaybackError] = useState(false)
   const [canPlayMov, setCanPlayMov] = useState(true)
+  const [canPlayMp4, setCanPlayMp4] = useState(true)
   const mimeType = getVideoMimeType(video.src)
   const isMov = video.src.toLowerCase().includes(".mov")
+  const isMp4 = video.src.toLowerCase().includes(".mp4")
 
   useEffect(() => {
     if (!isMov) return
@@ -619,7 +621,17 @@ function VideoItem({ video }: { video: VideoFile }) {
     setCanPlayMov(Boolean(support))
   }, [isMov])
 
-  const showFallback = playbackError || (isMov && !canPlayMov)
+  useEffect(() => {
+    if (!isMp4) return
+    const testVideo = document.createElement("video")
+    const support = testVideo.canPlayType("video/mp4")
+    setCanPlayMp4(Boolean(support))
+  }, [isMp4])
+
+  const showFallback = playbackError || (isMov && !canPlayMov) || (isMp4 && !canPlayMp4)
+  const fallbackMessage = isMov
+    ? "Ce format vidéo (.mov) n'est pas supporté par votre navigateur."
+    : "Ce format vidéo (.mp4) n'est pas supporté par votre navigateur."
 
   return (
     <div className="group relative overflow-hidden border border-border/20 bg-card/30">
@@ -628,7 +640,7 @@ function VideoItem({ video }: { video: VideoFile }) {
           <div className="w-full h-full flex flex-col items-center justify-center gap-4 p-6">
             <Play className="w-10 h-10 text-muted-foreground/40" />
             <p className="font-mono text-xs text-muted-foreground text-center">
-              Ce format vidéo (.mov) n'est pas supporté par votre navigateur.
+              {fallbackMessage}
             </p>
             <a
               href={video.src}
