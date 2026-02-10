@@ -94,7 +94,7 @@ export function SplitFlapAudioProvider({ children }: { children: React.ReactNode
       lowpass.Q.value = 0.5
 
       // Enveloppe de gain : atténuation rapide pour un son percussif
-      gainNode.gain.setValueAtTime(0.05, ctx.currentTime)
+      gainNode.gain.setValueAtTime(0.1, ctx.currentTime)
       gainNode.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.02)
 
       // Connexion de la chaîne audio
@@ -169,7 +169,7 @@ function SplitFlapTextInner({ text, className = "", speed = 50, size }: SplitFla
   const audio = useSplitFlapAudio()
 
   // Au survol, incrémente la clé pour relancer l'animation de tous les caractères
-  const handleMouseEnter = useCallback(() => {
+  const handleScrambleTrigger = useCallback(() => {
     setAnimationKey((prev) => prev + 1)
   }, [])
 
@@ -185,7 +185,9 @@ function SplitFlapTextInner({ text, className = "", speed = 50, size }: SplitFla
     <div
       className={`inline-flex gap-[0.08em] items-center cursor-pointer ${className}`}
       aria-label={text}
-      onMouseEnter={handleMouseEnter}
+      onMouseEnter={handleScrambleTrigger}
+      onClick={handleScrambleTrigger}
+      onTouchStart={handleScrambleTrigger}
       style={{ perspective: "1000px" }}
     >
       {chars.map((char, index) => (
@@ -196,6 +198,7 @@ function SplitFlapTextInner({ text, className = "", speed = 50, size }: SplitFla
           animationKey={animationKey}
           skipEntrance={hasInitialized}
           speed={speed}
+          playClick={audio?.playClick}
           size={size}
         />
       ))}

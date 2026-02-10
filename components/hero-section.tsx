@@ -62,13 +62,13 @@ export function HeroSection() {
           <div className="relative">
             {/* Desktop: Single line */}
             <div className="hidden md:block">
-              <SplitFlapText text="NATHAN DUMONT" speed={80} size="clamp(3.5rem, 10vw, 10rem)" />
+              <SplitFlapText text="NATHAN DUMONT" speed={60} size="clamp(3.5rem, 10vw, 10rem)" />
             </div>
             {/* Mobile: Stacked with offset */}
             <div className="md:hidden flex flex-col">
-              <SplitFlapText text="NATHAN" speed={80} size="clamp(3.5rem, 10vw, 10rem)" />
+              <SplitFlapText text="NATHAN" speed={60} size="clamp(3.5rem, 10vw, 10rem)" />
               <div className="mt-1 ml-[3vw]">
-                <SplitFlapText text="DUMONT" speed={80} size="clamp(3.5rem, 10vw, 10rem)" />
+                <SplitFlapText text="DUMONT" speed={60} size="clamp(3.5rem, 10vw, 10rem)" />
               </div>
             </div>
             <div className="mt-4">
