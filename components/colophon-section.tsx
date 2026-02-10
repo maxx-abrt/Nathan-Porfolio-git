@@ -79,7 +79,7 @@ export function ColophonSection() {
   return (
     <section
       ref={sectionRef}
-      id="colophon"
+      id="contact"
       className="relative py-20 sm:py-32 pl-4 sm:pl-6 md:pl-28 pr-4 sm:pr-6 md:pr-12 border-t border-border/30"
     >
       {/* En-tête de la section avec numéro et titre */}

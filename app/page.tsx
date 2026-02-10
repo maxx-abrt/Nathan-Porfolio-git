@@ -54,7 +54,7 @@ export default function Page() {
         <LazySection rootMargin="200px" minHeight="400px" anchorIds={["cv"]}>
           <PrinciplesSection />
         </LazySection>
-        <LazySection rootMargin="200px" minHeight="300px" anchorIds={["colophon"]}>
+        <LazySection rootMargin="200px" minHeight="300px" anchorIds={["contact"]}>
           <ColophonSection />
         </LazySection>
       </div>

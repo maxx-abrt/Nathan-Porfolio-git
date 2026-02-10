@@ -17,7 +17,7 @@ const navItems = [
   { id: "autres-projets", label: "Autres projets" },
   { id: "portfolio", label: "Portfolios" },
   { id: "cv", label: "Parcours" },
-  { id: "colophon", label: "Contact" },
+  { id: "contact", label: "Contact" },
 ]
 
 export function SideNav() {
