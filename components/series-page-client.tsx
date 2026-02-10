@@ -125,10 +125,23 @@ export default function SeriesPageClient({ seriesData, allSeries }: { seriesData
   const safeAllSeries = Array.isArray(allSeries) ? allSeries : []
   // Photo actuellement affichée dans la lightbox (null = fermée)
   const [lightboxPhoto, setLightboxPhoto] = useState<Photo | null>(null)
-  const [coverHeight, setCoverHeight] = useState(300)
+  const [coverHeightPercent, setCoverHeightPercent] = useState(100)
+  const minCoverHeight = 200
+  const maxCoverHeightLimit = 900
   const headerRef = useRef<HTMLDivElement>(null)
   const galleryRef = useRef<HTMLDivElement>(null)
+  const coverRef = useRef<HTMLDivElement>(null)
   const router = useRouter()
+
+  const coverPhoto = seriesData.photos[seriesData.biggerIndex]
+
+  // Calculate actual height based on percentage
+  const coverHeight = useMemo(() => {
+    if (!coverPhoto?.height) return minCoverHeight + (maxCoverHeightLimit - minCoverHeight) * (coverHeightPercent / 100)
+    const naturalHeight = coverPhoto.height
+    const maxAllowed = Math.min(naturalHeight, maxCoverHeightLimit)
+    return Math.round(minCoverHeight + (maxAllowed - minCoverHeight) * (coverHeightPercent / 100))
+  }, [coverHeightPercent, coverPhoto?.height])
 
   // Determine if this is a video/cinema series for contextual button text
   const isVideoOrCinema = useMemo(() => {
@@ -250,32 +263,38 @@ export default function SeriesPageClient({ seriesData, allSeries }: { seriesData
           <div className="mb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">Couverture</span>
             
-            {/* Height control only - cover is set in JSON */}
-            <div className="flex items-center gap-2">
-              <span className="font-mono text-[10px] text-muted-foreground">Hauteur:</span>
+            {/* Height control - percentage based */}
+            <div className="flex items-center gap-3 rounded-full border border-border/60 bg-card/70 px-3 py-1.5">
+              <span className="font-mono text-[10px] text-muted-foreground uppercase tracking-widest">Zoom</span>
               <input
                 type="range"
-                min="200"
-                max="800"
-                step="50"
-                value={coverHeight}
-                onChange={(e) => setCoverHeight(Number(e.target.value))}
-                className="w-24 accent-accent"
+                min="0"
+                max="100"
+                step="5"
+                value={coverHeightPercent}
+                onChange={(e) => setCoverHeightPercent(Number(e.target.value))}
+                className="w-28 sm:w-36 accent-accent"
               />
-              <span className="font-mono text-[10px] text-muted-foreground w-10">{coverHeight}px</span>
+              <span className="font-mono text-[10px] text-muted-foreground w-12 text-right">
+                {coverHeightPercent === 100 ? "Plein" : `${coverHeightPercent}%`}
+              </span>
             </div>
           </div>
           
           <div
-            className="relative border border-border rounded-lg overflow-hidden bg-card"
+            ref={coverRef}
+            className="relative border border-border rounded-lg overflow-hidden bg-card flex items-center justify-center"
             style={{ height: coverHeight }}
           >
             <OptimizedImage
-              src={seriesData.photos[seriesData.biggerIndex]?.src}
-              alt={seriesData.photos[seriesData.biggerIndex]?.alt}
-              className="w-full"
-              wrapperClassName="w-full"
-              objectFit="contain"
+              src={coverPhoto?.src}
+              alt={coverPhoto?.alt}
+              className={cn(
+                "w-full h-full",
+                coverHeightPercent >= 95 ? "object-contain" : "object-cover object-center"
+              )}
+              wrapperClassName="w-full h-full"
+              objectFit={coverHeightPercent >= 95 ? "contain" : "cover"}
               loading="eager"
               fadeDuration={300}
               sizes="(max-width: 768px) 100vw, 80vw"
