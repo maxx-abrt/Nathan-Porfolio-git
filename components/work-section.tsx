@@ -7,7 +7,6 @@ import Link from "next/link"
 import { OptimizedImage } from "@/components/optimized-image"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { PhotoLightbox } from "@/components/photo-lightbox"
 import { X } from "lucide-react"
 
 gsap.registerPlugin(ScrollTrigger)
@@ -238,7 +237,6 @@ export function WorkSection({ series }: { series: Series[] }) {
   const sectionRef = useRef<HTMLElement>(null)
   const headerRef = useRef<HTMLDivElement>(null)
   const gridRef = useRef<HTMLDivElement>(null)
-  const [lightboxData, setLightboxData] = useState<{ photo: Photo; parentSeries: Series } | null>(null)
   const [projectModal, setProjectModal] = useState<{ series: Series } | null>(null)
 
   // Prevent body scroll when project modal is open
@@ -246,19 +244,13 @@ export function WorkSection({ series }: { series: Series[] }) {
     if (projectModal) {
       document.body.style.overflow = 'hidden'
       document.body.style.touchAction = 'none'
-      
-      // Prevent scroll on touch devices
-      const preventScroll = (e: TouchEvent) => e.preventDefault()
-      document.addEventListener("touchmove", preventScroll, { passive: false })
     } else {
       document.body.style.overflow = ''
       document.body.style.touchAction = ''
-      document.removeEventListener("touchmove", () => {})
     }
     return () => {
       document.body.style.overflow = ''
       document.body.style.touchAction = ''
-      document.removeEventListener("touchmove", () => {})
     }
   }, [projectModal])
 
@@ -363,7 +355,6 @@ export function WorkSection({ series }: { series: Series[] }) {
             item={item}
             index={index}
             persistHover={index === 0}
-            onPhotoClick={() => setLightboxData({ photo: item.photo, parentSeries: item.series })}
             onProjectClick={() => setProjectModal({ series: item.series })}
           />
         ))}
@@ -372,19 +363,14 @@ export function WorkSection({ series }: { series: Series[] }) {
       {/* Autres projets section */}
       <OtherProjectsSection series={series} onProjectModal={(series) => setProjectModal({ series })} />
 
-      {/* Lightbox */}
-      {lightboxData && (
-        <PhotoLightbox
-          photo={lightboxData.photo}
-          parentSeries={lightboxData.parentSeries}
-          onClose={() => setLightboxData(null)}
-        />
-      )}
-
       {/* Project Modal */}
       {projectModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm p-4">
-          <div className="relative z-10 w-full h-full lg:h-auto lg:max-h-[90vh] overflow-y-auto lg:overflow-visible flex flex-col lg:flex-row gap-0 lg:gap-8 max-w-6xl lg:mx-6">
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm p-4 overflow-hidden"
+          onWheel={(event) => event.preventDefault()}
+          onTouchMove={(event) => event.preventDefault()}
+        >
+          <div className="relative z-10 w-full h-full lg:h-auto lg:max-h-[90vh] flex flex-col lg:flex-row gap-0 lg:gap-8 max-w-6xl lg:mx-6">
             {/* Close button */}
             <button
               onClick={() => setProjectModal(null)}
@@ -394,27 +380,20 @@ export function WorkSection({ series }: { series: Series[] }) {
             </button>
             
             {/* Cover Image - Left Side (no background) */}
-            <div className="flex-shrink-0 lg:flex-1 flex items-center justify-center min-h-[40vh] lg:min-h-0 p-4 pt-16 lg:p-0">
+            <Link 
+              href={`/series/${projectModal.series.slug}`}
+              className="flex-shrink-0 lg:flex-1 flex items-center justify-center min-h-[40vh] lg:min-h-0 p-4 pt-16 lg:p-0 cursor-pointer group"
+            >
               <img
                 src={projectModal.series.photos[projectModal.series.coverIndex]?.src}
                 alt={projectModal.series.photos[projectModal.series.coverIndex]?.alt}
-                className="max-h-[50vh] lg:max-h-[80vh] w-auto object-contain max-w-[90vw] lg:max-w-full"
+                className="max-h-[50vh] lg:max-h-[80vh] w-auto object-contain max-w-[90vw] lg:max-w-full transition-transform duration-500 group-hover:scale-[1.02]"
               />
-            </div>
+            </Link>
             
             {/* Content - Right Side (with card background) */}
             <div 
-              ref={(el) => { 
-                if (el) {
-                  el.scrollTop = 0;
-                  // Smooth scroll to top on open
-                  el.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                  });
-                }
-              }}
-              className="flex-shrink-0 lg:w-80 bg-card/95 backdrop-blur-md border-t lg:border-t-0 lg:border border-border/30 p-6 md:p-8 overflow-y-auto max-h-[80vh] rounded-lg lg:rounded-none scroll-smooth"
+              className="flex-shrink-0 lg:w-80 bg-card/95 backdrop-blur-md border-t lg:border-t-0 lg:border border-border/30 p-6 md:p-8 max-h-[80vh] rounded-lg lg:rounded-none"
             >
               <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent block mb-4">
                 Commentaire
@@ -429,8 +408,14 @@ export function WorkSection({ series }: { series: Series[] }) {
               
               <div className="w-12 h-px bg-accent/40 mb-6" />
               
-              <div className="font-mono text-sm text-muted-foreground leading-relaxed overflow-y-auto max-h-[40vh] pr-3 scrollbar-thin scrollbar-thumb-border/60 scrollbar-track-transparent hover:scrollbar-thumb-border/80 scrollbar-thumb-rounded">
-                {parseMarkdown(projectModal.series.description)}
+              <div className="flex-1 min-h-0">
+                <div
+                  className="font-mono text-sm text-muted-foreground leading-relaxed max-h-[38vh] lg:max-h-[44vh] overflow-y-auto pr-2 custom-scrollbar overscroll-contain"
+                  onWheel={(event) => event.stopPropagation()}
+                  onTouchMove={(event) => event.stopPropagation()}
+                >
+                  {parseMarkdown(projectModal.series.description)}
+                </div>
               </div>
               
               <div className="mt-6 pt-4 border-t border-border/20">
@@ -461,19 +446,13 @@ function OtherProjectsSection({ series, onProjectModal }: { series: Series[]; on
     if (projectModal) {
       document.body.style.overflow = 'hidden'
       document.body.style.touchAction = 'none'
-      
-      // Prevent scroll on touch devices
-      const preventScroll = (e: TouchEvent) => e.preventDefault()
-      document.addEventListener("touchmove", preventScroll, { passive: false })
     } else {
       document.body.style.overflow = ''
       document.body.style.touchAction = ''
-      document.removeEventListener("touchmove", () => {})
     }
     return () => {
       document.body.style.overflow = ''
       document.body.style.touchAction = ''
-      document.removeEventListener("touchmove", () => {})
     }
   }, [projectModal])
 
@@ -602,7 +581,6 @@ function OtherProjectsSection({ series, onProjectModal }: { series: Series[]; on
             item={item}
             index={index}
             persistHover={false}
-            onPhotoClick={() => setProjectModal({ series: item.series })}
             onProjectClick={() => setProjectModal({ series: item.series })}
           />
         ))}
@@ -610,8 +588,12 @@ function OtherProjectsSection({ series, onProjectModal }: { series: Series[]; on
 
       {/* Project Modal */}
       {projectModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm p-4">
-          <div className="relative z-10 w-full h-full lg:h-auto lg:max-h-[90vh] overflow-y-auto lg:overflow-visible flex flex-col lg:flex-row gap-0 lg:gap-8 max-w-6xl lg:mx-6">
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm p-4 overflow-hidden"
+          onWheel={(event) => event.preventDefault()}
+          onTouchMove={(event) => event.preventDefault()}
+        >
+          <div className="relative z-10 w-full h-full lg:h-auto lg:max-h-[90vh] flex flex-col lg:flex-row gap-0 lg:gap-8 max-w-6xl lg:mx-6">
             {/* Close button */}
             <button
               onClick={() => setProjectModal(null)}
@@ -621,27 +603,20 @@ function OtherProjectsSection({ series, onProjectModal }: { series: Series[]; on
             </button>
             
             {/* Cover Image - Left Side (no background) */}
-            <div className="shrink-0 lg:flex-1 flex items-center justify-center min-h-[40vh] lg:min-h-0 p-4 pt-16 lg:p-0">
+            <Link 
+              href={`/series/${projectModal.series.slug}`}
+              className="shrink-0 lg:flex-1 flex items-center justify-center min-h-[40vh] lg:min-h-0 p-4 pt-16 lg:p-0 cursor-pointer group"
+            >
               <img
                 src={projectModal.series.photos[projectModal.series.coverIndex]?.src}
                 alt={projectModal.series.photos[projectModal.series.coverIndex]?.alt}
-                className="max-h-[50vh] lg:max-h-[80vh] w-auto object-contain max-w-[90vw] lg:max-w-full"
+                className="max-h-[50vh] lg:max-h-[80vh] w-auto object-contain max-w-[90vw] lg:max-w-full transition-transform duration-500 group-hover:scale-[1.02]"
               />
-            </div>
+            </Link>
             
             {/* Content - Right Side (with card background) */}
             <div 
-              ref={(el) => { 
-                if (el) {
-                  el.scrollTop = 0;
-                  // Smooth scroll to top on open
-                  el.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                  });
-                }
-              }}
-              className="shrink-0 lg:w-80 bg-card/95 backdrop-blur-md border-t lg:border-t-0 lg:border border-border/30 p-6 md:p-8 overflow-y-auto max-h-[80vh] rounded-lg lg:rounded-none scroll-smooth"
+              className="shrink-0 lg:w-80 bg-card/95 backdrop-blur-md border-t lg:border-t-0 lg:border border-border/30 p-6 md:p-8 max-h-[80vh] rounded-lg lg:rounded-none"
             >
               <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent block mb-4">
                 Commentaire
@@ -656,8 +631,14 @@ function OtherProjectsSection({ series, onProjectModal }: { series: Series[]; on
               
               <div className="w-12 h-px bg-accent/40 mb-6" />
               
-              <div className="font-mono text-sm text-muted-foreground leading-relaxed overflow-y-auto max-h-[40vh] pr-3 scrollbar-thin scrollbar-thumb-border/60 scrollbar-track-transparent hover:scrollbar-thumb-border/80 scrollbar-thumb-rounded">
-                {parseMarkdown(projectModal.series.description)}
+              <div className="flex-1 min-h-0">
+                <div
+                  className="font-mono text-sm text-muted-foreground leading-relaxed max-h-[38vh] lg:max-h-[44vh] overflow-y-auto pr-2 custom-scrollbar overscroll-contain"
+                  onWheel={(event) => event.stopPropagation()}
+                  onTouchMove={(event) => event.stopPropagation()}
+                >
+                  {parseMarkdown(projectModal.series.description)}
+                </div>
               </div>
               
               <div className="mt-6 pt-4 border-t border-border/20">
@@ -681,13 +662,11 @@ function WorkCard({
   item,
   index,
   persistHover = false,
-  onPhotoClick,
   onProjectClick,
 }: {
   item: { photo: Photo; series: Series; span: string }
   index: number
   persistHover?: boolean
-  onPhotoClick: () => void
   onProjectClick: () => void
 }) {
   const [isHovered, setIsHovered] = useState(false)
@@ -773,13 +752,7 @@ function WorkCard({
           <button
             onClick={(e) => { 
               e.stopPropagation(); 
-              // Use project modal for video/projects, photo lightbox for photos
-              const medium = item.series.medium.toLowerCase()
-              if (medium.includes('vidéo') || medium.includes('cinéma') || medium.includes('audio')) {
-                onProjectClick();
-              } else {
-                onPhotoClick();
-              }
+              onProjectClick();
             }}
             className={cn(
               "font-mono text-[10px] uppercase tracking-widest text-accent/80 hover:text-accent mt-3 transition-all duration-300",

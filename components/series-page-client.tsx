@@ -608,13 +608,23 @@ function getVideoMimeType(src: string): string {
 // Gère les formats non supportés (.mov) avec un fallback de téléchargement
 function VideoItem({ video }: { video: VideoFile }) {
   const [playbackError, setPlaybackError] = useState(false)
+  const [canPlayMov, setCanPlayMov] = useState(true)
   const mimeType = getVideoMimeType(video.src)
   const isMov = video.src.toLowerCase().includes(".mov")
+
+  useEffect(() => {
+    if (!isMov) return
+    const testVideo = document.createElement("video")
+    const support = testVideo.canPlayType("video/quicktime")
+    setCanPlayMov(Boolean(support))
+  }, [isMov])
+
+  const showFallback = playbackError || (isMov && !canPlayMov)
 
   return (
     <div className="group relative overflow-hidden border border-border/20 bg-card/30">
       <div className="relative aspect-video bg-black/50">
-        {playbackError ? (
+        {showFallback ? (
           <div className="w-full h-full flex flex-col items-center justify-center gap-4 p-6">
             <Play className="w-10 h-10 text-muted-foreground/40" />
             <p className="font-mono text-xs text-muted-foreground text-center">

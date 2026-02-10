@@ -15,6 +15,8 @@ import fs from "fs"
 import path from "path"
 import type { Photo, Series, PDFFile, VideoFile, AudioFile } from "./data"
 
+const ASSET_BASE_URL = process.env.NEXT_PUBLIC_ASSET_BASE_URL?.replace(/\/$/, "")
+
 // Normalise une chaîne en NFC pour éviter les problèmes NFD/NFC sur macOS
 function nfc(s: string): string {
   return s.normalize("NFC")
@@ -53,6 +55,18 @@ function encodePathForUrl(filePath: string): string {
     .split("/")
     .map((segment) => encodeURIComponent(segment))
     .join("/")
+}
+
+function withAssetBaseUrl(assetPath: string): string {
+  if (!ASSET_BASE_URL) return assetPath
+  return `${ASSET_BASE_URL}${assetPath.startsWith("/") ? "" : "/"}${assetPath}`
+}
+
+function normalizeAssetUrl(assetPath: string): string {
+  if (/^https?:\/\//i.test(assetPath)) return assetPath
+  const cleaned = assetPath.replace(/^public\//, "/")
+  const normalized = cleaned.startsWith("/") ? cleaned : `/${cleaned}`
+  return withAssetBaseUrl(encodePathForUrl(normalized))
 }
 
 // Chemin absolu vers le répertoire contenant tous les dossiers de séries
@@ -203,7 +217,7 @@ export function getSeriesBySlug(slug: string): Series | null {
     const meta = json.pdfs?.[name]
     return {
       id: `${slug}-${name}`,
-      src: encodePathForUrl(`/series/${nfcPath}/${nfc(file)}`),
+      src: withAssetBaseUrl(encodePathForUrl(`/series/${nfcPath}/${nfc(file)}`)),
       title: meta?.title ?? name,
       description: meta?.description,
     }
@@ -215,10 +229,10 @@ export function getSeriesBySlug(slug: string): Series | null {
     const meta = json.videos?.[name]
     return {
       id: `${slug}-${name}`,
-      src: encodePathForUrl(`/series/${nfcPath}/${nfc(file)}`),
+      src: withAssetBaseUrl(encodePathForUrl(`/series/${nfcPath}/${nfc(file)}`)),
       title: meta?.title ?? name,
       description: meta?.description,
-      thumbnail: meta?.thumbnail,
+      thumbnail: meta?.thumbnail ? normalizeAssetUrl(meta.thumbnail) : undefined,
       duration: meta?.duration,
     }
   })
@@ -229,7 +243,7 @@ export function getSeriesBySlug(slug: string): Series | null {
     const meta = json.audios?.[name]
     return {
       id: `${slug}-${name}`,
-      src: encodePathForUrl(`/series/${nfcPath}/${nfc(file)}`),
+      src: withAssetBaseUrl(encodePathForUrl(`/series/${nfcPath}/${nfc(file)}`)),
       title: meta?.title ?? name,
       description: meta?.description,
       duration: meta?.duration,
@@ -254,7 +268,7 @@ export function getSeriesBySlug(slug: string): Series | null {
     const h = meta?.height ?? 800
     return {
       id: `${slug}-${name}`,
-      src: encodePathForUrl(`/series/${nfcPath}/${nfc(file)}`),
+      src: withAssetBaseUrl(encodePathForUrl(`/series/${nfcPath}/${nfc(file)}`)),
       alt: meta?.title ?? name,
       width: w,
       height: h,
