@@ -21,7 +21,7 @@ function getDefaultAssetBaseUrl(): string | undefined {
   const repo = process.env.VERCEL_GIT_REPO_SLUG
   const ref = process.env.VERCEL_GIT_COMMIT_REF || "main"
   if (!owner || !repo) return undefined
-  return `https://media.githubusercontent.com/media/${owner}/${repo}/${ref}`
+  return `https://media.githubusercontent.com/media/${owner}/${repo}/${ref}/public`
 }
 
 const ASSET_BASE_URL =
