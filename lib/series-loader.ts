@@ -100,6 +100,7 @@ interface SeriesJson {
   cover?: string
   bigger?: string // Image to display as the large "Couverture" in project detail
   priority?: number // Optional priority for bento grid ordering (lower = higher priority)
+  lastproject?: boolean | string
   pdfs?: Record<
     string,
     {
@@ -328,6 +329,9 @@ export function getSeriesBySlug(slug: string): Series | null {
   const seriesDescription = json.description ?? ""
   const seriesLink = json.link
   const seriesLinkText = json.linkText
+  const lastProjectFlag = typeof json.lastproject === "string"
+    ? ["yes", "true", "1"].includes(json.lastproject.toLowerCase())
+    : Boolean(json.lastproject)
 
   // Détermination de l'index de la photo de couverture
   const coverPhotoId = json.cover ? `${slug}-${json.cover}` : null
@@ -359,6 +363,7 @@ export function getSeriesBySlug(slug: string): Series | null {
     audioFiles: audios.length > 0 ? audios : undefined,
     hasJson: fs.existsSync(jsonPath), // Track if series has a JSON file
     priority: json.priority,
+    lastProject: lastProjectFlag,
   }
 }
 

@@ -7,6 +7,7 @@ import { HeroSection } from "@/components/hero-section"
 import { SideNav } from "@/components/side-nav"
 import { MobileNav } from "@/components/mobile-nav"
 import { LazySection } from "@/components/lazy-section"
+import { LastProjectSection } from "@/components/last-project-section"
 import { getAllSeries } from "@/lib/series-loader"
 
 // Dynamic imports — code-split below-fold sections so they don't block initial paint
@@ -27,6 +28,10 @@ const ColophonSection = dynamic(() => import("@/components/colophon-section").th
 // - ColophonSection : informations de contact et crédits
 export default function Page() {
   const allSeries = getAllSeries()
+  const lastProject = allSeries.find((series) => series.lastProject)
+  const remainingSeries = lastProject
+    ? allSeries.filter((series) => series.id !== lastProject.id)
+    : allSeries
 
   return (
     <main className="relative min-h-screen">
@@ -36,11 +41,12 @@ export default function Page() {
 
       <div className="relative z-10">
         <HeroSection />
+        {lastProject && <LastProjectSection series={lastProject} />}
         <LazySection rootMargin="400px" minHeight="600px" anchorIds={["photographies"]}>
-          <SignalsSection series={allSeries} />
+          <SignalsSection series={remainingSeries} />
         </LazySection>
         <LazySection rootMargin="300px" minHeight="500px" anchorIds={["cinema-videos", "autres-projets"]}>
-          <WorkSection series={allSeries} />
+          <WorkSection series={remainingSeries} />
         </LazySection>
         <LazySection rootMargin="200px" minHeight="400px" anchorIds={["portfolio"]}>
           <PortfolioSection />

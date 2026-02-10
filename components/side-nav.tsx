@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils"
 // Définition des sections navigables avec leur id DOM et label affiché
 const navItems = [
   { id: "hero", label: "Accueil" },
+  { id: "last-project", label: "Dernier projet" },
   { id: "photographies", label: "Photographies" },
   { id: "cinema-videos", label: "Cinéma/vidéos" },
   { id: "autres-projets", label: "Autres projets" },

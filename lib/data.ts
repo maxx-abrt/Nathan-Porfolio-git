@@ -33,6 +33,7 @@ export interface Series {
   audioFiles?: AudioFile[]
   hasJson: boolean // Indicates if this series has a series.json file
   priority?: number // Optional priority for bento grid ordering (lower = higher priority, shown first/bigger)
+  lastProject?: boolean
 }
 
 // Interface décrivant un fichier PDF attaché à une série

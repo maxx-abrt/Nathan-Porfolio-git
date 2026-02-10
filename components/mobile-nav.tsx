@@ -11,6 +11,7 @@ import { motion, AnimatePresence } from "framer-motion"
 
 const navItems = [
   { id: "hero", label: "Accueil" },
+  { id: "last-project", label: "Dernier projet" },
   { id: "photographies", label: "Photographies" },
   { id: "cinema-videos", label: "Cinéma/vidéos" },
   { id: "autres-projets", label: "Autres projets" },
