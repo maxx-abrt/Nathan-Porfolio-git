@@ -67,6 +67,11 @@ function encodePathForUrl(filePath: string): string {
     .join("/")
 }
 
+function localAssetUrl(assetPath: string): string {
+  const normalized = assetPath.startsWith("/") ? assetPath : `/${assetPath}`
+  return encodePathForUrl(normalized)
+}
+
 function withAssetBaseUrl(assetPath: string): string {
   if (!ASSET_BASE_URL) return assetPath
   return `${ASSET_BASE_URL}${assetPath.startsWith("/") ? "" : "/"}${assetPath}`
@@ -75,8 +80,7 @@ function withAssetBaseUrl(assetPath: string): string {
 function normalizeAssetUrl(assetPath: string): string {
   if (/^https?:\/\//i.test(assetPath)) return assetPath
   const cleaned = assetPath.replace(/^public\//, "/")
-  const normalized = cleaned.startsWith("/") ? cleaned : `/${cleaned}`
-  return withAssetBaseUrl(encodePathForUrl(normalized))
+  return localAssetUrl(cleaned)
 }
 
 // Chemin absolu vers le répertoire contenant tous les dossiers de séries
@@ -227,7 +231,7 @@ export function getSeriesBySlug(slug: string): Series | null {
     const meta = json.pdfs?.[name]
     return {
       id: `${slug}-${name}`,
-      src: withAssetBaseUrl(encodePathForUrl(`/series/${nfcPath}/${nfc(file)}`)),
+      src: withAssetBaseUrl(localAssetUrl(`/series/${nfcPath}/${nfc(file)}`)),
       title: meta?.title ?? name,
       description: meta?.description,
     }
@@ -239,7 +243,7 @@ export function getSeriesBySlug(slug: string): Series | null {
     const meta = json.videos?.[name]
     return {
       id: `${slug}-${name}`,
-      src: withAssetBaseUrl(encodePathForUrl(`/series/${nfcPath}/${nfc(file)}`)),
+      src: withAssetBaseUrl(localAssetUrl(`/series/${nfcPath}/${nfc(file)}`)),
       title: meta?.title ?? name,
       description: meta?.description,
       thumbnail: meta?.thumbnail ? normalizeAssetUrl(meta.thumbnail) : undefined,
@@ -253,7 +257,7 @@ export function getSeriesBySlug(slug: string): Series | null {
     const meta = json.audios?.[name]
     return {
       id: `${slug}-${name}`,
-      src: withAssetBaseUrl(encodePathForUrl(`/series/${nfcPath}/${nfc(file)}`)),
+      src: withAssetBaseUrl(localAssetUrl(`/series/${nfcPath}/${nfc(file)}`)),
       title: meta?.title ?? name,
       description: meta?.description,
       duration: meta?.duration,
@@ -278,7 +282,7 @@ export function getSeriesBySlug(slug: string): Series | null {
     const h = meta?.height ?? 800
     return {
       id: `${slug}-${name}`,
-      src: withAssetBaseUrl(encodePathForUrl(`/series/${nfcPath}/${nfc(file)}`)),
+      src: localAssetUrl(`/series/${nfcPath}/${nfc(file)}`),
       alt: meta?.title ?? name,
       width: w,
       height: h,
