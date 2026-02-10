@@ -159,7 +159,7 @@ export function LastProjectSection({ series }: { series: Series }) {
        
       </div>
 
-      <div className="max-w-5xl">
+      <div className="w-full">
         <div className="group last-project relative overflow-hidden border border-border/40 bg-card/30">
           <div
             className="flex w-[200%] min-h-[220px] sm:min-h-[250px] transition-transform duration-700 ease-in-out"
