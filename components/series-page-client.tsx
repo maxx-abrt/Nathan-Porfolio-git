@@ -155,9 +155,22 @@ export default function SeriesPageClient({ seriesData, allSeries }: { seriesData
     [safeAllSeries, seriesData.slug]
   )
 
-  const handleRandomProject = () => {
-    if (otherProjects.length === 0) return
-    const random = otherProjects[Math.floor(Math.random() * otherProjects.length)]
+  // Extraire la catégorie du projet actuel (premier segment du slug)
+  const currentCategory = useMemo(() => {
+    const firstSlash = seriesData.slug.indexOf('/')
+    return firstSlash > 0 ? seriesData.slug.substring(0, firstSlash) : ''
+  }, [seriesData.slug])
+
+  // Filtrer les projets de la même catégorie
+  const sameCategoryProjects = useMemo(() => {
+    if (!currentCategory) return otherProjects
+    return otherProjects.filter((s: Series) => s.slug.startsWith(currentCategory + '/'))
+  }, [otherProjects, currentCategory])
+
+  const handleNextProject = () => {
+    const projectsToChooseFrom = sameCategoryProjects.length > 0 ? sameCategoryProjects : otherProjects
+    if (projectsToChooseFrom.length === 0) return
+    const random = projectsToChooseFrom[Math.floor(Math.random() * projectsToChooseFrom.length)]
     router.push(`/series/${random.slug}`)
   }
 
@@ -412,7 +425,7 @@ export default function SeriesPageClient({ seriesData, allSeries }: { seriesData
         {otherProjects.length > 0 ? (
           <button
             type="button"
-            onClick={handleRandomProject}
+            onClick={handleNextProject}
             className="group inline-flex items-center gap-3 border border-foreground/20 px-6 py-3 font-mono text-xs uppercase tracking-widest text-foreground hover:border-accent hover:text-accent transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
             aria-label={isVideoOrCinema ? "Voir un autre film/vidéo" : "Voir les autres projets"}
             title={isVideoOrCinema ? "Voir un autre film/vidéo" : "Voir les autres projets"}

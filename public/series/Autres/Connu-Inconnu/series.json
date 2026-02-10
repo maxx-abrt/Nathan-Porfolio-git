@@ -13,39 +13,39 @@
   "videos": {
     "patrick cambolin1": {
       "title": "Patrick Cambolin 1",
-      "description": "Description de la vidéo",
+      "description": "« Nous sommes tous des comédiens en quête d'auteur et de reconnaissance. Le monde est un théâtre où l'on répète continuellement la même pièce ! Être regardé sans être vu, ou être quelqu'un sans être reconnu. Connu... Inconnu, reconnu, nous le sommes tous, chacun à notre niveau. » \\n __Patrick Cambolin__",
       "thumbnail": "/path/to/thumbnail.webp",
-      "duration": "12:34"
+      "duration": "00:55"
     },
     "patrick cambolin2": {
       "title": "Patrick Cambolin 2",
-      "description": "Description de la vidéo",
+      "description": "« Mes tableaux fonctionnent sur le principe d'un cadrage dépouillé libre-original qui garde son autonomie spatiale. L'ensemble s'intègre dans un espace simple-divisé arbitrairement en deux parties. Je désactive les anciens ressorts émotionnels du portrait. Des formes, une ligne directrice forte dans l'espace, un langage double que l'on peut imaginer lorsque nous quittons notre connu. » \\n __Patrick Cambolin__",
       "thumbnail": "/path/to/thumbnail.webp",
-      "duration": "12:34"
+      "duration": "00:51"
     },
     "patrick cambolin3": {
       "title": "Patrick Cambolin 3",
-      "description": "Description de la vidéo",
+      "description": "« Aux limites de l'abstraction (contingence du temps) tout en se fixant dans un climat de sérénité. Une réalité située au-delà de ce qui est visible, toujours là. L'invisible cache le visible l'inconnu cache le connu. » \\n __Patrick Cambolin__",
       "thumbnail": "/path/to/thumbnail.webp",
-      "duration": "12:34"
+      "duration": "00:51"
     },
     "patrick cambolin4": {
       "title": "Patrick Cambolin 4",
-      "description": "Description de la vidéo",
+      "description": "« La matière obtenue me permet de pénétrer \\ndans des mondes, des espaces, des lieux uniques, inconnus. Couches après couches, les rapports de couleurs changent, les couleurs se superposent et envahissent les formes afin d'entrer en résonance avec leurs voisines vibrations, oppositions. » \\n __Patrick Cambolin__",
       "thumbnail": "/path/to/thumbnail.webp",
-      "duration": "12:34"
+      "duration": "00:39"
     },
     "patrick cambolin5": {
       "title": "Patrick Cambolin 5",
-      "description": "Description de la vidéo",
+      "description": "« Espaces-visages-connus-inconnus... » \\n __Patrick Cambolin__",
       "thumbnail": "/path/to/thumbnail.webp",
-      "duration": "12:34"
+      "duration": "00:54"
     },
     "patrick cambolin6": {
       "title": "Patrick Cambolin 6",
-      "description": "Description de la vidéo",
+      "description": "« Espaces-visages-connus-inconnus... » \\n __Patrick Cambolin__",
       "thumbnail": "/path/to/thumbnail.webp",
-      "duration": "12:34"
+      "duration": "00:54"
     }
   }
 }
