@@ -95,6 +95,24 @@ function parseLine(line: string): ReactNode[] {
   return parts
 }
 
+function parseMarkdown(text: string): ReactNode {
+  if (!text) return <></>
+
+  const normalizedText = text.replace(/\\n/g, "\n")
+  const lines = normalizedText.split("\n")
+
+  return (
+    <>
+      {lines.map((line, lineIndex) => (
+        <span key={`md-line-${lineIndex}`}>
+          {parseLine(line)}
+          {lineIndex < lines.length - 1 && <br />}
+        </span>
+      ))}
+    </>
+  )
+}
+
 function parseMarkdownPreview(text: string, maxLength: number) {
   if (!text) return null
 
@@ -135,7 +153,12 @@ function parseMarkdownPreview(text: string, maxLength: number) {
 export function LastProjectSection({ series }: { series: Series }) {
   const coverPhoto = series.photos[series.coverIndex] ?? series.photos[0]
   const [activeSlide, setActiveSlide] = useState(0)
+  const [isExpanded, setIsExpanded] = useState(false)
   if (!coverPhoto) return null
+
+  const previewLimit = 220
+  const normalizedDescription = (series.description || "").replace(/\\n/g, "\n")
+  const hasLongDescription = normalizedDescription.length > previewLimit
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -203,9 +226,24 @@ export function LastProjectSection({ series }: { series: Series }) {
               <h3 className="mt-2 font-(--font-bebas) text-2xl sm:text-3xl tracking-tight">
                 {series.title}
               </h3>
-              <p className="mt-3 font-mono text-xs text-muted-foreground leading-relaxed">
-                {parseMarkdownPreview(series.description, 220)}
-              </p>
+              {isExpanded ? (
+                <div className="mt-3 max-h-40 overflow-y-auto pr-2 font-mono text-xs text-muted-foreground leading-relaxed custom-scrollbar">
+                  {parseMarkdown(normalizedDescription)}
+                </div>
+              ) : (
+                <p className="mt-3 font-mono text-xs text-muted-foreground leading-relaxed">
+                  {parseMarkdownPreview(normalizedDescription, previewLimit)}
+                </p>
+              )}
+              {hasLongDescription && (
+                <button
+                  type="button"
+                  onClick={() => setIsExpanded((prev) => !prev)}
+                  className="mt-3 inline-flex items-center gap-2 border border-foreground/20 px-3 py-1.5 font-mono text-[10px] uppercase tracking-widest text-foreground hover:border-accent hover:text-accent transition-colors"
+                >
+                  {isExpanded ? "Réduire" : "Lire plus"}
+                </button>
+              )}
             </div>
             <Link
               href={`/series/${series.slug}`}
