@@ -125,7 +125,7 @@ export default function SeriesPageClient({ seriesData, allSeries }: { seriesData
   const safeAllSeries = Array.isArray(allSeries) ? allSeries : []
   // Photo actuellement affichée dans la lightbox (null = fermée)
   const [lightboxPhoto, setLightboxPhoto] = useState<Photo | null>(null)
-  const [coverHeight, setCoverHeight] = useState(400)
+  const [coverHeight, setCoverHeight] = useState(300)
   const headerRef = useRef<HTMLDivElement>(null)
   const galleryRef = useRef<HTMLDivElement>(null)
   const router = useRouter()
@@ -266,7 +266,10 @@ export default function SeriesPageClient({ seriesData, allSeries }: { seriesData
             </div>
           </div>
           
-          <div className="relative border border-border rounded-lg overflow-hidden bg-card">
+          <div
+            className="relative border border-border rounded-lg overflow-hidden bg-card"
+            style={{ height: coverHeight }}
+          >
             <OptimizedImage
               src={seriesData.photos[seriesData.biggerIndex]?.src}
               alt={seriesData.photos[seriesData.biggerIndex]?.alt}

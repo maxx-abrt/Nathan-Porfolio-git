@@ -7,6 +7,7 @@
 import { useRef, useEffect, useState } from "react"
 import { FileText, Download, Eye, ArrowRight } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { getAssetUrl } from "@/lib/asset-url"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 
@@ -119,7 +120,7 @@ function PortfolioCard({ portfolio, index }: { portfolio: PortfolioItem; index: 
         {/* Actions */}
         <div className="flex flex-col sm:flex-row gap-2">
           <a
-            href={`/${portfolio.fileName}.pdf`}
+            href={getAssetUrl(`/${portfolio.fileName}.pdf`)}
             target="_blank"
             rel="noopener noreferrer"
             className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 border border-accent/40 font-mono text-[10px] uppercase tracking-widest text-accent hover:bg-accent hover:text-accent-foreground transition-all duration-300"
@@ -129,7 +130,7 @@ function PortfolioCard({ portfolio, index }: { portfolio: PortfolioItem; index: 
           </a>
           
           <a
-            href={`/${portfolio.fileName}.pdf`}
+            href={getAssetUrl(`/${portfolio.fileName}.pdf`)}
             download
             className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-accent text-accent-foreground font-mono text-[10px] uppercase tracking-widest hover:bg-accent/90 transition-all duration-300"
           >

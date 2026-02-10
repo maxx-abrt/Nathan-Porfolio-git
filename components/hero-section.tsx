@@ -7,6 +7,7 @@
 
 import { useEffect, useRef } from "react"
 import { ScrambleTextOnHover } from "@/components/scramble-text"
+import { getAssetUrl } from "@/lib/asset-url"
 import { SplitFlapText, SplitFlapMuteToggle, SplitFlapAudioProvider } from "@/components/split-flap-text"
 import { BitmapChevron } from "@/components/bitmap-chevron"
 import { ThemeToggle } from "@/components/theme-toggle"
@@ -102,7 +103,7 @@ export function HeroSection() {
             Cinéma/vidéos
           </a>
           <a
-            href="/CV.pdf"
+            href={getAssetUrl("/CV.pdf")}
             target="_blank"
             rel="noopener noreferrer"
             className="group inline-flex items-center gap-3 border border-foreground/20 px-6 py-3 font-mono text-xs uppercase tracking-widest text-foreground hover:border-accent hover:text-accent transition-all duration-200"
