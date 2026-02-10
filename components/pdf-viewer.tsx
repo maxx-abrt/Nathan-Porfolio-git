@@ -3,7 +3,7 @@
 
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useMemo, type ReactNode } from "react"
 import { X, Download, FileText, Eye } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -11,10 +11,20 @@ interface PDFViewerProps {
   pdfPath: string
   title?: string
   buttonClassName?: string
+  renderTrigger?: (open: () => void) => ReactNode
 }
 
-export function PDFViewer({ pdfPath, title = "Portfolio PDF", buttonClassName }: PDFViewerProps) {
+export function PDFViewer({
+  pdfPath,
+  title = "Portfolio PDF",
+  buttonClassName,
+  renderTrigger,
+}: PDFViewerProps) {
   const [isOpen, setIsOpen] = useState(false)
+  const previewUrl = useMemo(() => {
+    if (pdfPath.startsWith("/")) return pdfPath
+    return `/api/pdf?url=${encodeURIComponent(pdfPath)}`
+  }, [pdfPath])
 
   // Prevent body scroll when modal is open
   useEffect(() => {
@@ -30,17 +40,20 @@ export function PDFViewer({ pdfPath, title = "Portfolio PDF", buttonClassName }:
 
   return (
     <>
-      {/* Button to open PDF viewer */}
-      <button
-        onClick={() => setIsOpen(true)}
-        className={cn(
-          "group inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest transition-colors duration-200",
-          buttonClassName || "text-muted-foreground hover:text-accent"
-        )}
-      >
-        <Eye className="w-4 h-4" />
-        <span>Voir le portfolio PDF</span>
-      </button>
+      {renderTrigger ? (
+        renderTrigger(() => setIsOpen(true))
+      ) : (
+        <button
+          onClick={() => setIsOpen(true)}
+          className={cn(
+            "group inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest transition-colors duration-200",
+            buttonClassName || "text-muted-foreground hover:text-accent"
+          )}
+        >
+          <Eye className="w-4 h-4" />
+          <span>Voir le portfolio PDF</span>
+        </button>
+      )}
 
       {/* Modal */}
       {isOpen && (
@@ -75,7 +88,7 @@ export function PDFViewer({ pdfPath, title = "Portfolio PDF", buttonClassName }:
             {/* PDF Viewer */}
             <div className="flex-1 bg-muted">
               <iframe
-                src={pdfPath}
+                src={previewUrl}
                 className="w-full h-full"
                 title={title}
               />

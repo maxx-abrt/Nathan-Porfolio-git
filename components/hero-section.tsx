@@ -8,6 +8,7 @@
 import { useEffect, useRef } from "react"
 import { ScrambleTextOnHover } from "@/components/scramble-text"
 import { getAssetUrl } from "@/lib/asset-url"
+import { PDFViewer } from "@/components/pdf-viewer"
 import { SplitFlapText, SplitFlapMuteToggle, SplitFlapAudioProvider } from "@/components/split-flap-text"
 import { BitmapChevron } from "@/components/bitmap-chevron"
 import { ThemeToggle } from "@/components/theme-toggle"
@@ -102,14 +103,19 @@ export function HeroSection() {
           >
             Cinéma/vidéos
           </a>
-          <a
-            href={getAssetUrl("/CV.pdf")}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group inline-flex items-center gap-3 border border-foreground/20 px-6 py-3 font-mono text-xs uppercase tracking-widest text-foreground hover:border-accent hover:text-accent transition-all duration-200"
-          >
-            <ScrambleTextOnHover text="Mon CV →" as="span" duration={0.6} />
-          </a>
+          <PDFViewer
+            pdfPath={getAssetUrl("/CV.pdf")}
+            title="CV — Nathan Dumont"
+            renderTrigger={(open) => (
+              <button
+                type="button"
+                onClick={open}
+                className="group inline-flex items-center gap-3 border border-foreground/20 px-6 py-3 font-mono text-xs uppercase tracking-widest text-foreground hover:border-accent hover:text-accent transition-all duration-200"
+              >
+                <ScrambleTextOnHover text="Mon CV →" as="span" duration={0.6} />
+              </button>
+            )}
+          />
         </div>
         {/* Logiciels maîtrisés - sleek compact bar */}
         <div className="mt-12 pt-8 border-t border-border/20">

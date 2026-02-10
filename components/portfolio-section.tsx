@@ -8,6 +8,7 @@ import { useRef, useEffect, useState } from "react"
 import { FileText, Download, Eye, ArrowRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { getAssetUrl } from "@/lib/asset-url"
+import { PDFViewer } from "@/components/pdf-viewer"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 
@@ -119,15 +120,20 @@ function PortfolioCard({ portfolio, index }: { portfolio: PortfolioItem; index: 
         
         {/* Actions */}
         <div className="flex flex-col sm:flex-row gap-2">
-          <a
-            href={getAssetUrl(`/${portfolio.fileName}.pdf`)}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 border border-accent/40 font-mono text-[10px] uppercase tracking-widest text-accent hover:bg-accent hover:text-accent-foreground transition-all duration-300"
-          >
-            <Eye className="w-3.5 h-3.5" />
-            <span>Voir</span>
-          </a>
+          <PDFViewer
+            pdfPath={getAssetUrl(`/${portfolio.fileName}.pdf`)}
+            title={`${portfolio.title} — ${portfolio.subtitle}`}
+            renderTrigger={(open) => (
+              <button
+                type="button"
+                onClick={open}
+                className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 border border-accent/40 font-mono text-[10px] uppercase tracking-widest text-accent hover:bg-accent hover:text-accent-foreground transition-all duration-300"
+              >
+                <Eye className="w-3.5 h-3.5" />
+                <span>Voir</span>
+              </button>
+            )}
+          />
           
           <a
             href={getAssetUrl(`/${portfolio.fileName}.pdf`)}
