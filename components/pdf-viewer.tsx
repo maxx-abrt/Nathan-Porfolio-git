@@ -22,8 +22,7 @@ export function PDFViewer({
 }: PDFViewerProps) {
   const [isOpen, setIsOpen] = useState(false)
   const previewUrl = useMemo(() => {
-    if (pdfPath.startsWith("/")) return pdfPath
-    return `/api/pdf?url=${encodeURIComponent(pdfPath)}`
+    return pdfPath
   }, [pdfPath])
 
   // Prevent body scroll when modal is open
