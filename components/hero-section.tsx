@@ -7,7 +7,6 @@
 
 import { useEffect, useRef } from "react"
 import { ScrambleTextOnHover } from "@/components/scramble-text"
-import { getAssetUrl } from "@/lib/asset-url"
 import { PDFViewer } from "@/components/pdf-viewer"
 import { SplitFlapText, SplitFlapMuteToggle, SplitFlapAudioProvider } from "@/components/split-flap-text"
 import { BitmapChevron } from "@/components/bitmap-chevron"
@@ -104,7 +103,7 @@ export function HeroSection() {
             Cinéma/vidéos
           </a>
           <PDFViewer
-            pdfPath={getAssetUrl("/CV.pdf")}
+            pdfPath="/CV.pdf"
             title="CV — Nathan Dumont"
             renderTrigger={(open) => (
               <button

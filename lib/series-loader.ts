@@ -231,7 +231,7 @@ export function getSeriesBySlug(slug: string): Series | null {
     const meta = json.pdfs?.[name]
     return {
       id: `${slug}-${name}`,
-      src: withAssetBaseUrl(localAssetUrl(`/series/${nfcPath}/${nfc(file)}`)),
+      src: localAssetUrl(`/series/${nfcPath}/${nfc(file)}`),
       title: meta?.title ?? name,
       description: meta?.description,
     }

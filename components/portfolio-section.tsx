@@ -7,7 +7,6 @@
 import { useRef, useEffect, useState } from "react"
 import { FileText, Download, Eye, ArrowRight } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { getAssetUrl } from "@/lib/asset-url"
 import { PDFViewer } from "@/components/pdf-viewer"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
@@ -121,7 +120,7 @@ function PortfolioCard({ portfolio, index }: { portfolio: PortfolioItem; index: 
         {/* Actions */}
         <div className="flex flex-col sm:flex-row gap-2">
           <PDFViewer
-            pdfPath={getAssetUrl(`/${portfolio.fileName}.pdf`)}
+            pdfPath={`/${portfolio.fileName}.pdf`}
             title={`${portfolio.title} — ${portfolio.subtitle}`}
             renderTrigger={(open) => (
               <button
@@ -136,7 +135,7 @@ function PortfolioCard({ portfolio, index }: { portfolio: PortfolioItem; index: 
           />
           
           <a
-            href={getAssetUrl(`/${portfolio.fileName}.pdf`)}
+            href={`/${portfolio.fileName}.pdf`}
             download
             className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-accent text-accent-foreground font-mono text-[10px] uppercase tracking-widest hover:bg-accent/90 transition-all duration-300"
           >
