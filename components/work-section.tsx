@@ -709,8 +709,15 @@ function WorkCard({
   onProjectClick: () => void
 }) {
   const [isHovered, setIsHovered] = useState(false)
+  const [isExpanded, setIsExpanded] = useState(false)
   const cardRef = useRef<HTMLElement>(null)
   const [isScrollActive, setIsScrollActive] = useState(false)
+  const previewLimit = 100
+  const normalizedDescription = (item.series.description || "").replace(/\\n/g, "\n")
+  const hasDescription = normalizedDescription.trim().length > 0
+  const hasLongDescription = normalizedDescription.length > previewLimit
+  const medium = item.series.medium.toLowerCase()
+  const isVideoProject = medium.includes("vidéo") || medium.includes("cinéma")
 
   useEffect(() => {
     if (!persistHover || !cardRef.current) return
@@ -727,6 +734,10 @@ function WorkCard({
   }, [persistHover])
 
   const isActive = isHovered || isScrollActive
+
+  useEffect(() => {
+    if (!isActive) setIsExpanded(false)
+  }, [isActive])
 
   return (
     <article
@@ -782,10 +793,26 @@ function WorkCard({
             className={cn(
               "font-mono text-xs text-white/70 leading-relaxed transition-all duration-500 max-w-[280px] mt-2",
               isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2",
+              isExpanded ? "max-h-40 overflow-y-auto pr-2 custom-scrollbar" : "max-h-12",
             )}
           >
-            {parseMarkdownPreview(item.series.description, 100)}
+            {isExpanded
+              ? parseMarkdown(item.series.description)
+              : parseMarkdownPreview(item.series.description, previewLimit)}
           </div>
+
+          {isActive && isVideoProject && hasDescription && hasLongDescription && (
+            <button
+              type="button"
+              onClick={(event) => {
+                event.stopPropagation()
+                setIsExpanded((prev) => !prev)
+              }}
+              className="mt-2 font-mono text-[10px] uppercase tracking-widest text-accent/80 hover:text-accent transition-colors"
+            >
+              {isExpanded ? "Voir moins" : "Voir plus"}
+            </button>
+          )}
 
           {/* Click for intention note */}
           <button

@@ -46,6 +46,12 @@ export function SideNav() {
 
   // Défilement fluide vers la section cliquée
   const scrollToSection = (id: string) => {
+    const nextHash = `#${id}`
+    if (window.location.hash !== nextHash) {
+      window.history.pushState(null, "", nextHash)
+    }
+    window.dispatchEvent(new HashChangeEvent("hashchange"))
+
     const element = document.getElementById(id)
     if (element) {
       element.scrollIntoView({ behavior: "smooth" })

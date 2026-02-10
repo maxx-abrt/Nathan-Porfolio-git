@@ -645,6 +645,11 @@ function VideoItem({ video }: { video: VideoFile }) {
   const [playbackError, setPlaybackError] = useState(false)
   const [canPlayMov, setCanPlayMov] = useState(true)
   const [canPlayMp4, setCanPlayMp4] = useState(true)
+  const [isExpanded, setIsExpanded] = useState(false)
+  const previewLimit = 150
+  const normalizedDescription = (video.description || "").replace(/\\n/g, "\n")
+  const hasDescription = normalizedDescription.trim().length > 0
+  const hasLongDescription = normalizedDescription.length > previewLimit
   const mimeType = getVideoMimeType(video.src)
   const isMov = video.src.toLowerCase().includes(".mov")
   const isMp4 = video.src.toLowerCase().includes(".mp4")
@@ -710,10 +715,26 @@ function VideoItem({ video }: { video: VideoFile }) {
             </h3>
           </div>
         </div>
-        {video.description && (
-          <div className="font-mono text-[10px] text-muted-foreground line-clamp-2">
-            {parseMarkdownPreview(video.description, 150)}
+        {hasDescription && (
+          <div
+            className={cn(
+              "font-mono text-[10px] text-muted-foreground",
+              isExpanded ? "max-h-32 overflow-y-auto pr-2 custom-scrollbar" : "line-clamp-2",
+            )}
+          >
+            {isExpanded
+              ? parseMarkdown(normalizedDescription)
+              : parseMarkdownPreview(normalizedDescription, previewLimit)}
           </div>
+        )}
+        {hasDescription && hasLongDescription && (
+          <button
+            type="button"
+            onClick={() => setIsExpanded((prev) => !prev)}
+            className="mt-2 font-mono text-[10px] uppercase tracking-widest text-accent/80 hover:text-accent transition-colors"
+          >
+            {isExpanded ? "Voir moins" : "Voir plus"}
+          </button>
         )}
         <div className="flex items-center gap-3 mt-2">
           {video.duration && (

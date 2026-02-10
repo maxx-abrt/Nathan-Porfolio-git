@@ -36,19 +36,19 @@ export default function Page() {
 
       <div className="relative z-10">
         <HeroSection />
-        <LazySection rootMargin="400px" minHeight="600px">
+        <LazySection rootMargin="400px" minHeight="600px" anchorIds={["photographies"]}>
           <SignalsSection series={allSeries} />
         </LazySection>
-        <LazySection rootMargin="300px" minHeight="500px">
+        <LazySection rootMargin="300px" minHeight="500px" anchorIds={["cinema-videos", "autres-projets"]}>
           <WorkSection series={allSeries} />
         </LazySection>
-        <LazySection rootMargin="200px" minHeight="400px">
+        <LazySection rootMargin="200px" minHeight="400px" anchorIds={["portfolio"]}>
           <PortfolioSection />
         </LazySection>
-        <LazySection rootMargin="200px" minHeight="400px">
+        <LazySection rootMargin="200px" minHeight="400px" anchorIds={["cv"]}>
           <PrinciplesSection />
         </LazySection>
-        <LazySection rootMargin="200px" minHeight="300px">
+        <LazySection rootMargin="200px" minHeight="300px" anchorIds={["colophon"]}>
           <ColophonSection />
         </LazySection>
       </div>
