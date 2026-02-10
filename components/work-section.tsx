@@ -233,6 +233,28 @@ function generateBalancedPattern(count: number): string[] {
   return patterns
 }
 
+function generateCompactPattern(count: number): string[] {
+  const patterns: string[] = []
+
+  if (count === 0) return patterns
+
+  const tall = "col-span-1 row-span-2"
+  const wide = "col-span-2 row-span-1"
+  const small = "col-span-1 row-span-1"
+
+  for (let i = 0; i < count; i++) {
+    if (i % 9 === 0 && i !== 0) {
+      patterns.push(tall)
+    } else if (i % 5 === 0) {
+      patterns.push(wide)
+    } else {
+      patterns.push(small)
+    }
+  }
+
+  return patterns
+}
+
 export function WorkSection({ series }: { series: Series[] }) {
   const sectionRef = useRef<HTMLElement>(null)
   const headerRef = useRef<HTMLDivElement>(null)
@@ -440,6 +462,7 @@ function OtherProjectsSection({ series, onProjectModal }: { series: Series[]; on
   const headerRef = useRef<HTMLDivElement>(null)
   const gridRef = useRef<HTMLDivElement>(null)
   const [projectModal, setProjectModal] = useState<{ series: Series } | null>(null)
+  const [showAll, setShowAll] = useState(false)
 
   // Prevent body scroll when project modal is open
   useEffect(() => {
@@ -476,7 +499,7 @@ function OtherProjectsSection({ series, onProjectModal }: { series: Series[]; on
       // Include if has photos, or if has videos/audios (for media-only projects)
       return s.photos.length > 0 || s.videoFiles || s.audioFiles
     })
-    const patterns = generateBalancedPattern(filteredSeries.length)
+    const patterns = generateCompactPattern(filteredSeries.length)
     return filteredSeries.map((s, i) => {
       // Use first photo if available, otherwise use video thumbnail or create placeholder
       let photo
@@ -512,6 +535,9 @@ function OtherProjectsSection({ series, onProjectModal }: { series: Series[]; on
       }
     })
   }, [autresSeries])
+
+  const maxVisible = 8
+  const visibleItems = showAll ? gridItems : gridItems.slice(0, maxVisible)
 
   useEffect(() => {
     if (!sectionRef.current || !headerRef.current || !gridRef.current) return
@@ -573,9 +599,9 @@ function OtherProjectsSection({ series, onProjectModal }: { series: Series[]; on
       {/* Grid for other projects */}
       <div
         ref={gridRef}
-        className="grid grid-cols-2 md:grid-cols-3 gap-4 auto-rows-[180px] sm:auto-rows-[200px]"
+        className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 auto-rows-[130px] sm:auto-rows-[160px] lg:auto-rows-[170px]"
       >
-        {gridItems.map((item, index) => (
+        {visibleItems.map((item, index) => (
           <WorkCard
             key={item.photo.id}
             item={item}
@@ -585,6 +611,19 @@ function OtherProjectsSection({ series, onProjectModal }: { series: Series[]; on
           />
         ))}
       </div>
+
+      {gridItems.length > maxVisible && (
+        <div className="mt-8 flex justify-center">
+          <button
+            type="button"
+            onClick={() => setShowAll((prev) => !prev)}
+            className="inline-flex items-center gap-2 px-6 py-3 border border-border/50 font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground hover:text-foreground hover:border-accent/50 transition-colors"
+          >
+            {showAll ? "Montrer moins" : "Montrer plus"}
+            <span className="text-accent">→</span>
+          </button>
+        </div>
+      )}
 
       {/* Project Modal */}
       {projectModal && (
