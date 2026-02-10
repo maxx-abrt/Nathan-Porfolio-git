@@ -176,7 +176,7 @@ export function LastProjectSection({ series }: { series: Series }) {
         <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">
           Dernier projet
         </span>
-        <h2 className="mt-3 font-(--font-bebas) text-3xl md:text-5xl tracking-tight">
+        <h2 className="mt-3 font-(--font-bebas) text-2xl sm:text-3xl md:text-5xl tracking-tight">
           DERNIER PROJET
         </h2>
        
@@ -184,12 +184,11 @@ export function LastProjectSection({ series }: { series: Series }) {
 
       <div className="w-full">
         <div className="group last-project relative overflow-hidden border border-border/40 bg-card/30">
+          {/* Slide 0: Cover image */}
           <div
-            className="flex w-[200%] min-h-[220px] sm:min-h-[250px] transition-transform duration-700 ease-in-out"
-            style={{ transform: activeSlide === 0 ? "translateX(0)" : "translateX(-50%)" }}
+            className={"transition-opacity duration-700 ease-in-out" + (activeSlide === 0 ? " opacity-100" : " opacity-0 absolute inset-0 pointer-events-none")}
           >
-          <div className="relative w-1/2">
-            <div className="relative aspect-16/7 sm:aspect-16/6 overflow-hidden">
+            <div className="relative aspect-4/3 sm:aspect-16/6 overflow-hidden">
               <OptimizedImage
                 src={coverPhoto.src}
                 alt={coverPhoto.alt}
@@ -203,13 +202,13 @@ export function LastProjectSection({ series }: { series: Series }) {
                   <span className="font-mono text-[10px] uppercase tracking-widest text-accent/70">
                     {series.medium} · {series.year}
                   </span>
-                  <h3 className="mt-2 font-(--font-bebas) text-3xl sm:text-4xl text-white">
+                  <h3 className="mt-2 font-(--font-bebas) text-2xl sm:text-4xl text-white">
                     {series.title}
                   </h3>
                 </div>
                 <Link
                   href={`/series/${series.slug}`}
-                  className="inline-flex w-fit items-center gap-2 border border-white/30 px-4 py-2 font-mono text-[10px] uppercase tracking-widest text-white hover:border-accent hover:text-accent transition-colors"
+                  className="inline-flex w-fit items-center gap-2 border border-white/30 px-3 py-1.5 sm:px-4 sm:py-2 font-mono text-[10px] uppercase tracking-widest text-white hover:border-accent hover:text-accent transition-colors"
                 >
                   Aller au projet
                   <span className="text-accent">→</span>
@@ -218,42 +217,46 @@ export function LastProjectSection({ series }: { series: Series }) {
             </div>
           </div>
 
-          <div className="w-1/2 flex flex-col justify-between p-5 sm:p-6 md:p-8">
-            <div>
-              <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">
-                Focus
-              </span>
-              <h3 className="mt-2 font-(--font-bebas) text-2xl sm:text-3xl tracking-tight">
-                {series.title}
-              </h3>
-              {isExpanded ? (
-                <div className="mt-3 max-h-40 overflow-y-auto pr-2 font-mono text-xs text-muted-foreground leading-relaxed custom-scrollbar">
-                  {parseMarkdown(normalizedDescription)}
-                </div>
-              ) : (
-                <p className="mt-3 font-mono text-xs text-muted-foreground leading-relaxed">
-                  {parseMarkdownPreview(normalizedDescription, previewLimit)}
-                </p>
-              )}
-              {hasLongDescription && (
-                <button
-                  type="button"
-                  onClick={() => setIsExpanded((prev) => !prev)}
-                  className="mt-3 inline-flex items-center gap-2 border border-foreground/20 px-3 py-1.5 font-mono text-[10px] uppercase tracking-widest text-foreground hover:border-accent hover:text-accent transition-colors"
-                >
-                  {isExpanded ? "Réduire" : "Lire plus"}
-                </button>
-              )}
+          {/* Slide 1: Description */}
+          <div
+            className={"transition-opacity duration-700 ease-in-out" + (activeSlide === 1 ? " opacity-100" : " opacity-0 absolute inset-0 pointer-events-none")}
+          >
+            <div className="flex flex-col justify-between p-5 sm:p-6 md:p-8 min-h-[200px] sm:min-h-[220px]">
+              <div>
+                <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">
+                  Focus
+                </span>
+                <h3 className="mt-2 font-(--font-bebas) text-xl sm:text-3xl tracking-tight">
+                  {series.title}
+                </h3>
+                {isExpanded ? (
+                  <div className="mt-3 max-h-40 overflow-y-auto pr-2 font-mono text-[11px] sm:text-xs text-muted-foreground leading-relaxed custom-scrollbar">
+                    {parseMarkdown(normalizedDescription)}
+                  </div>
+                ) : (
+                  <p className="mt-3 font-mono text-[11px] sm:text-xs text-muted-foreground leading-relaxed">
+                    {parseMarkdownPreview(normalizedDescription, previewLimit)}
+                  </p>
+                )}
+                {hasLongDescription && (
+                  <button
+                    type="button"
+                    onClick={() => setIsExpanded((prev) => !prev)}
+                    className="mt-3 inline-flex items-center gap-2 border border-foreground/20 px-3 py-1.5 font-mono text-[10px] uppercase tracking-widest text-foreground hover:border-accent hover:text-accent transition-colors"
+                  >
+                    {isExpanded ? "Réduire" : "Lire plus"}
+                  </button>
+                )}
+              </div>
+              <Link
+                href={`/series/${series.slug}`}
+                className="mt-4 inline-flex w-fit items-center gap-2 border border-foreground/20 px-3 py-1.5 sm:px-4 sm:py-2 font-mono text-[10px] uppercase tracking-widest text-foreground hover:border-accent hover:text-accent transition-colors"
+              >
+                Aller au projet
+                <span className="text-accent">→</span>
+              </Link>
             </div>
-            <Link
-              href={`/series/${series.slug}`}
-              className="mt-4 inline-flex w-fit items-center gap-2 border border-foreground/20 px-4 py-2 font-mono text-[10px] uppercase tracking-widest text-foreground hover:border-accent hover:text-accent transition-colors"
-            >
-              Aller au projet
-              <span className="text-accent">→</span>
-            </Link>
           </div>
-        </div>
         </div>
         <div className="mt-4 flex items-center justify-center gap-2">
           {[0, 1].map((index) => (

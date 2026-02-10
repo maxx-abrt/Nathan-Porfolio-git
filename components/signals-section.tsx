@@ -318,7 +318,7 @@ export function SignalsSection({ series }: { series: Series[] }) {
       {/* En-tête de la section avec numéro et titre */}
       <div ref={headerRef} className="mb-16 pr-6 md:pr-12">
         <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">01 / Photo</span>
-        <h2 className="mt-4 font-[var(--font-bebas)] text-5xl md:text-7xl tracking-tight">PHOTOGRAPHIES</h2>
+        <h2 className="mt-4 font-[var(--font-bebas)] text-4xl sm:text-5xl md:text-7xl tracking-tight">PHOTOGRAPHIES</h2>
       </div>
 
       {/* Conteneur de défilement horizontal pour les cartes */}

@@ -85,7 +85,7 @@ export function ColophonSection() {
       {/* En-tête de la section avec numéro et titre */}
       <div ref={headerRef} className="mb-16">
         <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">04 / Contact</span>
-        <h2 className="mt-4 font-[var(--font-bebas)] text-5xl md:text-7xl tracking-tight">INFORMATIONS</h2>
+        <h2 className="mt-4 font-[var(--font-bebas)] text-4xl sm:text-5xl md:text-7xl tracking-tight">INFORMATIONS</h2>
       </div>
 
       {/* Grille multi-colonnes responsive : 2 cols mobile, 4 tablette, 6 desktop */}

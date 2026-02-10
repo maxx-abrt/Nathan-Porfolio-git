@@ -42,7 +42,7 @@ export function HeroSection() {
 
   // Structure : section plein écran avec labels verticaux, contenu principal et tag flottant
   return (
-    <section ref={sectionRef} id="hero" className="relative min-h-screen flex items-center pl-4 sm:pl-6 md:pl-28 pr-4 sm:pr-6 md:pr-12 overflow-hidden">
+    <section ref={sectionRef} id="hero" className="relative min-h-screen flex items-center pl-4 sm:pl-9 md:pl-28 pr-4 sm:pr-6 md:pr-12 overflow-hidden">
 
       {/* Label vertical gauche avec le nom abrégé */}
       <div className="absolute left-4 md:left-6 top-[15%]">
@@ -57,7 +57,7 @@ export function HeroSection() {
       </div>
 
       {/* Contenu principal : nom en split-flap, sous-titre, description et boutons d'action */}
-      <div ref={contentRef} className="flex-1 w-full will-change-transform">
+      <div ref={contentRef} className="flex-1 w-full will-change-transform mt-32 sm:mt-0">
         <SplitFlapAudioProvider>
           <div className="relative">
             {/* Desktop: Single line */}

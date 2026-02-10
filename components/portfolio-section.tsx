@@ -183,7 +183,7 @@ export function PortfolioSection() {
           <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent block mb-4">
             02½ / Portfolios
           </span>
-          <h2 className="font-(--font-bebas) text-4xl md:text-6xl tracking-tight">
+          <h2 className="font-(--font-bebas) text-3xl sm:text-4xl md:text-6xl tracking-tight">
             PORTFOLIOS PDF
           </h2>
           <p className="mt-4 max-w-xl font-mono text-sm text-muted-foreground leading-relaxed">

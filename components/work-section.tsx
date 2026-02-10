@@ -359,7 +359,7 @@ export function WorkSection({ series }: { series: Series[] }) {
       <div ref={headerRef} className="mb-16 flex items-end justify-between">
         <div>
           <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">02 / Cinéma</span>
-          <h2 className="mt-4 font-[var(--font-bebas)] text-5xl md:text-7xl tracking-tight">CINÉMA / VIDÉOS</h2>
+          <h2 className="mt-4 font-[var(--font-bebas)] text-4xl sm:text-5xl md:text-7xl tracking-tight">CINÉMA / VIDÉOS</h2>
         </div>
         <p className="hidden md:block max-w-xs font-mono text-xs text-muted-foreground text-right leading-relaxed">
           Projets audiovisuels et exercices.
@@ -589,7 +589,7 @@ function OtherProjectsSection({ series, onProjectModal }: { series: Series[]; on
       <div ref={headerRef} className="mb-16 flex items-end justify-between">
         <div>
           <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">03 / Autres</span>
-          <h2 className="mt-4 font-(--font-bebas) text-5xl md:text-7xl tracking-tight">AUTRES PROJETS</h2>
+          <h2 className="mt-4 font-(--font-bebas) text-4xl sm:text-5xl md:text-7xl tracking-tight">AUTRES PROJETS</h2>
         </div>
         <p className="hidden md:block max-w-xs font-mono text-xs text-muted-foreground text-right leading-relaxed">
           Son, design graphique, photographies et vidéos. 

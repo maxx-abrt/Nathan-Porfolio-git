@@ -149,26 +149,26 @@ export function MobileNav() {
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: -20, opacity: 0 }}
               transition={{ duration: 0.3, delay: 0.1 }}
-              className="relative h-full flex flex-col justify-center px-8 bg-background"
+              className="relative h-full flex flex-col justify-start px-6 pt-16 pb-20 bg-background"
             >
               {/* Numéro de section courante - accent artistique */}
-              <div className="mb-8 sm:mb-10">
+              <div className="mb-5">
                 <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
                   Navigation
                 </span>
-                <div className="mt-2 font-(--font-bebas) text-6xl text-accent/20">
+                <div className="mt-2 font-(--font-bebas) text-4xl text-accent/20">
                   {String(navItems.findIndex(i => i.id === activeSection) + 1).padStart(2, "0")}
                 </div>
               </div>
 
               {/* Items de navigation */}
-              <div className="flex flex-col gap-1.5">
+              <div className="flex flex-col gap-1">
                 {navItems.map(({ id, label }, index) => (
                   <button
                     key={id}
                     onClick={() => scrollToSection(id)}
                     className={cn(
-                      "group flex items-baseline gap-3 py-2.5 text-left transition-all duration-300",
+                      "group flex items-baseline gap-2 py-1.5 text-left transition-all duration-300",
                       activeSection === id ? "text-foreground" : "text-muted-foreground hover:text-foreground"
                     )}
                   >
@@ -176,7 +176,7 @@ export function MobileNav() {
                       {String(index + 1).padStart(2, "0")}
                     </span>
                     <span className={cn(
-                      "font-(--font-bebas) text-[2rem] tracking-tight transition-all duration-300",
+                      "font-(--font-bebas) text-[1.6rem] tracking-tight transition-all duration-300",
                       activeSection === id && "text-accent"
                     )}>
                       {label}
@@ -184,7 +184,7 @@ export function MobileNav() {
                     {activeSection === id && (
                       <motion.span
                         layoutId="activeIndicator"
-                        className="w-8 h-px bg-accent"
+                        className="ml-auto w-8 h-px bg-accent shrink-0"
                       />
                     )}
                   </button>
@@ -192,9 +192,9 @@ export function MobileNav() {
               </div>
 
               {/* Ligne décorative en bas */}
-              <div className="absolute bottom-8 left-8 right-8">
+              <div className="absolute bottom-6 left-6 right-6">
                 <div className="h-px bg-border/50 w-full" />
-                <div className="mt-4 flex justify-between items-center">
+                <div className="mt-3 flex justify-between items-center">
                   <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
                     Nathan Dumont
                   </span>
