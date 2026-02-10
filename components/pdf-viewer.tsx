@@ -31,11 +31,16 @@ export function PDFViewer({
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden"
+      document.body.classList.add("pdf-viewer-open")
     } else {
       document.body.style.overflow = ""
+      document.body.classList.remove("pdf-viewer-open")
     }
+    window.dispatchEvent(new CustomEvent("pdf-viewer-toggle", { detail: { isOpen } }))
     return () => {
       document.body.style.overflow = ""
+      document.body.classList.remove("pdf-viewer-open")
+      window.dispatchEvent(new CustomEvent("pdf-viewer-toggle", { detail: { isOpen: false } }))
     }
   }, [isOpen])
 
@@ -63,14 +68,14 @@ export function PDFViewer({
       {/* Modal */}
       {isMounted && isOpen &&
         createPortal(
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4 sm:p-6">
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-2 sm:p-6">
             <button
               type="button"
               aria-label="Fermer"
               className="absolute inset-0 cursor-default"
               onClick={() => setIsOpen(false)}
             />
-            <div className="relative w-full max-w-6xl h-[92vh] sm:h-[90vh] flex flex-col bg-card/95 border border-border/60 rounded-2xl overflow-hidden shadow-2xl">
+            <div className="relative w-full max-w-6xl h-[100dvh] sm:h-[90vh] max-h-[100dvh] flex flex-col bg-card/95 border border-border/60 rounded-none sm:rounded-2xl overflow-hidden shadow-2xl">
               {/* Header */}
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 px-4 sm:px-6 py-4 border-b border-border/70 bg-card/90">
                 <div className="flex items-center gap-3 min-w-0">
@@ -108,10 +113,10 @@ export function PDFViewer({
               </div>
 
               {/* PDF Viewer */}
-              <div className="flex-1 bg-muted/40">
+              <div className="flex-1 min-h-0 bg-muted/40">
                 <iframe
                   src={previewUrl}
-                  className="w-full h-full"
+                  className="w-full h-full min-h-[60vh]"
                   title={title}
                 />
               </div>

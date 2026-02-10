@@ -20,6 +20,7 @@ const navItems = [
 export function MobileNav() {
   const [isOpen, setIsOpen] = useState(false)
   const [activeSection, setActiveSection] = useState("hero")
+  const [isPdfOpen, setIsPdfOpen] = useState(false)
   const router = useRouter()
 
   // Observe sections pour highlight
@@ -55,6 +56,16 @@ export function MobileNav() {
     }
   }, [isOpen])
 
+  useEffect(() => {
+    const handlePdfToggle = (event: Event) => {
+      const customEvent = event as CustomEvent<{ isOpen: boolean }>
+      setIsPdfOpen(Boolean(customEvent.detail?.isOpen))
+    }
+    setIsPdfOpen(document.body.classList.contains("pdf-viewer-open"))
+    window.addEventListener("pdf-viewer-toggle", handlePdfToggle)
+    return () => window.removeEventListener("pdf-viewer-toggle", handlePdfToggle)
+  }, [])
+
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id)
     if (element) {
@@ -69,43 +80,45 @@ export function MobileNav() {
   return (
     <>
       {/* Bouton trigger - hautement visible */}
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className={cn(
-          "fixed top-5 left-3 z-[100] md:hidden flex items-center gap-2 px-3 py-2.5 rounded-md border border-foreground/20 shadow-lg transition-all duration-300",
-          isOpen 
-            ? "bg-background border-accent" 
-            : "bg-background"
-        )}
-        style={{
-          boxShadow: "0 4px 20px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.05)",
-        }}
-        aria-label={isOpen ? "Fermer le menu" : "Ouvrir le menu"}
-      >
-        <div className="flex flex-col gap-[5px]">
-          <span
-            className={cn(
-              "w-5 h-[2px] bg-foreground transition-all duration-300",
-              isOpen && "rotate-45 translate-y-[3.5px]"
-            )}
-          />
-          <span
-            className={cn(
-              "w-3 h-[2px] bg-foreground transition-all duration-300",
-              isOpen && "opacity-0 w-0"
-            )}
-          />
-          <span
-            className={cn(
-              "w-5 h-[2px] bg-foreground transition-all duration-300",
-              isOpen && "-rotate-45 -translate-y-[3.5px]"
-            )}
-          />
-        </div>
-        <span className="font-mono text-[11px] uppercase tracking-wider text-foreground">
-          {isOpen ? "Fermer" : "Menu"}
-        </span>
-      </button>
+      {!isPdfOpen && (
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className={cn(
+            "fixed top-5 left-3 z-[100] md:hidden flex items-center gap-2 px-3 py-2.5 rounded-md border border-foreground/20 shadow-lg transition-all duration-300",
+            isOpen 
+              ? "bg-background border-accent" 
+              : "bg-background"
+          )}
+          style={{
+            boxShadow: "0 4px 20px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.05)",
+          }}
+          aria-label={isOpen ? "Fermer le menu" : "Ouvrir le menu"}
+        >
+          <div className="flex flex-col gap-[5px]">
+            <span
+              className={cn(
+                "w-5 h-[2px] bg-foreground transition-all duration-300",
+                isOpen && "rotate-45 translate-y-[3.5px]"
+              )}
+            />
+            <span
+              className={cn(
+                "w-3 h-[2px] bg-foreground transition-all duration-300",
+                isOpen && "opacity-0 w-0"
+              )}
+            />
+            <span
+              className={cn(
+                "w-5 h-[2px] bg-foreground transition-all duration-300",
+                isOpen && "-rotate-45 -translate-y-[3.5px]"
+              )}
+            />
+          </div>
+          <span className="font-mono text-[11px] uppercase tracking-wider text-foreground">
+            {isOpen ? "Fermer" : "Menu"}
+          </span>
+        </button>
+      )}
 
       {/* Overlay menu */}
       <AnimatePresence>
