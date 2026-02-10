@@ -13,8 +13,9 @@ const navItems = [
   { id: "hero", label: "Accueil" },
   { id: "photographies", label: "Photographies" },
   { id: "cinema-videos", label: "Cinéma/vidéos" },
+  { id: "autres-projets", label: "Autres projets" },
+  { id: "portfolio", label: "Portfolios" },
   { id: "cv", label: "Parcours" },
-  { id: "colophon", label: "Contact" },
 ]
 
 export function MobileNav() {
@@ -84,7 +85,7 @@ export function MobileNav() {
         <button
           onClick={() => setIsOpen(!isOpen)}
           className={cn(
-            "fixed top-5 left-3 z-[100] md:hidden flex items-center gap-2 px-3 py-2.5 rounded-md border border-foreground/20 shadow-lg transition-all duration-300",
+            "fixed top-5 left-3 z-100 md:hidden flex items-center gap-2 px-3 py-2.5 rounded-md border border-foreground/20 shadow-lg transition-all duration-300",
             isOpen 
               ? "bg-background border-accent" 
               : "bg-background"
@@ -128,7 +129,7 @@ export function MobileNav() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[99] md:hidden"
+            className="fixed inset-0 z-99 md:hidden"
           >
             {/* Fond avec texture grain */}
             <div 
@@ -149,23 +150,23 @@ export function MobileNav() {
               className="relative h-full flex flex-col justify-center px-8 bg-background"
             >
               {/* Numéro de section courante - accent artistique */}
-              <div className="mb-12">
+              <div className="mb-8 sm:mb-10">
                 <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
                   Navigation
                 </span>
-                <div className="mt-2 font-[var(--font-bebas)] text-6xl text-accent/20">
+                <div className="mt-2 font-(--font-bebas) text-6xl text-accent/20">
                   {String(navItems.findIndex(i => i.id === activeSection) + 1).padStart(2, "0")}
                 </div>
               </div>
 
               {/* Items de navigation */}
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-1.5">
                 {navItems.map(({ id, label }, index) => (
                   <button
                     key={id}
                     onClick={() => scrollToSection(id)}
                     className={cn(
-                      "group flex items-baseline gap-4 py-3 text-left transition-all duration-300",
+                      "group flex items-baseline gap-3 py-2.5 text-left transition-all duration-300",
                       activeSection === id ? "text-foreground" : "text-muted-foreground hover:text-foreground"
                     )}
                   >
@@ -173,7 +174,7 @@ export function MobileNav() {
                       {String(index + 1).padStart(2, "0")}
                     </span>
                     <span className={cn(
-                      "font-[var(--font-bebas)] text-3xl tracking-tight transition-all duration-300",
+                      "font-(--font-bebas) text-[2rem] tracking-tight transition-all duration-300",
                       activeSection === id && "text-accent"
                     )}>
                       {label}

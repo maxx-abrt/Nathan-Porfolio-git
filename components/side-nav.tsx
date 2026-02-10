@@ -13,8 +13,9 @@ const navItems = [
   { id: "hero", label: "Accueil" },
   { id: "photographies", label: "Photographies" },
   { id: "cinema-videos", label: "Cinéma/vidéos" },
+  { id: "autres-projets", label: "Autres projets" },
+  { id: "portfolio", label: "Portfolios" },
   { id: "cv", label: "Parcours" },
-  { id: "colophon", label: "Contact" },
 ]
 
 export function SideNav() {
@@ -52,7 +53,7 @@ export function SideNav() {
 
   return (
     <nav className="fixed left-0 top-0 z-50 h-screen w-16 md:w-20 hidden md:flex flex-col justify-center border-r border-border/30 bg-background/95">
-      <div className="flex flex-col gap-6 px-4">
+      <div className="flex flex-col gap-4 md:gap-6 px-4">
         {navItems.map(({ id, label }) => (
           <button key={id} onClick={() => scrollToSection(id)} className="group relative flex items-center gap-3">
             <span
