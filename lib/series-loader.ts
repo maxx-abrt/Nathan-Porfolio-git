@@ -15,7 +15,17 @@ import fs from "fs"
 import path from "path"
 import type { Photo, Series, PDFFile, VideoFile, AudioFile } from "./data"
 
-const ASSET_BASE_URL = process.env.NEXT_PUBLIC_ASSET_BASE_URL?.replace(/\/$/, "")
+function getDefaultAssetBaseUrl(): string | undefined {
+  if (process.env.VERCEL_GIT_PROVIDER !== "github") return undefined
+  const owner = process.env.VERCEL_GIT_REPO_OWNER
+  const repo = process.env.VERCEL_GIT_REPO_SLUG
+  const ref = process.env.VERCEL_GIT_COMMIT_REF || "main"
+  if (!owner || !repo) return undefined
+  return `https://media.githubusercontent.com/media/${owner}/${repo}/${ref}`
+}
+
+const ASSET_BASE_URL =
+  process.env.NEXT_PUBLIC_ASSET_BASE_URL?.replace(/\/$/, "") ?? getDefaultAssetBaseUrl()
 
 // Normalise une chaîne en NFC pour éviter les problèmes NFD/NFC sur macOS
 function nfc(s: string): string {
