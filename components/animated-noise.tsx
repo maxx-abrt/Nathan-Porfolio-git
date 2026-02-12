@@ -26,10 +26,10 @@ export function AnimatedNoise({ opacity = 0.05, className }: AnimatedNoiseProps)
     let animationId: number
     let frame = 0
 
-    // Redimensionne le canvas à la moitié de sa taille affichée (optimisation performance)
+    // Redimensionne le canvas à 1/4 de sa taille affichée (optimisation performance)
     const resize = () => {
-      canvas.width = canvas.offsetWidth / 2
-      canvas.height = canvas.offsetHeight / 2
+      canvas.width = Math.ceil(canvas.offsetWidth / 4)
+      canvas.height = Math.ceil(canvas.offsetHeight / 4)
     }
 
     // Génère une image de bruit aléatoire pixel par pixel en niveaux de gris
@@ -48,10 +48,10 @@ export function AnimatedNoise({ opacity = 0.05, className }: AnimatedNoiseProps)
       ctx.putImageData(imageData, 0, 0)
     }
 
-    // Boucle d'animation : rafraîchit le bruit toutes les 2 frames pour un bon compromis performance/fluidité
+    // Boucle d'animation : rafraîchit le bruit toutes les 4 frames pour un bon compromis performance/fluidité
     const animate = () => {
       frame++
-      if (frame % 2 === 0) {
+      if (frame % 4 === 0) {
         generateNoise()
       }
       animationId = requestAnimationFrame(animate)

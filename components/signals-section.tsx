@@ -263,7 +263,7 @@ export function SignalsSection({ series }: { series: Series[] }) {
           scrollTrigger: {
             trigger: headerRef.current,
             start: "top 85%",
-            toggleActions: "play none none reverse",
+            toggleActions: "play none none none",
           },
         },
       )
@@ -283,7 +283,7 @@ export function SignalsSection({ series }: { series: Series[] }) {
             scrollTrigger: {
               trigger: cardsRef.current,
               start: "top 90%",
-              toggleActions: "play none none reverse",
+              toggleActions: "play none none none",
             },
           },
         )

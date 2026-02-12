@@ -241,7 +241,7 @@ export default function SeriesPageClient({ seriesData, allSeries }: { seriesData
         <h1 className="font-[var(--font-bebas)] text-4xl sm:text-6xl md:text-8xl lg:text-9xl tracking-tight">
           {seriesData.title}
         </h1>
-        <div className="font-mono text-sm text-muted-foreground leading-relaxed overflow-y-auto max-h-[30vh] pr-3 scrollbar-thin scrollbar-thumb-border/60 scrollbar-track-transparent hover:scrollbar-thumb-border/80 scrollbar-thumb-rounded">
+        <div className="font-mono text-sm text-muted-foreground leading-relaxed">
           {parseMarkdown(seriesData.description)}
         </div>
         <div className="mt-6 flex items-center gap-6">
@@ -727,15 +727,7 @@ function VideoItem({ video }: { video: VideoFile }) {
               : parseMarkdownPreview(normalizedDescription, previewLimit)}
           </div>
         )}
-        {hasDescription && hasLongDescription && (
-          <button
-            type="button"
-            onClick={() => setIsExpanded((prev) => !prev)}
-            className="mt-2 font-mono text-[10px] uppercase tracking-widest text-accent/80 hover:text-accent transition-colors"
-          >
-            {isExpanded ? "Voir moins" : "Voir plus"}
-          </button>
-        )}
+        
         <div className="flex items-center gap-3 mt-2">
           {video.duration && (
             <span className="font-mono text-[9px] text-accent">

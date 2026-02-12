@@ -15,6 +15,7 @@ const SignalsSection = dynamic(() => import("@/components/signals-section").then
 const WorkSection = dynamic(() => import("@/components/work-section").then(m => ({ default: m.WorkSection })), { ssr: true })
 const PortfolioSection = dynamic(() => import("@/components/portfolio-section").then(m => ({ default: m.PortfolioSection })), { ssr: true })
 const PrinciplesSection = dynamic(() => import("@/components/principles-section").then(m => ({ default: m.PrinciplesSection })), { ssr: true })
+const ContactSection = dynamic(() => import("@/components/contact-section").then(m => ({ default: m.ContactSection })), { ssr: true })
 const ColophonSection = dynamic(() => import("@/components/colophon-section").then(m => ({ default: m.ColophonSection })), { ssr: true })
 
 // Composant principal de la page d'accueil
@@ -45,7 +46,7 @@ export default function Page() {
         <LazySection rootMargin="400px" minHeight="600px" anchorIds={["photographies"]}>
           <SignalsSection series={remainingSeries} />
         </LazySection>
-        <LazySection rootMargin="300px" minHeight="500px" anchorIds={["cinema-videos", "autres-projets"]}>
+        <LazySection rootMargin="300px" minHeight="500px" anchorIds={["cinema-videos", "autres-projets", "projets-personnels"]}>
           <WorkSection series={remainingSeries} />
         </LazySection>
         <LazySection rootMargin="200px" minHeight="400px" anchorIds={["portfolio"]}>
@@ -55,6 +56,9 @@ export default function Page() {
           <PrinciplesSection />
         </LazySection>
         <LazySection rootMargin="200px" minHeight="300px" anchorIds={["contact"]}>
+          <ContactSection />
+        </LazySection>
+        <LazySection rootMargin="200px" minHeight="300px" anchorIds={["informations"]}>
           <ColophonSection />
         </LazySection>
       </div>

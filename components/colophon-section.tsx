@@ -33,7 +33,7 @@ export function ColophonSection() {
           scrollTrigger: {
             trigger: headerRef.current,
             start: "top 85%",
-            toggleActions: "play none none reverse",
+            toggleActions: "play none none none",
           },
         })
       }
@@ -50,7 +50,7 @@ export function ColophonSection() {
           scrollTrigger: {
             trigger: gridRef.current,
             start: "top 85%",
-            toggleActions: "play none none reverse",
+            toggleActions: "play none none none",
           },
         })
       }
@@ -65,7 +65,7 @@ export function ColophonSection() {
           scrollTrigger: {
             trigger: footerRef.current,
             start: "top 95%",
-            toggleActions: "play none none reverse",
+            toggleActions: "play none none none",
           },
         })
       }
@@ -79,12 +79,12 @@ export function ColophonSection() {
   return (
     <section
       ref={sectionRef}
-      id="contact"
+      id="informations"
       className="relative py-20 sm:py-32 pl-4 sm:pl-6 md:pl-28 pr-4 sm:pr-6 md:pr-12 border-t border-border/30"
     >
       {/* En-tête de la section avec numéro et titre */}
       <div ref={headerRef} className="mb-16">
-        <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">04 / Contact</span>
+        <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">08 / Informations</span>
         <h2 className="mt-4 font-[var(--font-bebas)] text-4xl sm:text-5xl md:text-7xl tracking-tight">INFORMATIONS</h2>
       </div>
 

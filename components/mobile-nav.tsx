@@ -15,9 +15,11 @@ const navItems = [
   { id: "photographies", label: "Photographies" },
   { id: "cinema-videos", label: "Cinéma/vidéos" },
   { id: "autres-projets", label: "Autres projets" },
+  { id: "projets-personnels", label: "Projets personnels" },
   { id: "portfolio", label: "Portfolios" },
   { id: "cv", label: "Parcours" },
   { id: "contact", label: "Contact" },
+  { id: "informations", label: "Informations" },
 ]
 
 export function MobileNav() {
@@ -36,7 +38,7 @@ export function MobileNav() {
           }
         })
       },
-      { threshold: 0.3 },
+      { threshold: 0.15 },
     )
 
     navItems.forEach(({ id }) => {

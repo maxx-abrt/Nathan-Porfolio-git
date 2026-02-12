@@ -327,7 +327,7 @@ export function WorkSection({ series }: { series: Series[] }) {
           scrollTrigger: {
             trigger: headerRef.current,
             start: "top 90%",
-            toggleActions: "play none none reverse",
+            toggleActions: "play none none none",
           },
         },
       )
@@ -344,7 +344,7 @@ export function WorkSection({ series }: { series: Series[] }) {
           scrollTrigger: {
             trigger: gridRef.current,
             start: "top 90%",
-            toggleActions: "play none none reverse",
+            toggleActions: "play none none none",
           },
         })
       }
@@ -384,6 +384,9 @@ export function WorkSection({ series }: { series: Series[] }) {
 
       {/* Autres projets section */}
       <OtherProjectsSection series={series} onProjectModal={(series) => setProjectModal({ series })} />
+
+      {/* Projets personnels section */}
+      <PersonalProjectsSection series={series} onProjectModal={(series) => setProjectModal({ series })} />
 
       {/* Project Modal */}
       {projectModal && (
@@ -555,7 +558,7 @@ function OtherProjectsSection({ series, onProjectModal }: { series: Series[]; on
           scrollTrigger: {
             trigger: headerRef.current,
             start: "top 90%",
-            toggleActions: "play none none reverse",
+            toggleActions: "play none none none",
           },
         },
       )
@@ -572,7 +575,7 @@ function OtherProjectsSection({ series, onProjectModal }: { series: Series[]; on
           scrollTrigger: {
             trigger: gridRef.current,
             start: "top 90%",
-            toggleActions: "play none none reverse",
+            toggleActions: "play none none none",
           },
         })
       }
@@ -654,6 +657,236 @@ function OtherProjectsSection({ series, onProjectModal }: { series: Series[]; on
             </Link>
             
             {/* Content - Right Side (with card background) */}
+            <div 
+              className="shrink-0 lg:w-80 bg-card/95 backdrop-blur-md border-t lg:border-t-0 lg:border border-border/30 p-6 md:p-8 max-h-[80vh] rounded-lg lg:rounded-none"
+            >
+              <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent block mb-4">
+                Commentaire
+              </span>
+              
+              <h3 className="font-(--font-bebas) text-3xl md:text-4xl tracking-tight mb-2">
+                {projectModal.series.title}
+              </h3>
+              <p className="font-mono text-xs text-muted-foreground mb-6">
+                {projectModal.series.medium} • {projectModal.series.year}
+              </p>
+              
+              <div className="w-12 h-px bg-accent/40 mb-6" />
+              
+              <div className="flex-1 min-h-0">
+                <div
+                  className="font-mono text-sm text-muted-foreground leading-relaxed max-h-[38vh] lg:max-h-[44vh] overflow-y-auto pr-2 custom-scrollbar overscroll-contain"
+                  onWheel={(event) => event.stopPropagation()}
+                  onTouchMove={(event) => event.stopPropagation()}
+                >
+                  {parseMarkdown(projectModal.series.description)}
+                </div>
+              </div>
+              
+              <div className="mt-6 pt-4 border-t border-border/20">
+                <Link
+                  href={`/series/${projectModal.series.slug}`}
+                  className="inline-flex items-center font-mono text-xs uppercase tracking-widest text-accent hover:text-accent/80 transition-colors group"
+                >
+                  Voir le projet complet 
+                  <span className="ml-2 transition-transform group-hover:translate-x-1">→</span>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
+
+function PersonalProjectsSection({ series, onProjectModal }: { series: Series[]; onProjectModal: (series: Series) => void }) {
+  const sectionRef = useRef<HTMLDivElement>(null)
+  const headerRef = useRef<HTMLDivElement>(null)
+  const gridRef = useRef<HTMLDivElement>(null)
+  const [projectModal, setProjectModal] = useState<{ series: Series } | null>(null)
+  const [showAll, setShowAll] = useState(false)
+
+  useEffect(() => {
+    if (projectModal) {
+      document.body.style.overflow = 'hidden'
+      document.body.style.touchAction = 'none'
+    } else {
+      document.body.style.overflow = ''
+      document.body.style.touchAction = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+      document.body.style.touchAction = ''
+    }
+  }, [projectModal])
+
+  const personnelSeries = useMemo(() => {
+    return series.filter((s) => {
+      const medium = s.medium.toLowerCase()
+      return medium.includes("personnel") && s.hasJson
+    }).sort((a, b) => {
+      const pa = a.priority ?? Infinity
+      const pb = b.priority ?? Infinity
+      return pa - pb
+    })
+  }, [series])
+
+  const gridItems = useMemo(() => {
+    const filteredSeries = personnelSeries.filter(s => {
+      return s.photos.length > 0 || s.videoFiles || s.audioFiles
+    })
+    const patterns = generateCompactPattern(filteredSeries.length)
+    return filteredSeries.map((s, i) => {
+      let photo
+      if (s.photos.length > 0) {
+        photo = s.photos[s.coverIndex]
+      } else if (s.videoFiles && s.videoFiles.length > 0 && s.videoFiles[0].thumbnail) {
+        photo = {
+          id: `${s.slug}-video-thumb`,
+          src: s.videoFiles[0].thumbnail,
+          alt: s.videoFiles[0].title || s.title,
+          width: 1200,
+          height: 800,
+          orientation: "landscape" as const,
+          seriesId: s.slug,
+        }
+      } else {
+        photo = {
+          id: `${s.slug}-placeholder`,
+          src: `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='800'%3E%3Crect width='1200' height='800' fill='%23374151'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23fff' font-family='sans-serif' font-size='24'%3E${encodeURIComponent(s.title)}%3C/text%3E%3C/svg%3E`,
+          alt: s.title,
+          width: 1200,
+          height: 800,
+          orientation: "landscape" as const,
+          seriesId: s.slug,
+        }
+      }
+      return {
+        photo,
+        series: s,
+        span: patterns[i] || "col-span-1 row-span-1",
+      }
+    })
+  }, [personnelSeries])
+
+  const maxVisible = 8
+  const visibleItems = showAll ? gridItems : gridItems.slice(0, maxVisible)
+
+  useEffect(() => {
+    if (!sectionRef.current || !headerRef.current || !gridRef.current) return
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        headerRef.current,
+        { x: -60, opacity: 0 },
+        {
+          x: 0,
+          opacity: 1,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: "top 90%",
+            toggleActions: "play none none none",
+          },
+        },
+      )
+
+      const cards = gridRef.current?.querySelectorAll("article")
+      if (cards && cards.length > 0) {
+        gsap.set(cards, { y: 60, opacity: 0 })
+        gsap.to(cards, {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          stagger: 0.1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: gridRef.current,
+            start: "top 90%",
+            toggleActions: "play none none none",
+          },
+        })
+      }
+    }, sectionRef)
+
+    return () => ctx.revert()
+  }, [])
+
+  if (personnelSeries.length === 0) return null
+
+  return (
+    <div ref={sectionRef} id="projets-personnels" className="mt-32">
+      {/* Section header */}
+      <div ref={headerRef} className="mb-16 flex items-end justify-between">
+        <div>
+          <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">04 / Personnel</span>
+          <h2 className="mt-4 font-(--font-bebas) text-4xl sm:text-5xl md:text-7xl tracking-tight">PROJETS PERSONNELS</h2>
+        </div>
+        <p className="hidden md:block max-w-xs font-mono text-xs text-muted-foreground text-right leading-relaxed">
+          Projets et créations personnelles.
+        </p>
+      </div>
+
+      {/* Grid for personal projects */}
+      <div
+        ref={gridRef}
+        className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 auto-rows-[130px] sm:auto-rows-[160px] lg:auto-rows-[170px]"
+      >
+        {visibleItems.map((item, index) => (
+          <WorkCard
+            key={item.photo.id}
+            item={item}
+            index={index}
+            persistHover={false}
+            onProjectClick={() => setProjectModal({ series: item.series })}
+          />
+        ))}
+      </div>
+
+      {gridItems.length > maxVisible && (
+        <div className="mt-8 flex justify-center">
+          <button
+            type="button"
+            onClick={() => setShowAll((prev) => !prev)}
+            className="inline-flex items-center gap-2 px-6 py-3 border border-border/50 font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground hover:text-foreground hover:border-accent/50 transition-colors"
+          >
+            {showAll ? "Montrer moins" : "Montrer plus"}
+            <span className="text-accent">→</span>
+          </button>
+        </div>
+      )}
+
+      {/* Project Modal */}
+      {projectModal && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm p-4 overflow-hidden"
+          onWheel={(event) => event.preventDefault()}
+          onTouchMove={(event) => event.preventDefault()}
+        >
+          <div className="relative z-10 w-full h-full lg:h-auto lg:max-h-[90vh] flex flex-col lg:flex-row gap-0 lg:gap-8 max-w-6xl lg:mx-6">
+            {/* Close button */}
+            <button
+              onClick={() => setProjectModal(null)}
+              className="absolute top-4 right-4 md:top-6 md:right-6 z-20 p-3 text-white/60 hover:text-white transition-colors"
+            >
+              <X className="w-6 h-6" />
+            </button>
+            
+            {/* Cover Image - Left Side */}
+            <Link 
+              href={`/series/${projectModal.series.slug}`}
+              className="shrink-0 lg:flex-1 flex items-center justify-center min-h-[40vh] lg:min-h-0 p-4 pt-16 lg:p-0 cursor-pointer group"
+            >
+              <img
+                src={projectModal.series.photos[projectModal.series.coverIndex]?.src}
+                alt={projectModal.series.photos[projectModal.series.coverIndex]?.alt}
+                className="max-h-[50vh] lg:max-h-[80vh] w-auto object-contain max-w-[90vw] lg:max-w-full transition-transform duration-500 group-hover:scale-[1.02]"
+              />
+            </Link>
+            
+            {/* Content - Right Side */}
             <div 
               className="shrink-0 lg:w-80 bg-card/95 backdrop-blur-md border-t lg:border-t-0 lg:border border-border/30 p-6 md:p-8 max-h-[80vh] rounded-lg lg:rounded-none"
             >
@@ -801,18 +1034,7 @@ function WorkCard({
               : parseMarkdownPreview(item.series.description, previewLimit)}
           </div>
 
-          {isActive && isVideoProject && hasDescription && hasLongDescription && (
-            <button
-              type="button"
-              onClick={(event) => {
-                event.stopPropagation()
-                setIsExpanded((prev) => !prev)
-              }}
-              className="mt-2 font-mono text-[10px] uppercase tracking-widest text-accent/80 hover:text-accent transition-colors"
-            >
-              {isExpanded ? "Voir moins" : "Voir plus"}
-            </button>
-          )}
+        
 
           {/* Click for intention note */}
           <button

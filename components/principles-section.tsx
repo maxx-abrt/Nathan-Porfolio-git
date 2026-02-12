@@ -187,7 +187,7 @@ export function PrinciplesSection() {
         scrollTrigger: {
           trigger: headerRef.current,
           start: "top 85%",
-          toggleActions: "play none none reverse",
+          toggleActions: "play none none none",
         },
       })
 
@@ -203,7 +203,7 @@ export function PrinciplesSection() {
           scrollTrigger: {
             trigger: article,
             start: "top 85%",
-            toggleActions: "play none none reverse",
+            toggleActions: "play none none none",
           },
         })
       })
@@ -216,7 +216,7 @@ export function PrinciplesSection() {
     <section ref={sectionRef} id="cv" className="relative py-20 sm:py-32 pl-4 sm:pl-6 md:pl-28 pr-4 sm:pr-6 md:pr-12">
       {/* En-tête de la section avec numéro et titre */}
       <div ref={headerRef} className="mb-24">
-        <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">03 / Parcours</span>
+        <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">06 / Parcours</span>
         <h2 className="mt-4 font-[var(--font-bebas)] text-4xl sm:text-5xl md:text-7xl tracking-tight">EXPÉRIENCES</h2>
       </div>
 

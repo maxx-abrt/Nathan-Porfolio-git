@@ -255,3 +255,29 @@
   background: oklch(0.65 0 0);
 }
 
+/* Performance: GPU-accelerate fixed layers */
+.grid-bg {
+  will-change: auto;
+  backface-visibility: hidden;
+}
+
+/* Performance: reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .noise-overlay {
+    display: none;
+  }
+}
+
+/* Performance: optimize images */
+img {
+  content-visibility: auto;
+}
+

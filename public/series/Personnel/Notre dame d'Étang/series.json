@@ -1,49 +1,47 @@
 {
-  "title": "Beaune",
+  "title": "Notre Dame d'Étang",
   "description": "",
-  "medium": "autres",
-  "year": "2024",
-  "cover": "DSCN1333",
+  "medium": "personnel",
+  "year": "2025",
+  "cover": "IMG_7695",
   "pdfs": {
     "nom-du-fichier-pdf-sans-extension": {
       "title": "Titre du PDF",
       "description": "Description du document"
     }
   },
-  "photos": {
-    "DSCN1333": {
-      "title": "DSCN1333",
+  "photos":
+   {"IMG_7695": {
+      "title": "IMG_7695",
       "intentionNote": "Impression jet d'encre sur papier - 21 x 29.7 cm",
       "technical": "CanonEOS 600D, 18-55 mm",
-      "date": "08-05-2024",
+      "date": "14-06-2025",
       "width": 1200,
       "height": 800
     },
-    "P1020545": {
-      "title": "P1020545",
+
+    "IMG_7699": {
+      "title": "IMG_7699",
       "intentionNote": "Impression jet d'encre sur papier - 21 x 29.7 cm",
       "technical": "CanonEOS 600D, 18-55 mm",
-      "date": "08-05-2024",
+      "date": "14-06-2025",
       "width": 1200,
       "height": 800
     },
-    "P1020556": {
-      "title": "P1020556",
+    "IMG_7702": {
+      "title": "IMG_7702",
       "intentionNote": "Impression jet d'encre sur papier - 21 x 29.7 cm",
       "technical": "CanonEOS 600D, 18-55 mm",
-      "date": "08-05-2024",
+      "date": "14-06-2025",
       "width": 1200,
       "height": 800
     },
-    "P1022477": {
-      "title": "P1022477",
-      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+      "IMG_7704": {
+      "title": "IMG_7704",
+      "intentionNote": "Impression jet d'encre sur papier - 21 x 29.7 cm",
       "technical": "CanonEOS 600D, 18-55 mm",
-      "date": "08-05-2024",
+      "date": "14-06-2025",
       "width": 1200,
       "height": 800
     }
-    
-  } 
-}
-
+}}

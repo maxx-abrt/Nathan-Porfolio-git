@@ -62,7 +62,7 @@ function PortfolioCard({ portfolio, index }: { portfolio: PortfolioItem; index: 
         scrollTrigger: {
           trigger: cardRef.current,
           start: "top 90%",
-          toggleActions: "play none none reverse",
+          toggleActions: "play none none none",
         },
       })
     }, cardRef)
@@ -167,7 +167,7 @@ export function PortfolioSection() {
         scrollTrigger: {
           trigger: headerRef.current,
           start: "top 85%",
-          toggleActions: "play none none reverse",
+          toggleActions: "play none none none",
         },
       })
     }, sectionRef)
@@ -181,7 +181,7 @@ export function PortfolioSection() {
         {/* En-tête de section */}
         <div ref={headerRef} className="mb-12">
           <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent block mb-4">
-            02½ / Portfolios
+            05 / Portfolios
           </span>
           <h2 className="font-(--font-bebas) text-3xl sm:text-4xl md:text-6xl tracking-tight">
             PORTFOLIOS PDF
@@ -205,7 +205,7 @@ export function PortfolioSection() {
           </span>
           <div className="h-px flex-1 max-w-xs bg-border/40" />
           <a 
-            href="#work" 
+            href="#photographies" 
             className="group inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-muted-foreground hover:text-accent transition-colors"
           >
             <span>Voir les projets en ligne</span>
