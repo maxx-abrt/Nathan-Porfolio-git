@@ -3,7 +3,7 @@
   "description": "Entre présence et absence, cette série photographique explore la maison de mes grands-parents, un lieu encore habité mais transformé par le temps. Alors que le premier étage reste vivant et quotidien, le rez-de-chaussée et le grenier paraissent suspendus, presque immobiles, remplis d’objets laissés en attente. À travers ces images, j’ai cherché à montrer ce moment discret où une maison change lentement, sans disparaître complètement. Les objets, les meubles et les espaces vides deviennent alors les traces silencieuses d’une vie passée, révélant ce qu’il reste lorsque le temps transforme les lieux. \\n **Références** : __Claude Batho__",
   "medium": "photos",
   "year": "2026",
-  "cover": "IMG_0196",
+  "cover": "Ce qu'il reste l cover",
   "pdfs": {
     "nom-du-fichier-pdf-sans-extension": {
       "title": "Titre du PDF",
@@ -11,61 +11,240 @@
     }
   },
   "photos": {
-    "IMG_0196": {
-      "title": "IMG_0196",
-      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+    "Ce qu'il reste l édition 2": {
+      "title": "Ce qu'il reste l édition 2",
+      "intentionNote": "Édition, impression laser sur papier photo - 36 x 20.5 cm",
       "technical": "CanonEOS 600D, 18-55 mm",
-      "date": "08-03-2026",
+      "date": "07-12-2025",
       "width": 1200,
       "height": 800
     },
-    "IMG_0247": {
-      "title": "IMG_0247",
-      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+    "Ce qu'il reste l édition 3": {
+      "title": "Ce qu'il reste l édition 3",
+      "intentionNote": "Édition, impression laser sur papier photo - 36 x 20.5 cm",
       "technical": "CanonEOS 600D, 18-55 mm",
-      "date": "08-03-2026",
+      "date": "07-12-2025",
       "width": 1200,
       "height": 800
     },
-    "IMG_0329": {
-      "title": "IMG_0329",
-      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+    "Ce qu'il reste l édition 4": {
+      "title": "Ce qu'il reste l édition 4",
+      "intentionNote": "Édition, impression laser sur papier photo - 36 x 20.5 cm",
       "technical": "CanonEOS 600D, 18-55 mm",
-      "date": "08-03-2026",
+      "date": "07-12-2025",
       "width": 1200,
       "height": 800
     },
-    "IMG_0375": {
-      "title": "IMG_0375",
-      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+    "Ce qu'il reste l édition 5": {
+      "title": "Ce qu'il reste l édition 5",
+      "intentionNote": "Édition, impression laser sur papier photo - 36 x 20.5 cm",
       "technical": "CanonEOS 600D, 18-55 mm",
-      "date": "08-03-2026",
+      "date": "07-12-2025",
       "width": 1200,
       "height": 800
     },
-    "IMG_0589": {
-      "title": "IMG_0589",
-      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+    "Ce qu'il reste l édition 6": {
+      "title": "Ce qu'il reste l édition 6",
+      "intentionNote": "Édition, impression laser sur papier photo - 36 x 20.5 cm",
       "technical": "CanonEOS 600D, 18-55 mm",
-      "date": "08-03-2026",
+      "date": "07-12-2025",
       "width": 1200,
       "height": 800
     
   },
-   "IMG_0656": {
-      "title": "IMG_0656",
-      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+   "Ce qu'il reste l édition 7": {
+      "title": "Ce qu'il reste l édition 7",
+      "intentionNote": "Édition, impression laser sur papier photo - 36 x 20.5 cm",
       "technical": "CanonEOS 600D, 18-55 mm",
-      "date": "08-03-2026",
+      "date": "07-12-2025",
       "width": 1200,
       "height": 800
     },
-    "IMG_0694": {
-      "title": "IMG_0694",
-      "intentionNote": "Impression jet d'encre sur papier - 29.7 x 42 cm",
+    "Ce qu'il reste l édition 8": {
+      "title": "Ce qu'il reste l édition 8",
+      "intentionNote": "Édition, impression laser sur papier photo - 36 x 20.5 cm",
       "technical": "CanonEOS 600D, 18-55 mm",
-      "date": "08-03-2026",
+      "date": "07-12-2025",
       "width": 1200,
       "height": 800
-    } 
-}}
+    },
+    "Ce qu'il reste l édition 9": {
+      "title": "Ce qu'il reste l édition 9",
+      "intentionNote": "Édition, impression laser sur papier photo - 36 x 20.5 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "07-12-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "Ce qu'il reste l édition 10": {
+      "title": "Ce qu'il reste l édition 10",
+      "intentionNote": "Édition, impression laser sur papier photo - 36 x 20.5 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "07-12-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "Ce qu'il reste l édition 11": {
+      "title": "Ce qu'il reste l édition 11",
+      "intentionNote": "Édition, impression laser sur papier photo - 36 x 20.5 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "07-12-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "Ce qu'il reste l édition 12": {
+      "title": "Ce qu'il reste l édition 12",
+      "intentionNote": "Édition, impression laser sur papier photo - 36 x 20.5 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "07-12-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "Ce qu'il reste l édition 13": {
+      "title": "Ce qu'il reste l édition 13",
+      "intentionNote": "Édition, impression laser sur papier photo - 36 x 20.5 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "07-12-2025",
+      "width": 1200,
+      "height": 800
+    
+  },
+   "Ce qu'il reste l édition 14": {
+      "title": "Ce qu'il reste l édition 14",
+      "intentionNote": "Édition, impression laser sur papier photo - 36 x 20.5 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "07-12-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "Ce qu'il reste l édition 15": {
+      "title": "Ce qu'il reste l édition 15",
+      "intentionNote": "Édition, impression laser sur papier photo - 36 x 20.5 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "07-12-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "Ce qu'il reste l édition 16": {
+      "title": "Ce qu'il reste l édition 16",
+      "intentionNote": "Édition, impression laser sur papier photo - 36 x 20.5 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "07-12-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "Ce qu'il reste l édition 17": {
+      "title": "Ce qu'il reste l édition 17",
+      "intentionNote": "Édition, impression laser sur papier photo - 36 x 20.5 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "07-12-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "Ce qu'il reste l édition 18": {
+      "title": "Ce qu'il reste l édition 18",
+      "intentionNote": "Édition, impression laser sur papier photo - 36 x 20.5 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "07-12-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "Ce qu'il reste l édition 19": {
+      "title": "Ce qu'il reste l édition 19",
+      "intentionNote": "Édition, impression laser sur papier photo - 36 x 20.5 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "07-12-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "Ce qu'il reste l édition 20": {
+      "title": "Ce qu'il reste l édition 20",
+      "intentionNote": "Édition, impression laser sur papier photo - 36 x 20.5 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "07-12-2025",
+      "width": 1200,
+      "height": 800
+    
+  },
+   "Ce qu'il reste l édition 21": {
+      "title": "Ce qu'il reste l édition 21",
+      "intentionNote": "Édition, impression laser sur papier photo - 36 x 20.5 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "07-12-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "Ce qu'il reste l édition 22": {
+      "title": "Ce qu'il reste l édition 22",
+      "intentionNote": "Édition, impression laser sur papier photo - 36 x 20.5 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "07-12-2025",
+      "width": 1200,
+      "height": 800
+  },
+      "Ce qu'il reste l édition 23": {
+      "title": "Ce qu'il reste l édition 23",
+      "intentionNote": "Édition, impression laser sur papier photo - 36 x 20.5 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "07-12-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "Ce qu'il reste l édition 24": {
+      "title": "Ce qu'il reste l édition 24",
+      "intentionNote": "Édition, impression laser sur papier photo - 36 x 20.5 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "07-12-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "Ce qu'il reste l édition 25": {
+      "title": "Ce qu'il reste l édition 25",
+      "intentionNote": "Édition, impression laser sur papier photo - 36 x 20.5 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "07-12-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "Ce qu'il reste l édition 26": {
+      "title": "Ce qu'il reste l édition 26",
+      "intentionNote": "Édition, impression laser sur papier photo - 36 x 20.5 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "07-12-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "Ce qu'il reste l édition 27": {
+      "title": "Ce qu'il reste l édition 27",
+      "intentionNote": "Édition, impression laser sur papier photo - 36 x 20.5 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "07-12-2025",
+      "width": 1200,
+      "height": 800
+    
+  },
+   "Ce qu'il reste l édition 28": {
+      "title": "Ce qu'il reste l édition 28",
+      "intentionNote": "Édition, impression laser sur papier photo - 36 x 20.5 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "07-12-2025",
+      "width": 1200,
+      "height": 800
+    },
+    "Ce qu'il reste l édition 29": {
+      "title": "Ce qu'il reste l édition 29",
+      "intentionNote": "Édition, impression laser sur papier photo - 36 x 20.5 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "07-12-2025",
+      "width": 1200,
+      "height": 800
+        },
+   "Ce qu'il reste l édition 30": {
+      "title": "Ce qu'il reste l édition 30",
+      "intentionNote": "Édition, impression laser sur papier photo - 36 x 20.5 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "07-12-2025",
+      "width": 1200,
+      "height": 800
+    }} }
+    
