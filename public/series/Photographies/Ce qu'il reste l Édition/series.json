@@ -3,7 +3,7 @@
   "description": "Entre présence et absence, cette série photographique explore la maison de mes grands-parents, un lieu encore habité mais transformé par le temps. Alors que le premier étage reste vivant et quotidien, le rez-de-chaussée et le grenier paraissent suspendus, presque immobiles, remplis d’objets laissés en attente. À travers ces images, j’ai cherché à montrer ce moment discret où une maison change lentement, sans disparaître complètement. Les objets, les meubles et les espaces vides deviennent alors les traces silencieuses d’une vie passée, révélant ce qu’il reste lorsque le temps transforme les lieux. \\n **Références** : __Claude Batho__",
   "medium": "photos",
   "year": "2026",
-  "cover": "Ce qu'il reste l cover",
+  "cover": "IMG_0147 l cover",
   "pdfs": {
     "nom-du-fichier-pdf-sans-extension": {
       "title": "Titre du PDF",
@@ -11,6 +11,14 @@
     }
   },
   "photos": {
+     "Ce qu'il reste l cover": {
+      "title": "Ce qu'il reste l cover",
+      "intentionNote": "Édition, impression laser sur papier photo - 36 x 20.5 cm",
+      "technical": "CanonEOS 600D, 18-55 mm",
+      "date": "07-12-2025",
+      "width": 1200,
+      "height": 800
+      },
     "Ce qu'il reste l édition 2": {
       "title": "Ce qu'il reste l édition 2",
       "intentionNote": "Édition, impression laser sur papier photo - 36 x 20.5 cm",
