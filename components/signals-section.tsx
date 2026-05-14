@@ -8,182 +8,15 @@
 import { useRef, useState, useEffect, useCallback } from "react"
 import { cn } from "@/lib/utils"
 import type { Series } from "@/lib/data"
-import type { ReactNode } from "react"
 import Link from "next/link"
 import { OptimizedImage } from "@/components/optimized-image"
+import { parseMarkdown, parseMarkdownPreview } from "@/lib/markdown"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 
 gsap.registerPlugin(ScrollTrigger)
 
-// ... markdown parser functions remain the same ...
-
-// Simple markdown parser for descriptions
-// Supports: **bold**, *italic*, __underline__, and \\n for line breaks
-function parseMarkdown(text: string): ReactNode {
-  if (!text) return <></>
-  
-  // Split by line breaks first (handle both \\n literal and actual newlines)
-  const normalizedText = text.replace(/\\n/g, '\n')
-  const lines = normalizedText.split('\n')
-  
-  return (
-    <>
-      {lines.map((line, lineIndex) => {
-        // Process the line with a more robust parser
-        const elements = parseLine(line)
-        
-        return (
-          <span key={lineIndex}>
-            {elements}
-            {lineIndex < lines.length - 1 && <br />}
-          </span>
-        )
-      })}
-    </>
-  )
-}
-
-function parseLine(line: string): ReactNode {
-  const parts: ReactNode[] = []
-  let remaining = line
-  let key = 0
-  
-  // Process patterns one at a time, left to right
-  while (remaining.length > 0) {
-    // Find the first occurrence of any pattern opener
-    const boldIdx = remaining.indexOf('**')
-    const underlineIdx = remaining.indexOf('__')
-    const italicIdx = remaining.indexOf('*')
-    
-    // Find which pattern comes first
-    let firstIdx = Infinity
-    let patternType: 'bold' | 'underline' | 'italic' | null = null
-    
-    if (boldIdx !== -1 && boldIdx < firstIdx) {
-      firstIdx = boldIdx
-      patternType = 'bold'
-    }
-    if (underlineIdx !== -1 && underlineIdx < firstIdx) {
-      firstIdx = underlineIdx
-      patternType = 'underline'
-    }
-    // Only check italic if it's not part of a bold (at position 0 of bold)
-    if (italicIdx !== -1 && italicIdx < firstIdx) {
-      // Check if this * is the start of **
-      if (remaining.substring(italicIdx, italicIdx + 2) !== '**') {
-        firstIdx = italicIdx
-        patternType = 'italic'
-      }
-    }
-    
-    if (patternType === null) {
-      // No more patterns found
-      parts.push(remaining)
-      break
-    }
-    
-    // Add text before the pattern
-    if (firstIdx > 0) {
-      parts.push(remaining.substring(0, firstIdx))
-    }
-    
-    // Find closing tag based on pattern type
-    let closeIdx = -1
-    let content = ''
-    let skipLength = 0
-    
-    if (patternType === 'bold') {
-      closeIdx = remaining.indexOf('**', firstIdx + 2)
-      if (closeIdx !== -1) {
-        content = remaining.substring(firstIdx + 2, closeIdx)
-        parts.push(<strong key={key++} className="text-grey-900 font-semibold">{parseLine(content)}</strong>)
-        skipLength = closeIdx + 2
-      }
-    } else if (patternType === 'underline') {
-      closeIdx = remaining.indexOf('__', firstIdx + 2)
-      if (closeIdx !== -1) {
-        content = remaining.substring(firstIdx + 2, closeIdx)
-        parts.push(<span key={key++} className="underline underline-offset-2">{parseLine(content)}</span>)
-        skipLength = closeIdx + 2
-      }
-    } else if (patternType === 'italic') {
-      closeIdx = remaining.indexOf('*', firstIdx + 1)
-      if (closeIdx !== -1) {
-        content = remaining.substring(firstIdx + 1, closeIdx)
-        parts.push(<em key={key++} className="italic">{parseLine(content)}</em>)
-        skipLength = closeIdx + 1
-      }
-    }
-    
-    if (closeIdx === -1) {
-      // No closing tag found, treat as plain text
-      parts.push(remaining.substring(firstIdx))
-      break
-    }
-    
-    remaining = remaining.substring(skipLength)
-  }
-  
-  return <>{parts}</>
-}
-
-// Parse markdown for preview with length limit
-function parseMarkdownPreview(text: string, maxLength: number): ReactNode {
-  if (!text) return <></>
-  
-  // Normalize line breaks
-  const normalizedText = text.replace(/\\n/g, '\n')
-  
-  // Get a substring with some buffer to not cut in middle of markdown
-  const buffer = 20
-  const truncated = normalizedText.length > maxLength + buffer 
-    ? normalizedText.substring(0, maxLength + buffer) 
-    : normalizedText
-  
-  // Process the text
-  const lines = truncated.split('\n')
-  const previewLines: ReactNode[] = []
-  let currentLength = 0
-  
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i]
-    
-    // Check if adding this line would exceed maxLength
-    if (currentLength + line.length > maxLength && previewLines.length > 0) {
-      break
-    }
-    
-    // Add line break if not first line
-    if (i > 0) {
-      previewLines.push(<br key={`br-${i}`} />)
-      currentLength += 1
-    }
-    
-    // Parse markdown in this line
-    previewLines.push(
-      <span key={`line-${i}`}>{parseLine(line)}</span>
-    )
-    currentLength += line.length
-    
-    // Stop if we've exceeded maxLength
-    if (currentLength >= maxLength) {
-      break
-    }
-  }
-  
-  // Add ellipsis if truncated
-  const isTruncated = normalizedText.length > maxLength
-  
-  return (
-    <>
-      {previewLines}
-      {isTruncated && <span>…</span>}
-    </>
-  )
-}
-
-export function SignalsSection({ series }: { series: Series[] }) {
+export default function SignalsSection({ series }: { series: Series[] }) {
   const scrollRef = useRef<HTMLDivElement>(null)
   const sectionRef = useRef<HTMLElement>(null)
   const headerRef = useRef<HTMLDivElement>(null)
@@ -367,8 +200,9 @@ function RecentSeriesCard({
             <OptimizedImage
               src={coverPhoto.src}
               alt={coverPhoto.alt}
-              className="w-full h-full transition-transform duration-700 group-hover:scale-105"
-              wrapperClassName="w-full h-full"
+              fill
+              className="transition-transform duration-700 group-hover:scale-105"
+              wrapperClassName="absolute inset-0"
               sizes="(max-width: 640px) 288px, 320px"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-card/80 via-transparent to-transparent" />

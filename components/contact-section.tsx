@@ -12,7 +12,7 @@ import { Send, CheckCircle, AlertCircle, Loader2 } from "lucide-react"
 
 gsap.registerPlugin(ScrollTrigger)
 
-export function ContactSection() {
+export default function ContactSection() {
   const sectionRef = useRef<HTMLElement>(null)
   const headerRef = useRef<HTMLDivElement>(null)
   const formRef = useRef<HTMLFormElement>(null)
@@ -224,3 +224,5 @@ export function ContactSection() {
     </section>
   )
 }
+
+export { ContactSection }

@@ -11,12 +11,12 @@ import { LastProjectSection } from "@/components/last-project-section"
 import { getAllSeries } from "@/lib/series-loader"
 
 // Dynamic imports — code-split below-fold sections so they don't block initial paint
-const SignalsSection = dynamic(() => import("@/components/signals-section").then(m => ({ default: m.SignalsSection })), { ssr: true })
-const WorkSection = dynamic(() => import("@/components/work-section").then(m => ({ default: m.WorkSection })), { ssr: true })
-const PortfolioSection = dynamic(() => import("@/components/portfolio-section").then(m => ({ default: m.PortfolioSection })), { ssr: true })
-const PrinciplesSection = dynamic(() => import("@/components/principles-section").then(m => ({ default: m.PrinciplesSection })), { ssr: true })
-const ContactSection = dynamic(() => import("@/components/contact-section").then(m => ({ default: m.ContactSection })), { ssr: true })
-const ColophonSection = dynamic(() => import("@/components/colophon-section").then(m => ({ default: m.ColophonSection })), { ssr: true })
+const SignalsSection = dynamic(() => import("@/components/signals-section"), { ssr: true })
+const WorkSection = dynamic(() => import("@/components/work-section"), { ssr: true })
+const PortfolioSection = dynamic(() => import("@/components/portfolio-section"), { ssr: true })
+const PrinciplesSection = dynamic(() => import("@/components/principles-section"), { ssr: true })
+const ContactSection = dynamic(() => import("@/components/contact-section"), { ssr: true })
+const ColophonSection = dynamic(() => import("@/components/colophon-section"), { ssr: true })
 
 // Composant principal de la page d'accueil
 // Récupère toutes les séries photo côté serveur puis assemble les sections :

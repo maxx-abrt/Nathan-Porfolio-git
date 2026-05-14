@@ -7,9 +7,6 @@ import { notFound } from "next/navigation"
 import { getSeriesBySlug, getAllSeries } from "@/lib/series-loader"
 import SeriesPageClient from "@/components/series-page-client"
 
-// Force static rendering for output: export compatibility
-export const dynamic = "force-static"
-
 // Génération statique des paramètres de route (SSG)
 // Pré-génère une page pour chaque série trouvée dans le système de fichiers
 export function generateStaticParams() {

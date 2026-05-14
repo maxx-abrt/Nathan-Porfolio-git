@@ -1,11 +1,15 @@
 "use client"
 
-import { useState, useRef, useEffect } from "react"
+import { useState } from "react"
+import Image from "next/image"
 import { cn } from "@/lib/utils"
 
 interface OptimizedImageProps {
   src: string
   alt: string
+  width?: number
+  height?: number
+  fill?: boolean
   className?: string
   /** Additional wrapper class */
   wrapperClassName?: string
@@ -17,79 +21,87 @@ interface OptimizedImageProps {
   fadeDuration?: number
   /** Responsive sizes hint for the browser */
   sizes?: string
+  /** Priority loading for above-fold images */
+  priority?: boolean
 }
 
 export function OptimizedImage({
   src,
   alt,
+  width,
+  height,
+  fill = false,
   className = "",
   wrapperClassName = "",
   loading = "lazy",
   objectFit = "cover",
   fadeDuration = 400,
   sizes,
+  priority,
 }: OptimizedImageProps) {
   const [isLoaded, setIsLoaded] = useState(false)
-  const [isInView, setIsInView] = useState(loading === "eager")
-  const imgRef = useRef<HTMLImageElement>(null)
-  const wrapperRef = useRef<HTMLDivElement>(null)
 
-  // IntersectionObserver for truly lazy images — only load when near viewport
-  useEffect(() => {
-    if (loading === "eager") {
-      setIsInView(true)
-      return
-    }
+  const isExternal = src.startsWith("http") || src.startsWith("//")
+  const isDataUri = src.startsWith("data:")
+  const useNative = isExternal || isDataUri || (!fill && (!width || !height))
 
-    const el = wrapperRef.current
-    if (!el) return
+  const baseClass = cn(
+    className,
+    objectFit === "cover" ? "object-cover" : "object-contain",
+    "transition-opacity ease-out",
+    isLoaded ? "opacity-100" : "opacity-0",
+  )
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsInView(true)
-          observer.disconnect()
-        }
-      },
-      { rootMargin: "300px" }
-    )
+  const transitionStyle = { transitionDuration: `${fadeDuration}ms` } as React.CSSProperties
 
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [loading])
-
-  // Check if image is already cached (loaded instantly)
-  useEffect(() => {
-    if (imgRef.current?.complete && imgRef.current?.naturalWidth > 0) {
-      setIsLoaded(true)
-    }
-  }, [isInView])
-
-  return (
-    <div
-      ref={wrapperRef}
-      className={cn("overflow-hidden", wrapperClassName)}
-    >
-      {isInView && (
+  if (useNative) {
+    return (
+      <div className={cn("overflow-hidden", wrapperClassName)}>
         <img
-          ref={imgRef}
           src={src}
           alt={alt}
           loading={loading}
           decoding="async"
+          onLoad={() => setIsLoaded(true)}
+          className={baseClass}
+          style={transitionStyle}
+        />
+      </div>
+    )
+  }
+
+  if (fill) {
+    return (
+      <div className={cn("overflow-hidden relative", wrapperClassName)}>
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          priority={priority}
+          loading={priority ? "eager" : loading}
           sizes={sizes}
           onLoad={() => setIsLoaded(true)}
-          className={cn(
-            className,
-            objectFit === "cover" ? "object-cover" : "object-contain",
-            "transition-opacity ease-out",
-          )}
-          style={{
-            opacity: isLoaded ? 1 : 0,
-            transitionDuration: `${fadeDuration}ms`,
-          }}
+          className={baseClass}
+          style={transitionStyle}
         />
-      )}
+      </div>
+    )
+  }
+
+  return (
+    <div className={cn("overflow-hidden", wrapperClassName)}>
+      <Image
+        src={src}
+        alt={alt}
+        width={width}
+        height={height}
+        priority={priority}
+        loading={priority ? "eager" : loading}
+        sizes={sizes}
+        onLoad={() => setIsLoaded(true)}
+        className={baseClass}
+        style={transitionStyle}
+      />
     </div>
   )
 }

@@ -89,6 +89,8 @@ export function PhotoLightbox({ photo, parentSeries, onClose }: PhotoLightboxPro
           <img
             src={photo.src}
             alt={photo.alt}
+            loading="eager"
+            decoding="async"
             className={cn(
               "max-h-[50vh] lg:max-h-[80vh] w-auto object-contain",
               photo.orientation === "portrait" ? "max-w-[70vw] lg:max-w-[50vw]" : "max-w-[90vw] lg:max-w-full",

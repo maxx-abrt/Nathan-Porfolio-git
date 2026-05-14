@@ -6,7 +6,7 @@
 
 "use client"
 
-import { useState, useRef, useEffect, useMemo, type ReactNode } from "react"
+import { useState, useRef, useEffect, useMemo } from "react"
 import { useRouter } from "next/navigation"
 import type { Photo, Series, VideoFile, AudioFile } from "@/lib/data"
 import { cn } from "@/lib/utils"
@@ -14,6 +14,7 @@ import { PhotoLightbox } from "@/components/photo-lightbox"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { MobileNav } from "@/components/mobile-nav"
 import { OptimizedImage } from "@/components/optimized-image"
+import { parseMarkdown, parseMarkdownPreview } from "@/lib/markdown"
 import Link from "next/link"
 import { FileText, ArrowLeft, Play, Volume2, ExternalLink } from "lucide-react"
 import gsap from "gsap"
@@ -21,105 +22,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { ScrambleTextOnHover } from "./scramble-text"
 
 gsap.registerPlugin(ScrollTrigger)
-
-// Simple markdown parser for descriptions
-// Supports: **bold**, *italic*, __underline__, and \\n for line breaks
-function parseMarkdown(text: string): ReactNode {
-  if (!text) return <></>
-  
-  // Split by line breaks first (handle both \\n literal and actual newlines)
-  const normalizedText = text.replace(/\\n/g, '\n')
-  const lines = normalizedText.split('\n')
-  
-  return (
-    <>
-      {lines.map((line, lineIndex) => {
-        const elements = parseLine(line)
-        return (
-          <span key={lineIndex}>
-            {elements}
-            {lineIndex < lines.length - 1 && <br />}
-          </span>
-        )
-      })}
-    </>
-  )
-}
-
-function parseLine(line: string): ReactNode {
-  const parts: ReactNode[] = []
-  let remaining = line
-  let key = 0
-  
-  while (remaining.length > 0) {
-    const boldIdx = remaining.indexOf('**')
-    const underlineIdx = remaining.indexOf('__')
-    const italicIdx = remaining.indexOf('*')
-    
-    let firstIdx = Infinity
-    let patternType: 'bold' | 'underline' | 'italic' | null = null
-    
-    if (boldIdx !== -1 && boldIdx < firstIdx) {
-      firstIdx = boldIdx
-      patternType = 'bold'
-    }
-    if (underlineIdx !== -1 && underlineIdx < firstIdx) {
-      firstIdx = underlineIdx
-      patternType = 'underline'
-    }
-    if (italicIdx !== -1 && italicIdx < firstIdx) {
-      if (remaining.substring(italicIdx, italicIdx + 2) !== '**') {
-        firstIdx = italicIdx
-        patternType = 'italic'
-      }
-    }
-    
-    if (patternType === null) {
-      parts.push(remaining)
-      break
-    }
-    
-    if (firstIdx > 0) {
-      parts.push(remaining.substring(0, firstIdx))
-    }
-    
-    let closeIdx = -1
-    let content = ''
-    let skipLength = 0
-    
-    if (patternType === 'bold') {
-      closeIdx = remaining.indexOf('**', firstIdx + 2)
-      if (closeIdx !== -1) {
-        content = remaining.substring(firstIdx + 2, closeIdx)
-        parts.push(<strong key={key++} className="text-foreground font-semibold">{parseLine(content)}</strong>)
-        skipLength = closeIdx + 2
-      }
-    } else if (patternType === 'underline') {
-      closeIdx = remaining.indexOf('__', firstIdx + 2)
-      if (closeIdx !== -1) {
-        content = remaining.substring(firstIdx + 2, closeIdx)
-        parts.push(<span key={key++} className="underline underline-offset-2">{parseLine(content)}</span>)
-        skipLength = closeIdx + 2
-      }
-    } else if (patternType === 'italic') {
-      closeIdx = remaining.indexOf('*', firstIdx + 1)
-      if (closeIdx !== -1) {
-        content = remaining.substring(firstIdx + 1, closeIdx)
-        parts.push(<em key={key++} className="italic">{parseLine(content)}</em>)
-        skipLength = closeIdx + 1
-      }
-    }
-    
-    if (closeIdx === -1) {
-      parts.push(remaining.substring(firstIdx))
-      break
-    }
-    
-    remaining = remaining.substring(skipLength)
-  }
-  
-  return <>{parts}</>
-}
 
 export default function SeriesPageClient({ seriesData, allSeries }: { seriesData: Series; allSeries: Series[] }) {
   const safeAllSeries = Array.isArray(allSeries) ? allSeries : []
@@ -302,15 +204,16 @@ export default function SeriesPageClient({ seriesData, allSeries }: { seriesData
             <OptimizedImage
               src={coverPhoto?.src}
               alt={coverPhoto?.alt}
+              fill
               className={cn(
-                "w-full h-full",
                 coverHeightPercent >= 95 ? "object-contain" : "object-cover object-center"
               )}
-              wrapperClassName="w-full h-full"
+              wrapperClassName="absolute inset-0"
               objectFit={coverHeightPercent >= 95 ? "contain" : "cover"}
               loading="eager"
               fadeDuration={300}
               sizes="(max-width: 768px) 100vw, 80vw"
+              priority
             />
             {seriesData.photos[seriesData.biggerIndex]?.intentionNote && (
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
@@ -467,8 +370,9 @@ function GalleryItem({
         <OptimizedImage
           src={photo.src}
           alt={photo.alt}
+          width={photo.width}
+          height={photo.height}
           className="w-full h-auto transition-transform duration-700 group-hover:scale-[1.03]"
-          wrapperClassName="w-full"
           sizes="(max-width: 640px) 100vw, 50vw"
         />
 
@@ -509,61 +413,6 @@ function GalleryItem({
         <div className="absolute top-0 right-0 w-px h-full bg-accent" />
       </div>
     </div>
-  )
-}
-
-// Parse markdown for preview with length limit
-function parseMarkdownPreview(text: string, maxLength: number): ReactNode {
-  if (!text) return <></>
-  
-  // Normalize line breaks
-  const normalizedText = text.replace(/\\n/g, '\n')
-  
-  // Get a substring with some buffer to not cut in middle of markdown
-  const buffer = 20
-  const truncated = normalizedText.length > maxLength + buffer 
-    ? normalizedText.substring(0, maxLength + buffer) 
-    : normalizedText
-  
-  // Process the text
-  const lines = truncated.split('\n')
-  const previewLines: ReactNode[] = []
-  let currentLength = 0
-  
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i]
-    
-    // Check if adding this line would exceed maxLength
-    if (currentLength + line.length > maxLength && previewLines.length > 0) {
-      break
-    }
-    
-    // Add line break if not first line
-    if (i > 0) {
-      previewLines.push(<br key={`br-${i}`} />)
-      currentLength += 1
-    }
-    
-    // Parse markdown in this line
-    previewLines.push(
-      <span key={`line-${i}`}>{parseLine(line)}</span>
-    )
-    currentLength += line.length
-    
-    // Stop if we've exceeded maxLength
-    if (currentLength >= maxLength) {
-      break
-    }
-  }
-  
-  // Add ellipsis if truncated
-  const isTruncated = normalizedText.length > maxLength
-  
-  return (
-    <>
-      {previewLines}
-      {isTruncated && <span>…</span>}
-    </>
   )
 }
 
@@ -726,6 +575,16 @@ function VideoItem({ video }: { video: VideoFile }) {
               ? parseMarkdown(normalizedDescription)
               : parseMarkdownPreview(normalizedDescription, previewLimit)}
           </div>
+        )}
+        {hasLongDescription && (
+          <button
+            type="button"
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="mt-2 flex items-center gap-1 font-mono text-[9px] text-accent hover:text-accent/80 transition-colors"
+          >
+            <span>{isExpanded ? "Voir moins" : "Voir plus"}</span>
+            <span className={cn("transition-transform duration-200", isExpanded ? "rotate-180" : "")}>↓</span>
+          </button>
         )}
         
         <div className="flex items-center gap-3 mt-2">

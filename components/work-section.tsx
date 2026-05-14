@@ -1,180 +1,16 @@
 "use client"
 
-import { useState, useRef, useEffect, useMemo, type ReactNode } from "react"
+import { useState, useRef, useEffect, useMemo } from "react"
 import { cn } from "@/lib/utils"
 import type { Series, Photo } from "@/lib/data"
 import Link from "next/link"
 import { OptimizedImage } from "@/components/optimized-image"
+import { parseMarkdown, parseMarkdownPreview } from "@/lib/markdown"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { X } from "lucide-react"
 
 gsap.registerPlugin(ScrollTrigger)
-
-// Simple markdown parser for descriptions
-// Supports: **bold**, *italic*, __underline__, and \\n for line breaks
-function parseMarkdown(text: string): ReactNode {
-  if (!text) return <></>
-  
-  // Split by line breaks first (handle both \\n literal and actual newlines)
-  const normalizedText = text.replace(/\\n/g, '\n')
-  const lines = normalizedText.split('\n')
-  
-  return (
-    <>
-      {lines.map((line, lineIndex) => {
-        // Process the line with a more robust parser
-        const elements = parseLine(line)
-        
-        return (
-          <span key={lineIndex}>
-            {elements}
-            {lineIndex < lines.length - 1 && <br />}
-          </span>
-        )
-      })}
-    </>
-  )
-}
-
-function parseLine(line: string): ReactNode {
-  const parts: ReactNode[] = []
-  let remaining = line
-  let key = 0
-  
-  // Process patterns one at a time, left to right
-  while (remaining.length > 0) {
-    // Find the first occurrence of any pattern opener
-    const boldIdx = remaining.indexOf('**')
-    const underlineIdx = remaining.indexOf('__')
-    const italicIdx = remaining.indexOf('*')
-    
-    // Find which pattern comes first
-    let firstIdx = Infinity
-    let patternType: 'bold' | 'underline' | 'italic' | null = null
-    
-    if (boldIdx !== -1 && boldIdx < firstIdx) {
-      firstIdx = boldIdx
-      patternType = 'bold'
-    }
-    if (underlineIdx !== -1 && underlineIdx < firstIdx) {
-      firstIdx = underlineIdx
-      patternType = 'underline'
-    }
-    // Only check italic if it's not part of a bold (at position 0 of bold)
-    if (italicIdx !== -1 && italicIdx < firstIdx) {
-      // Check if this * is the start of **
-      if (remaining.substring(italicIdx, italicIdx + 2) !== '**') {
-        firstIdx = italicIdx
-        patternType = 'italic'
-      }
-    }
-    
-    if (patternType === null) {
-      // No more patterns found
-      parts.push(remaining)
-      break
-    }
-    
-    // Add text before the pattern
-    if (firstIdx > 0) {
-      parts.push(remaining.substring(0, firstIdx))
-    }
-    
-    // Find closing tag based on pattern type
-    let closeIdx = -1
-    let content = ''
-    let skipLength = 0
-    
-    if (patternType === 'bold') {
-      closeIdx = remaining.indexOf('**', firstIdx + 2)
-      if (closeIdx !== -1) {
-        content = remaining.substring(firstIdx + 2, closeIdx)
-        parts.push(<strong key={key++} className="text-grey-900 font-semibold">{parseLine(content)}</strong>)
-        skipLength = closeIdx + 2
-      }
-    } else if (patternType === 'underline') {
-      closeIdx = remaining.indexOf('__', firstIdx + 2)
-      if (closeIdx !== -1) {
-        content = remaining.substring(firstIdx + 2, closeIdx)
-        parts.push(<span key={key++} className="underline underline-offset-2">{parseLine(content)}</span>)
-        skipLength = closeIdx + 2
-      }
-    } else if (patternType === 'italic') {
-      closeIdx = remaining.indexOf('*', firstIdx + 1)
-      if (closeIdx !== -1) {
-        content = remaining.substring(firstIdx + 1, closeIdx)
-        parts.push(<em key={key++} className="italic">{parseLine(content)}</em>)
-        skipLength = closeIdx + 1
-      }
-    }
-    
-    if (closeIdx === -1) {
-      // No closing tag found, treat as plain text
-      parts.push(remaining.substring(firstIdx))
-      break
-    }
-    
-    remaining = remaining.substring(skipLength)
-  }
-  
-  return <>{parts}</>
-}
-
-// Parse markdown for preview with length limit
-function parseMarkdownPreview(text: string, maxLength: number): ReactNode {
-  if (!text) return <></>
-  
-  // Normalize line breaks
-  const normalizedText = text.replace(/\\n/g, '\n')
-  
-  // Get a substring with some buffer to not cut in middle of markdown
-  const buffer = 20
-  const truncated = normalizedText.length > maxLength + buffer 
-    ? normalizedText.substring(0, maxLength + buffer) 
-    : normalizedText
-  
-  // Process the text
-  const lines = truncated.split('\n')
-  const previewLines: ReactNode[] = []
-  let currentLength = 0
-  
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i]
-    
-    // Check if adding this line would exceed maxLength
-    if (currentLength + line.length > maxLength && previewLines.length > 0) {
-      break
-    }
-    
-    // Add line break if not first line
-    if (i > 0) {
-      previewLines.push(<br key={`br-${i}`} />)
-      currentLength += 1
-    }
-    
-    // Parse markdown in this line
-    previewLines.push(
-      <span key={`line-${i}`}>{parseLine(line)}</span>
-    )
-    currentLength += line.length
-    
-    // Stop if we've exceeded maxLength
-    if (currentLength >= maxLength) {
-      break
-    }
-  }
-  
-  // Add ellipsis if truncated
-  const isTruncated = normalizedText.length > maxLength
-  
-  return (
-    <>
-      {previewLines}
-      {isTruncated && <span>…</span>}
-    </>
-  )
-}
 
 // Dynamic span pattern generator for balanced grids
 function generateBalancedPattern(count: number): string[] {
@@ -255,10 +91,11 @@ function generateCompactPattern(count: number): string[] {
   return patterns
 }
 
-export function WorkSection({ series }: { series: Series[] }) {
+export default function WorkSection({ series }: { series: Series[] }) {
   const sectionRef = useRef<HTMLElement>(null)
   const headerRef = useRef<HTMLDivElement>(null)
-  const gridRef = useRef<HTMLDivElement>(null)
+  const cinemaGridRef = useRef<HTMLDivElement>(null)
+  const videosGridRef = useRef<HTMLDivElement>(null)
   const [projectModal, setProjectModal] = useState<{ series: Series } | null>(null)
 
   // Prevent body scroll when project modal is open
@@ -276,28 +113,47 @@ export function WorkSection({ series }: { series: Series[] }) {
     }
   }, [projectModal])
 
-  // Filter for Cinéma/vidéo projects only
-  const videoSeries = useMemo(() => {
+  // Filter for Cinéma projects only
+  const cinemaSeries = useMemo(() => {
     return series.filter((s) => {
       const medium = s.medium.toLowerCase()
-      return medium.includes("vidéo") || medium.includes("cinéma")
+      return medium.includes("cinéma")
     }).sort((a, b) => {
-      // Sort by priority: lower number = higher priority (shown first/bigger)
-      // Items without priority default to Infinity (shown last)
       const pa = a.priority ?? Infinity
       const pb = b.priority ?? Infinity
       return pa - pb
     })
   }, [series])
 
-  const gridItems = useMemo(() => {
-    const patterns = generateBalancedPattern(videoSeries.length)
-    return videoSeries.map((s, i) => ({
+  // Filter for Vidéo projects only
+  const videosSeries = useMemo(() => {
+    return series.filter((s) => {
+      const medium = s.medium.toLowerCase()
+      return medium.includes("vidéo")
+    }).sort((a, b) => {
+      const pa = a.priority ?? Infinity
+      const pb = b.priority ?? Infinity
+      return pa - pb
+    })
+  }, [series])
+
+  const cinemaGridItems = useMemo(() => {
+    const patterns = generateBalancedPattern(cinemaSeries.length)
+    return cinemaSeries.map((s, i) => ({
       photo: s.photos[s.coverIndex],
       series: s,
-      span: patterns[i] || "col-span-1 row-span-1", // Fallback to small if pattern missing
+      span: patterns[i] || "col-span-1 row-span-1",
     }))
-  }, [videoSeries])
+  }, [cinemaSeries])
+
+  const videosGridItems = useMemo(() => {
+    const patterns = generateBalancedPattern(videosSeries.length)
+    return videosSeries.map((s, i) => ({
+      photo: s.photos[s.coverIndex],
+      series: s,
+      span: patterns[i] || "col-span-1 row-span-1",
+    }))
+  }, [videosSeries])
 
   // Prevent body scroll when project modal is open
   useEffect(() => {
@@ -312,7 +168,7 @@ export function WorkSection({ series }: { series: Series[] }) {
   }, [projectModal])
 
   useEffect(() => {
-    if (!sectionRef.current || !headerRef.current || !gridRef.current) return
+    if (!sectionRef.current || !headerRef.current) return
 
     const ctx = gsap.context(() => {
       // Header slide in from left
@@ -332,17 +188,34 @@ export function WorkSection({ series }: { series: Series[] }) {
         },
       )
 
-      const cards = gridRef.current?.querySelectorAll("article")
-      if (cards && cards.length > 0) {
-        gsap.set(cards, { y: 60, opacity: 0 })
-        gsap.to(cards, {
+      const cinemaCards = cinemaGridRef.current?.querySelectorAll("article")
+      if (cinemaCards && cinemaCards.length > 0) {
+        gsap.set(cinemaCards, { y: 60, opacity: 0 })
+        gsap.to(cinemaCards, {
           y: 0,
           opacity: 1,
           duration: 0.8,
           stagger: 0.1,
           ease: "power3.out",
           scrollTrigger: {
-            trigger: gridRef.current,
+            trigger: cinemaGridRef.current,
+            start: "top 90%",
+            toggleActions: "play none none none",
+          },
+        })
+      }
+
+      const videosCards = videosGridRef.current?.querySelectorAll("article")
+      if (videosCards && videosCards.length > 0) {
+        gsap.set(videosCards, { y: 60, opacity: 0 })
+        gsap.to(videosCards, {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          stagger: 0.1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: videosGridRef.current,
             start: "top 90%",
             toggleActions: "play none none none",
           },
@@ -366,21 +239,47 @@ export function WorkSection({ series }: { series: Series[] }) {
         </p>
       </div>
 
-      {/* Asymmetric grid */}
-      <div
-        ref={gridRef}
-        className="grid grid-cols-2 md:grid-cols-3 gap-4 auto-rows-[180px] sm:auto-rows-[200px]"
-      >
-        {gridItems.map((item, index) => (
-          <WorkCard
-            key={item.photo.id}
-            item={item}
-            index={index}
-            persistHover={index === 0}
-            onProjectClick={() => setProjectModal({ series: item.series })}
-          />
-        ))}
-      </div>
+      {/* Cinéma subcategory */}
+      {cinemaGridItems.length > 0 && (
+        <div className="mb-12">
+          <h3 className="mb-6 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">Cinéma</h3>
+          <div
+            ref={cinemaGridRef}
+            className="grid grid-cols-2 md:grid-cols-3 gap-4 auto-rows-[180px] sm:auto-rows-[200px]"
+          >
+            {cinemaGridItems.map((item, index) => (
+              <WorkCard
+                key={item.photo.id}
+                item={item}
+                index={index}
+                persistHover={index === 0}
+                onProjectClick={() => setProjectModal({ series: item.series })}
+              />
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Vidéos subcategory */}
+      {videosGridItems.length > 0 && (
+        <div className="mb-12">
+          <h3 className="mb-6 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">Vidéos</h3>
+          <div
+            ref={videosGridRef}
+            className="grid grid-cols-2 md:grid-cols-3 gap-4 auto-rows-[180px] sm:auto-rows-[200px]"
+          >
+            {videosGridItems.map((item, index) => (
+              <WorkCard
+                key={item.photo.id}
+                item={item}
+                index={index}
+                persistHover={false}
+                onProjectClick={() => setProjectModal({ series: item.series })}
+              />
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Autres projets section */}
       <OtherProjectsSection series={series} onProjectModal={(series) => setProjectModal({ series })} />
@@ -412,6 +311,8 @@ export function WorkSection({ series }: { series: Series[] }) {
               <img
                 src={projectModal.series.photos[projectModal.series.coverIndex]?.src}
                 alt={projectModal.series.photos[projectModal.series.coverIndex]?.alt}
+                loading="eager"
+                decoding="async"
                 className="max-h-[50vh] lg:max-h-[80vh] w-auto object-contain max-w-[90vw] lg:max-w-full transition-transform duration-500 group-hover:scale-[1.02]"
               />
             </Link>
@@ -652,6 +553,8 @@ function OtherProjectsSection({ series, onProjectModal }: { series: Series[]; on
               <img
                 src={projectModal.series.photos[projectModal.series.coverIndex]?.src}
                 alt={projectModal.series.photos[projectModal.series.coverIndex]?.alt}
+                loading="eager"
+                decoding="async"
                 className="max-h-[50vh] lg:max-h-[80vh] w-auto object-contain max-w-[90vw] lg:max-w-full transition-transform duration-500 group-hover:scale-[1.02]"
               />
             </Link>
@@ -882,6 +785,8 @@ function PersonalProjectsSection({ series, onProjectModal }: { series: Series[];
               <img
                 src={projectModal.series.photos[projectModal.series.coverIndex]?.src}
                 alt={projectModal.series.photos[projectModal.series.coverIndex]?.alt}
+                loading="eager"
+                decoding="async"
                 className="max-h-[50vh] lg:max-h-[80vh] w-auto object-contain max-w-[90vw] lg:max-w-full transition-transform duration-500 group-hover:scale-[1.02]"
               />
             </Link>
@@ -984,21 +889,20 @@ function WorkCard({
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Background image */}
-      <div className="absolute inset-0">
-        <OptimizedImage
-          src={item.photo.src}
-          alt={item.photo.alt}
-          className="w-full h-full transition-transform duration-700 group-hover:scale-105"
-          wrapperClassName="w-full h-full"
-          sizes="(max-width: 768px) 50vw, 33vw"
-        />
-        <div className={cn(
-          "absolute inset-0 transition-opacity duration-500",
-          isActive
-            ? "bg-gradient-to-t from-black/80 via-black/40 to-black/10"
-            : "bg-gradient-to-t from-black/70 via-black/30 to-transparent",
-        )} />
-      </div>
+      <OptimizedImage
+        src={item.photo.src}
+        alt={item.photo.alt}
+        fill
+        className="transition-transform duration-700 group-hover:scale-105"
+        wrapperClassName="absolute inset-0"
+        sizes="(max-width: 768px) 50vw, 33vw"
+      />
+      <div className={cn(
+        "absolute inset-0 transition-opacity duration-500",
+        isActive
+          ? "bg-linear-to-t from-black/80 via-black/40 to-black/10"
+          : "bg-linear-to-t from-black/70 via-black/30 to-transparent",
+      )} />
 
       {/* Content overlay */}
       <div className="relative z-10 p-5 flex flex-col justify-between h-full">
@@ -1013,7 +917,7 @@ function WorkCard({
           <Link
             href={`/series/${item.series.slug}`}
             className={cn(
-              "font-[var(--font-bebas)] text-2xl md:text-4xl tracking-tight transition-colors duration-300 hover:underline underline-offset-4 block",
+              "font-(--font-bebas) text-2xl md:text-4xl tracking-tight transition-colors duration-300 hover:underline underline-offset-4 block",
               isActive ? "text-white/90" : "text-white/70",
             )}
             onClick={(e) => e.stopPropagation()}
@@ -1069,8 +973,8 @@ function WorkCard({
           isActive ? "opacity-100" : "opacity-0",
         )}
       >
-        <div className="absolute top-0 right-0 w-full h-[1px] bg-accent" />
-        <div className="absolute top-0 right-0 w-[1px] h-full bg-accent" />
+        <div className="absolute top-0 right-0 w-full h-px bg-accent" />
+        <div className="absolute top-0 right-0 w-px h-full bg-accent" />
       </div>
     </article>
   )

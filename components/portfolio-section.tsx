@@ -151,7 +151,7 @@ function PortfolioCard({ portfolio, index }: { portfolio: PortfolioItem; index: 
   )
 }
 
-export function PortfolioSection() {
+export default function PortfolioSection() {
   const sectionRef = useRef<HTMLElement>(null)
   const headerRef = useRef<HTMLDivElement>(null)
 
@@ -216,3 +216,5 @@ export function PortfolioSection() {
     </section>
   )
 }
+
+export { PortfolioSection }

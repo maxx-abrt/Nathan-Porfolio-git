@@ -6,6 +6,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Archivo, Archivo_Black, Archivo_Narrow } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import { SmoothScroll } from "@/components/smooth-scroll"
 import { ThemeProvider } from "@/components/theme-provider"
 import "./globals.css"
@@ -86,9 +87,7 @@ export default function RootLayout({
   return (
     <html lang="fr" suppressHydrationWarning>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://nathandumont.fr" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -114,6 +113,7 @@ export default function RootLayout({
           <div className="noise-overlay" aria-hidden="true" />
           <SmoothScroll>{children}</SmoothScroll>
           <Analytics />
+          <SpeedInsights />
         </ThemeProvider>
       </body>
     </html>

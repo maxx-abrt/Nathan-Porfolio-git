@@ -11,7 +11,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger"
 // Enregistrement du plugin ScrollTrigger pour les animations déclenchées au scroll
 gsap.registerPlugin(ScrollTrigger)
 
-export function ColophonSection() {
+export default function ColophonSection() {
   // Références DOM pour cibler les éléments à animer
   const sectionRef = useRef<HTMLElement>(null)
   const headerRef = useRef<HTMLDivElement>(null)
@@ -173,3 +173,5 @@ export function ColophonSection() {
     </section>
   )
 }
+
+export { ColophonSection }
