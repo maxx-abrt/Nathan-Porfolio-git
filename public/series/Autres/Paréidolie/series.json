@@ -1,0 +1,25 @@
+{
+  "title": "Paréidolie",
+  "description": "Nous avons pris partie d'une esthétique des années 80 avec un style minimaliste puis nous avons décliné l'affiche en plusieurs versions correspondant aux différentes catégories de vins. Pour le fond, nous sommes partis sur des couleurs pouvant représenter les différentes saisons. \\n **En collaboration** : Liéna Guérout",
+  "medium": "Autres",
+  "year": "2026",
+  "cover": "Paréidolie l cover",
+  "link": "",
+  "linkText": "Lire l'article",
+  "pdfs": {
+    "nom-du-fichier-pdf-sans-extension": {
+      "title": "Titre du PDF",
+      "description": "Description du document"
+    }
+  },
+    "photos": {
+    "Paréidolie": {
+      "title": "Paréidolie",
+      "intentionNote": "Illustration, feutre à alcool sur papier 200g, stylo encreur, 50 x 65 cm",
+      "technical": "",
+      "date": "30-03-2026",
+      "width": 1200,
+      "height": 800
+    }
+  }
+}

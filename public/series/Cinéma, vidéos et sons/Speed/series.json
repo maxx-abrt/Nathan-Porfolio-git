@@ -1,6 +1,6 @@
 {
   "title": "Speed",
-  "description": "Exercice sur l'accéléraion au cinéma. \\n **Deuxième réalisatrice** : Sarah François-Rodrigues \\n**Acteur.ices** : Nathan Dumont, Sarah François-Rodrigues, Cassandra Boivin et Élisa Pillut-Mohamedi",
+  "description": "Exercice sur l'accéléraion au cinéma. \\n **Réalisateur** : Nathan Dumont \\n **Deuxième réalisatrice** : Sarah François-Rodrigues \\n **Montage** : Nathan Dumont \\n**Acteur.ices** : Nathan Dumont, Sarah François-Rodrigues, Cassandra Boivin et Élisa Pillut-Mohamedi",
   "medium": "Cinéma",
   "year": "2026",
   "cover": "Speed l cover",
@@ -13,7 +13,7 @@
   "videos": {
     "Speed l Court-métrage": {
       "title": "Speed l Court-métrage",
-      "description": "**Deuxième réalisatrice** : Sarah François-Rodrigues **Actrices** : Sarah François-Rodrigues, Cassandra Boivin et Élisa Pillut-Mohamedi",
+      "description": "**Réalisateur** : Nathan Dumont \\n **Deuxième réalisatrice** : Sarah François-Rodrigues \\n **Montage** : Nathan Dumont \\n**Acteur.ices** : Nathan Dumont, Sarah François-Rodrigues, Cassandra Boivin et Élisa Pillut-Mohamedi",
       "thumbnail": "public/series/Cinéma, vidéos et sons/Ce que racontent les ancêtres - documentaire (ne pas mettre)/Ce que racontent les ancêtres - pitch vidéo l Arc documentaire.webp",
       "duration": "5:45"
     }
