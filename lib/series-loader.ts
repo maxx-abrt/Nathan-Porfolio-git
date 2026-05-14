@@ -196,9 +196,10 @@ export function getSeriesBySlug(slug: string): Series | null {
     }
   }
 
-  // Découverte des fichiers .webp présents sur le disque
+  // Découverte des fichiers .webp présents sur le disque (pas de .sort() —
+  // l'ordre du JSON prime, sinon ordre naturel du filesystem)
   const webpFiles: string[] = fs.existsSync(seriesDir)
-    ? fs.readdirSync(seriesDir).filter((f) => f.endsWith(".webp")).sort()
+    ? fs.readdirSync(seriesDir).filter((f) => f.endsWith(".webp"))
     : []
 
   // Découverte des fichiers vidéo présents sur le disque (.mp4, .mov, .webm)
@@ -264,42 +265,67 @@ export function getSeriesBySlug(slug: string): Series | null {
       duration: meta?.duration,
     }
   })
-  const normalizedJsonKeys = new Map<string, string>()
+  // Map : nom normalisé → fichier .webp (pour correspondance rapide)
+  const webpMap = new Map<string, string>()
+  for (const file of webpFiles) {
+    const name = nfc(file.replace(/\.webp$/, ""))
+    webpMap.set(normalizePhotoName(name), file)
+  }
+
+  const photos: Photo[] = []
+
+  // 1. Photos dans l'ordre d'apparition du JSON (avec fichier .webp correspondant)
   if (json.photos) {
-    for (const key of Object.keys(json.photos)) {
-      normalizedJsonKeys.set(normalizePhotoName(key), key)
+    for (const [jsonName, meta] of Object.entries(json.photos)) {
+      const normalizedJsonName = normalizePhotoName(jsonName)
+      const webpFile = webpMap.get(normalizedJsonName)
+
+      if (webpFile) {
+        const name = nfc(webpFile.replace(/\.webp$/, ""))
+        const w = meta.width ?? 1200
+        const h = meta.height ?? 800
+        photos.push({
+          id: `${slug}-${name}`,
+          src: localAssetUrl(`/series/${nfcPath}/${nfc(webpFile)}`),
+          alt: meta.title ?? name,
+          width: w,
+          height: h,
+          orientation: orientationOf(w, h),
+          seriesId: slug,
+          intentionNote: meta.intentionNote,
+          technical: meta.technical,
+          date: meta.date,
+        })
+        handledNames.add(jsonName)
+        webpMap.delete(normalizedJsonName)
+      }
     }
   }
 
-  // 1. Construction des photos à partir des fichiers .webp réels
-  const photos: Photo[] = webpFiles.map((file, idx) => {
+  // 2. Fichiers .webp restants non mentionnés dans le JSON (ordre naturel du filesystem)
+  for (const file of webpFiles) {
     const name = nfc(file.replace(/\.webp$/, ""))
     const normalized = normalizePhotoName(name)
-    // Recherche de la clé JSON correspondante via le nom normalisé
-    const jsonKey = normalizedJsonKeys.get(normalized) ?? name
-    handledNames.add(jsonKey)
-    const meta = json.photos?.[jsonKey]
-    const w = meta?.width ?? 1200
-    const h = meta?.height ?? 800
-    return {
-      id: `${slug}-${name}`,
-      src: localAssetUrl(`/series/${nfcPath}/${nfc(file)}`),
-      alt: meta?.title ?? name,
-      width: w,
-      height: h,
-      orientation: orientationOf(w, h),
-      seriesId: slug,
-      intentionNote: meta?.intentionNote,
-      technical: meta?.technical,
-      date: meta?.date,
+    if (webpMap.has(normalized)) {
+      photos.push({
+        id: `${slug}-${name}`,
+        src: localAssetUrl(`/series/${nfcPath}/${nfc(file)}`),
+        alt: name,
+        width: 1200,
+        height: 800,
+        orientation: orientationOf(1200, 800),
+        seriesId: slug,
+      })
+      handledNames.add(name)
+      webpMap.delete(normalized)
     }
-  })
+  }
 
-  // 2. Photos déclarées dans le JSON mais sans fichier .webp → génération de placeholders
+  // 3. Photos déclarées dans le JSON mais sans fichier .webp → placeholders
   if (json.photos) {
     let hueBase = 210
-    Object.entries(json.photos).forEach(([name, meta]) => {
-      if (handledNames.has(name)) return
+    for (const [name, meta] of Object.entries(json.photos)) {
+      if (handledNames.has(name)) continue
       const w = meta.width ?? 1200
       const h = meta.height ?? 800
       photos.push({
@@ -315,7 +341,7 @@ export function getSeriesBySlug(slug: string): Series | null {
         date: meta.date,
       })
       hueBase += 12
-    })
+    }
   }
 
   // Extraction du nom de la série depuis le chemin filesystem (dernier segment)

@@ -320,6 +320,8 @@ export default function SeriesPageClient({ seriesData, allSeries }: { seriesData
         <PhotoLightbox
           photo={lightboxPhoto}
           parentSeries={seriesData}
+          allPhotos={seriesData.photos}
+          onNavigate={(photo) => setLightboxPhoto(photo)}
           onClose={() => setLightboxPhoto(null)}
         />
       )}
