@@ -7,7 +7,7 @@
 
 import { useEffect, useCallback, useRef, useState } from "react"
 import { cn } from "@/lib/utils"
-import { X, ChevronLeft, ChevronRight } from "lucide-react"
+import { X, ChevronLeft, ChevronRight, ZoomIn, ZoomOut, RotateCcw } from "lucide-react"
 import type { Photo, Series } from "@/lib/data"
 import Link from "next/link"
 
@@ -22,7 +22,13 @@ interface PhotoLightboxProps {
 
 export function PhotoLightbox({ photo, parentSeries, onClose, allPhotos, onNavigate }: PhotoLightboxProps) {
   const scrollRef = useRef<HTMLDivElement>(null)
+  const imageRef = useRef<HTMLDivElement>(null)
   const [imageLoaded, setImageLoaded] = useState(false)
+  const [scale, setScale] = useState(1)
+  const [position, setPosition] = useState({ x: 0, y: 0 })
+  const [isDragging, setIsDragging] = useState(false)
+  const dragStart = useRef({ x: 0, y: 0, px: 0, py: 0 })
+  const pinchStart = useRef({ distance: 0, scale: 1 })
 
   const currentIndex = allPhotos?.findIndex((p) => p.id === photo.id) ?? -1
   const hasNavigation = allPhotos && allPhotos.length > 1 && onNavigate
@@ -39,14 +45,29 @@ export function PhotoLightbox({ photo, parentSeries, onClose, allPhotos, onNavig
     onNavigate!(allPhotos[nextIndex])
   }, [hasNavigation, currentIndex, allPhotos, onNavigate])
 
-  // Gestion du clavier : Escape, flèches gauche/droite
+  const zoomIn = useCallback(() => setScale((s) => Math.min(4, s * 1.25)), [])
+  const zoomOut = useCallback(() => {
+    setScale((s) => {
+      const ns = Math.max(1, s / 1.25)
+      if (ns <= 1) setPosition({ x: 0, y: 0 })
+      return ns
+    })
+  }, [])
+  const resetZoom = useCallback(() => {
+    setScale(1)
+    setPosition({ x: 0, y: 0 })
+  }, [])
+
+  // Gestion du clavier : Escape, flèches, zoom
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose()
       if (e.key === "ArrowLeft") goToPrev()
       if (e.key === "ArrowRight") goToNext()
+      if (e.key === "+" || e.key === "=") zoomIn()
+      if (e.key === "-" || e.key === "_") zoomOut()
     },
-    [onClose, goToPrev, goToNext],
+    [onClose, goToPrev, goToNext, zoomIn, zoomOut],
   )
 
   // Écoute du clavier et blocage du défilement du body quand la lightbox est ouverte
@@ -55,8 +76,11 @@ export function PhotoLightbox({ photo, parentSeries, onClose, allPhotos, onNavig
     document.body.style.overflow = "hidden"
     document.body.style.touchAction = "none"
 
-    // Prevent scroll on touch devices
-    const preventScroll = (e: TouchEvent) => e.preventDefault()
+    const preventScroll = (e: TouchEvent) => {
+      const target = e.target as HTMLElement
+      if (imageRef.current?.contains(target)) return
+      e.preventDefault()
+    }
     document.addEventListener("touchmove", preventScroll, { passive: false })
 
     return () => {
@@ -67,13 +91,95 @@ export function PhotoLightbox({ photo, parentSeries, onClose, allPhotos, onNavig
     }
   }, [handleKeyDown])
 
-  // Réinitialise le scroll du panneau d'infos à chaque changement de photo
+  // Réinitialise le scroll, le zoom et la position à chaque changement de photo
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = 0
     }
     setImageLoaded(false)
+    setScale(1)
+    setPosition({ x: 0, y: 0 })
+    setIsDragging(false)
   }, [photo.id])
+
+  const handleWheel = useCallback(
+    (e: React.WheelEvent) => {
+      e.preventDefault()
+      const delta = e.deltaY > 0 ? 0.85 : 1.15
+      setScale((s) => {
+        const ns = Math.min(4, Math.max(1, s * delta))
+        if (ns <= 1) setPosition({ x: 0, y: 0 })
+        return ns
+      })
+    },
+    [],
+  )
+
+  const handleDoubleClick = useCallback(() => {
+    setScale((s) => {
+      const ns = s > 1 ? 1 : 2.5
+      if (ns <= 1) setPosition({ x: 0, y: 0 })
+      return ns
+    })
+  }, [])
+
+  const handlePointerDown = useCallback(
+    (e: React.PointerEvent) => {
+      if (scale <= 1) return
+      setIsDragging(true)
+      dragStart.current = { x: e.clientX, y: e.clientY, px: position.x, py: position.y }
+      ;(e.target as HTMLElement).setPointerCapture(e.pointerId)
+    },
+    [scale, position],
+  )
+
+  const handlePointerMove = useCallback(
+    (e: React.PointerEvent) => {
+      if (!isDragging) return
+      const dx = e.clientX - dragStart.current.x
+      const dy = e.clientY - dragStart.current.y
+      setPosition({ x: dragStart.current.px + dx, y: dragStart.current.py + dy })
+    },
+    [isDragging],
+  )
+
+  const handlePointerUp = useCallback(() => {
+    setIsDragging(false)
+  }, [])
+
+  const handleTouchStart = useCallback(
+    (e: React.TouchEvent) => {
+      if (e.touches.length === 2) {
+        const dx = e.touches[0].clientX - e.touches[1].clientX
+        const dy = e.touches[0].clientY - e.touches[1].clientY
+        pinchStart.current = {
+          distance: Math.hypot(dx, dy),
+          scale,
+        }
+      }
+    },
+    [scale],
+  )
+
+  const handleTouchMove = useCallback(
+    (e: React.TouchEvent) => {
+      if (e.touches.length === 2 && pinchStart.current.distance > 0) {
+        const dx = e.touches[0].clientX - e.touches[1].clientX
+        const dy = e.touches[0].clientY - e.touches[1].clientY
+        const distance = Math.hypot(dx, dy)
+        const ratio = distance / pinchStart.current.distance
+        const ns = Math.min(4, Math.max(1, pinchStart.current.scale * ratio))
+        setScale(ns)
+        if (ns <= 1) setPosition({ x: 0, y: 0 })
+      }
+    },
+    [],
+  )
+
+  const transformStyle = {
+    transform: `translate(${position.x}px, ${position.y}px) scale(${scale})`,
+    transition: isDragging ? "none" : "transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+  }
 
   return (
     <div
@@ -129,24 +235,72 @@ export function PhotoLightbox({ photo, parentSeries, onClose, allPhotos, onNavig
         className="relative z-10 w-full h-full lg:h-auto lg:max-h-[90vh] overflow-y-auto lg:overflow-visible flex flex-col lg:flex-row gap-0 lg:gap-8 max-w-6xl lg:mx-6 scroll-smooth"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Image principale adaptée selon l'orientation portrait/paysage */}
-        <div className="flex-shrink-0 lg:flex-1 flex items-center justify-center min-h-[40vh] lg:min-h-0 p-4 pt-16 lg:p-0">
-          <img
-            src={photo.src}
-            alt={photo.alt}
-            loading="eager"
-            decoding="async"
-            onLoad={() => setImageLoaded(true)}
+        {/* Image principale avec zoom natif */}
+        <div className="shrink-0 lg:flex-1 flex items-center justify-center min-h-[40vh] lg:min-h-0 p-4 pt-16 lg:p-0 relative overflow-hidden select-none">
+          <div
+            ref={imageRef}
             className={cn(
-              "max-h-[50vh] lg:max-h-[80vh] w-auto object-contain transition-opacity duration-300",
-              imageLoaded ? "opacity-100" : "opacity-0",
-              photo.orientation === "portrait" ? "max-w-[70vw] lg:max-w-[50vw]" : "max-w-[90vw] lg:max-w-full",
+              "relative overflow-hidden touch-none",
+              scale > 1 ? "cursor-grab active:cursor-grabbing" : "cursor-zoom-in",
             )}
-          />
+            onWheel={handleWheel}
+            onDoubleClick={handleDoubleClick}
+            onPointerDown={handlePointerDown}
+            onPointerMove={handlePointerMove}
+            onPointerUp={handlePointerUp}
+            onPointerLeave={handlePointerUp}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+          >
+            <img
+              src={photo.src}
+              alt={photo.alt}
+              loading="eager"
+              decoding="async"
+              draggable={false}
+              onLoad={() => setImageLoaded(true)}
+              style={transformStyle}
+              className={cn(
+                "max-h-[50vh] lg:max-h-[80vh] w-auto object-contain transition-opacity duration-300",
+                imageLoaded ? "opacity-100" : "opacity-0",
+                photo.orientation === "portrait" ? "max-w-[70vw] lg:max-w-[50vw]" : "max-w-[90vw] lg:max-w-full",
+              )}
+            />
+          </div>
+
+          {/* Contrôles de zoom */}
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 flex items-center gap-1.5 p-1.5 rounded-full bg-black/50 backdrop-blur-sm border border-white/10">
+            <button
+              onClick={(e) => { e.stopPropagation(); zoomOut() }}
+              className="p-2 rounded-full text-white/60 hover:text-white hover:bg-white/10 transition-colors touch-manipulation"
+              aria-label="Zoom arrière"
+            >
+              <ZoomOut className="w-4 h-4" />
+            </button>
+            <span className="font-mono text-[10px] text-white/70 tabular-nums min-w-10 text-center">
+              {Math.round(scale * 100)}%
+            </span>
+            <button
+              onClick={(e) => { e.stopPropagation(); zoomIn() }}
+              className="p-2 rounded-full text-white/60 hover:text-white hover:bg-white/10 transition-colors touch-manipulation"
+              aria-label="Zoom avant"
+            >
+              <ZoomIn className="w-4 h-4" />
+            </button>
+            {scale > 1 && (
+              <button
+                onClick={(e) => { e.stopPropagation(); resetZoom() }}
+                className="p-2 rounded-full text-white/60 hover:text-white hover:bg-white/10 transition-colors touch-manipulation"
+                aria-label="Réinitialiser le zoom"
+              >
+                <RotateCcw className="w-4 h-4" />
+              </button>
+            )}
+          </div>
         </div>
 
         {/* Panneau d'informations — pleine largeur en mobile, latéral en desktop */}
-        <div className="flex-shrink-0 lg:w-80 bg-card/95 backdrop-blur-md border-t lg:border-t-0 lg:border border-border/30 p-6 md:p-8 overflow-y-auto max-h-[80vh] rounded-lg lg:rounded-none scroll-smooth">
+        <div className="shrink-0 lg:w-80 bg-card/95 backdrop-blur-md border-t lg:border-t-0 lg:border border-border/30 p-6 md:p-8 overflow-y-auto max-h-[80vh] rounded-lg lg:rounded-none scroll-smooth">
           {/* Étiquette d'en-tête */}
           <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent block mb-4 md:mb-6">
             Commentaire
