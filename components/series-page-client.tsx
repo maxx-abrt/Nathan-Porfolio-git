@@ -489,9 +489,24 @@ function getVideoMimeType(src: string): string {
   return "video/mp4"
 }
 
+// Extrait l'ID vidéo YouTube et retourne l'URL d'embed clean
+function getYoutubeEmbedUrl(url: string): string {
+  const patterns = [
+    /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([a-zA-Z0-9_-]{11})/,
+    /youtube\.com\/watch\?.*v=([a-zA-Z0-9_-]{11})/,
+  ]
+  for (const pattern of patterns) {
+    const match = url.match(pattern)
+    if (match) {
+      return `https://www.youtube.com/embed/${match[1]}?rel=0&modestbranding=1`
+    }
+  }
+  return url
+}
+
 // Composant interne : lecteur vidéo
-// Affiche une vidéo avec contrôles natifs du navigateur
-// Gère les formats non supportés (.mov) avec un fallback de téléchargement
+// Affiche une vidéo locale avec contrôles natifs du navigateur,
+// ou un embed YouTube responsive quand video.youtube est défini.
 function VideoItem({ video }: { video: VideoFile }) {
   const [playbackError, setPlaybackError] = useState(false)
   const [canPlayMov, setCanPlayMov] = useState(true)
@@ -501,6 +516,7 @@ function VideoItem({ video }: { video: VideoFile }) {
   const normalizedDescription = (video.description || "").replace(/\\n/g, "\n")
   const hasDescription = normalizedDescription.trim().length > 0
   const hasLongDescription = normalizedDescription.length > previewLimit
+  const isYoutube = Boolean(video.youtube)
   const mimeType = getVideoMimeType(video.src)
   const isMov = video.src.toLowerCase().includes(".mov")
   const isMp4 = video.src.toLowerCase().includes(".mp4")
@@ -527,7 +543,15 @@ function VideoItem({ video }: { video: VideoFile }) {
   return (
     <div className="group relative overflow-hidden border border-border/20 bg-card/30">
       <div className="relative aspect-video bg-black/50">
-        {showFallback ? (
+        {isYoutube ? (
+          <iframe
+            src={getYoutubeEmbedUrl(video.youtube!)}
+            title={video.title}
+            className="absolute inset-0 w-full h-full"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        ) : showFallback ? (
           <div className="w-full h-full flex flex-col items-center justify-center gap-4 p-6">
             <Play className="w-10 h-10 text-muted-foreground/40" />
             <p className="font-mono text-xs text-muted-foreground text-center">
@@ -595,13 +619,15 @@ function VideoItem({ video }: { video: VideoFile }) {
               Durée: {video.duration}
             </span>
           )}
-          <a
-            href={video.src}
-            download
-            className="font-mono text-[9px] text-muted-foreground hover:text-accent transition-colors"
-          >
-            Télécharger ↓
-          </a>
+          {!isYoutube && (
+            <a
+              href={video.src}
+              download
+              className="font-mono text-[9px] text-muted-foreground hover:text-accent transition-colors"
+            >
+              Télécharger ↓
+            </a>
+          )}
         </div>
       </div>
     </div>

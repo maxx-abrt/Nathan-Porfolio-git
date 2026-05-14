@@ -52,6 +52,7 @@ export interface VideoFile {
   description?: string
   thumbnail?: string
   duration?: string
+  youtube?: string
 }
 
 // Interface décrivant un fichier audio attaché à une série

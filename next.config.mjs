@@ -11,6 +11,9 @@ const nextConfig = {
   },
   experimental: {
     optimizePackageImports: ["lucide-react"],
+    outputFileTracingExcludes: {
+      "*": ["./public/series/**/*"],
+    },
   },
 }
 

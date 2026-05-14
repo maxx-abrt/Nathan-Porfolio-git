@@ -115,6 +115,7 @@ interface SeriesJson {
       description?: string
       thumbnail?: string
       duration?: string
+      youtube?: string
     }
   >
   audios?: Record<
@@ -250,8 +251,32 @@ export function getSeriesBySlug(slug: string): Series | null {
       description: meta?.description,
       thumbnail: meta?.thumbnail ? normalizeAssetUrl(meta.thumbnail) : undefined,
       duration: meta?.duration,
+      youtube: meta?.youtube,
     }
   })
+
+  // Remplacer les vidéos locales par les entrées YouTube du JSON, ou ajouter de nouvelles
+  if (json.videos) {
+    for (const [name, meta] of Object.entries(json.videos)) {
+      if (!meta.youtube) continue
+      const id = `${slug}-${name}`
+      const existingIndex = videos.findIndex((v) => v.id === id)
+      const entry: VideoFile = {
+        id,
+        src: meta.youtube,
+        title: meta.title ?? name,
+        description: meta.description,
+        thumbnail: meta.thumbnail ? normalizeAssetUrl(meta.thumbnail) : undefined,
+        duration: meta.duration,
+        youtube: meta.youtube,
+      }
+      if (existingIndex >= 0) {
+        videos[existingIndex] = entry
+      } else {
+        videos.push(entry)
+      }
+    }
+  }
 
   // Construction des fichiers audio à partir des fichiers réels
   const audios: AudioFile[] = audioFiles.map((file) => {
