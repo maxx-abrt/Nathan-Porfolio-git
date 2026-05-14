@@ -40,6 +40,18 @@
       "description": "Personnage pelotte E animé.",
       "thumbnail": "public/series/Cinéma, vidéos et sons/Ce que racontent les ancêtres - documentaire (ne pas mettre)/Ce que racontent les ancêtres - pitch vidéo l Arc documentaire.webp",
       "duration": "4:26"
+    },
+    "A2E l Pub": {
+      "title": "A2E l Pub",
+      "description": "Publicité",
+      "thumbnail": "public/series/Cinéma, vidéos et sons/Ce que racontent les ancêtres - documentaire (ne pas mettre)/Ce que racontent les ancêtres - pitch vidéo l Arc documentaire.webp",
+      "duration": "0:11"
+    },
+    "A2E l Pub 2": {
+      "title": "A2E l Pub 2",
+      "description": "Publicité",
+      "thumbnail": "public/series/Cinéma, vidéos et sons/Ce que racontent les ancêtres - documentaire (ne pas mettre)/Ce que racontent les ancêtres - pitch vidéo l Arc documentaire.webp",
+      "duration": "0:04"
     }
   },
   "photos": {
