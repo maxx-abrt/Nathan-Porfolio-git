@@ -1,0 +1,71 @@
+{
+  "title": "A2E",
+  "priority": 1,
+  "description": "A2E a été fondée par __Max Aubert__ et __Méline Dachicourt__ pour offrir un appui concret aux étudiants de toutes les filières, avec un focus temporaire sur les études paramédicales (IDE, AS, ambulanciers). Nous voulons transformer l’entraide en réflexe collectif: mutualiser les ressources, améliorer la méthodologie de travail et encourager la contribution utile. Cette démarche vise à soutenir la réussite académique et à préparer une meilleure collaboration interprofessionnelle sur le terrain. \\n Pour le logo j'ai décidé de partir sur une pelotte de laine. En effet, les fils de laine représente les liens entre étudiants et l'entraide. Les formes organique représente une part en dehors de l'instution, moins carré / rigide. Cette pelotte représente aussi le mélange et l'inclusions entre étudiants pour créer cette pelotte de conaissance commune à chacun. La 1ère version servira à une publication plus imposante (site, story, post, affiche, kakemono) et la 2ème version servira à une publication plus petite (post, site, mention, caption, carte).",
+  "medium": "autres",
+  "year": "2026",
+  "cover": "A2E l Logotype",
+  "bigger": "A2E l Logotype",
+  "pdfs": {
+    "A2E l Story": {
+      "title": "A2E l Story",
+      "description": "Design des premières storys pour la nouvelle direction artistique sur les réseaux sociaux de l'association."
+    },
+    "A2E l Brandkit": {
+      "title": "A2E l Brandkit",
+      "description": "Document servant à présenter mes idées à l'association pour la nouvelle direction artistque."
+    },
+    "A2E l Carte de visite": {
+      "title": "A2E l Carte de visite",
+      "description": "Design des cartes de visite pour impression."
+      },
+    "A2E l Flyers": {
+      "title": "A2E l Flyers",
+      "description": "Design des flyers pour impression afin de présenter l'association."
+      },
+    "A2E l Posts": {
+      "title": "A2E l Posts",
+      "description": "Design des premiers posts sur les réseaux sociaux."
+    }
+  },
+  "videos": {
+    "A l Bleu et beige": {
+      "title": "A l Bleu et beige",
+      "description": "Personnage pelotte A animé. ",
+      "thumbnail": "public/series/Cinéma, vidéos et sons/Ce que racontent les ancêtres - documentaire (ne pas mettre)/Ce que racontent les ancêtres - pitch vidéo l Arc documentaire.webp",
+      "duration": "0:04"
+    },
+    "E l Rouge et vert": {
+      "title": "E l Rouge et vert",
+      "description": "Personnage pelotte E animé.",
+      "thumbnail": "public/series/Cinéma, vidéos et sons/Ce que racontent les ancêtres - documentaire (ne pas mettre)/Ce que racontent les ancêtres - pitch vidéo l Arc documentaire.webp",
+      "duration": "4:26"
+    }
+  },
+  "photos": {
+    "A2E l Banderole": {
+      "title": "A2E l Banderole",
+      "intentionNote": "A2E l Banderole",
+      "technical": "Design graphique",
+      "date": "10-04-2026",
+      "width": 1200,
+      "height": 800
+    },
+    "A2E l Logotype": {
+      "title": "A2E l Logotype",
+      "intentionNote": "A2E l Logotype",
+      "technical": "Design graphique",
+      "date": "10-04-2026",
+      "width": 1200,
+      "height": 800
+    },
+    "A2E l Roll-up": {
+      "title": "A2E l Roll-up",
+      "intentionNote": "A2E l Roll-up",
+      "technical": "Design graphique",
+      "date": "10-04-2026",
+      "width": 1200,
+      "height": 800
+    }
+  }
+}
