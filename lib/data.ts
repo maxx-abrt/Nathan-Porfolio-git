@@ -77,7 +77,7 @@ export const experiences: Experience[] = [
     period: "2025 - 2026",
     title: "Étudiant, deuxième année",
     place: "École nationale supérieure d'art et de design - ENSAD (Dijon)",
-    description: "Cursus Art avec **ARC (Atelier de Recherche et Création) documentaire** : *Filmer aux limites*, **option vidéo** : *construction vidéo*, **option photographie** : *fragment d'un lieu familier* et **option dessin**"
+    description: "Cursus Art avec **ARC (Atelier de Recherche et Création) documentaire** : *Filmer aux limites*, **option vidéo** : *construction vidéo*, **option photographie** : *fragment d'un lieu familier*, **option dessin** et **option photographie**."
 
   },
   {

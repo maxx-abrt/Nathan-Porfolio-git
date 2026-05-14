@@ -5,9 +5,9 @@
 
 "use client"
 
-import { useEffect, useCallback, useRef } from "react"
+import { useEffect, useCallback, useRef, useState } from "react"
 import { cn } from "@/lib/utils"
-import { X } from "lucide-react"
+import { X, ChevronLeft, ChevronRight } from "lucide-react"
 import type { Photo, Series } from "@/lib/data"
 import Link from "next/link"
 
@@ -16,17 +16,37 @@ interface PhotoLightboxProps {
   photo: Photo
   parentSeries?: Series
   onClose: () => void
+  allPhotos?: Photo[]
+  onNavigate?: (photo: Photo) => void
 }
 
-export function PhotoLightbox({ photo, parentSeries, onClose }: PhotoLightboxProps) {
+export function PhotoLightbox({ photo, parentSeries, onClose, allPhotos, onNavigate }: PhotoLightboxProps) {
   const scrollRef = useRef<HTMLDivElement>(null)
+  const [imageLoaded, setImageLoaded] = useState(false)
 
-  // Gestion de la touche Escape pour fermer la lightbox
+  const currentIndex = allPhotos?.findIndex((p) => p.id === photo.id) ?? -1
+  const hasNavigation = allPhotos && allPhotos.length > 1 && onNavigate
+
+  const goToPrev = useCallback(() => {
+    if (!hasNavigation || currentIndex === -1) return
+    const prevIndex = currentIndex === 0 ? allPhotos.length - 1 : currentIndex - 1
+    onNavigate!(allPhotos[prevIndex])
+  }, [hasNavigation, currentIndex, allPhotos, onNavigate])
+
+  const goToNext = useCallback(() => {
+    if (!hasNavigation || currentIndex === -1) return
+    const nextIndex = currentIndex === allPhotos.length - 1 ? 0 : currentIndex + 1
+    onNavigate!(allPhotos[nextIndex])
+  }, [hasNavigation, currentIndex, allPhotos, onNavigate])
+
+  // Gestion du clavier : Escape, flèches gauche/droite
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose()
+      if (e.key === "ArrowLeft") goToPrev()
+      if (e.key === "ArrowRight") goToNext()
     },
-    [onClose],
+    [onClose, goToPrev, goToNext],
   )
 
   // Écoute du clavier et blocage du défilement du body quand la lightbox est ouverte
@@ -34,11 +54,11 @@ export function PhotoLightbox({ photo, parentSeries, onClose }: PhotoLightboxPro
     document.addEventListener("keydown", handleKeyDown)
     document.body.style.overflow = "hidden"
     document.body.style.touchAction = "none"
-    
+
     // Prevent scroll on touch devices
     const preventScroll = (e: TouchEvent) => e.preventDefault()
     document.addEventListener("touchmove", preventScroll, { passive: false })
-    
+
     return () => {
       document.removeEventListener("keydown", handleKeyDown)
       document.body.style.overflow = ""
@@ -46,6 +66,14 @@ export function PhotoLightbox({ photo, parentSeries, onClose }: PhotoLightboxPro
       document.removeEventListener("touchmove", preventScroll)
     }
   }, [handleKeyDown])
+
+  // Réinitialise le scroll du panneau d'infos à chaque changement de photo
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = 0
+    }
+    setImageLoaded(false)
+  }, [photo.id])
 
   return (
     <div
@@ -61,24 +89,41 @@ export function PhotoLightbox({ photo, parentSeries, onClose }: PhotoLightboxPro
       {/* Bouton de fermeture — toujours visible et accessible */}
       <button
         onClick={onClose}
-        className="absolute top-4 right-4 md:top-6 md:right-6 z-20 p-3 text-white/60 hover:text-white transition-colors duration-200 touch-manipulation"
+        className="absolute top-4 right-4 md:top-6 md:right-6 z-30 p-3 text-white/60 hover:text-white transition-colors duration-200 touch-manipulation"
         aria-label="Fermer"
       >
         <X className="w-6 h-6" />
       </button>
 
+      {/* Flèche précédente */}
+      {hasNavigation && (
+        <button
+          onClick={(e) => { e.stopPropagation(); goToPrev() }}
+          className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 z-30 p-2 md:p-3 rounded-full bg-black/40 backdrop-blur-sm border border-white/10 text-white/70 hover:text-white hover:bg-white/20 hover:border-white/30 hover:scale-105 transition-all duration-200 touch-manipulation"
+          aria-label="Image précédente"
+        >
+          <ChevronLeft className="w-5 h-5 md:w-7 md:h-7" />
+        </button>
+      )}
+
+      {/* Flèche suivante */}
+      {hasNavigation && (
+        <button
+          onClick={(e) => { e.stopPropagation(); goToNext() }}
+          className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 z-30 p-2 md:p-3 rounded-full bg-black/40 backdrop-blur-sm border border-white/10 text-white/70 hover:text-white hover:bg-white/20 hover:border-white/30 hover:scale-105 transition-all duration-200 touch-manipulation"
+          aria-label="Image suivante"
+        >
+          <ChevronRight className="w-5 h-5 md:w-7 md:h-7" />
+        </button>
+      )}
+
       {/* Contenu principal — scrollable verticalement sur mobile */}
       {/* stopPropagation empêche la fermeture quand on clique sur le contenu */}
       <div
-        ref={(el) => { 
-          scrollRef.current = el;
+        ref={(el) => {
+          scrollRef.current = el
           if (el) {
-            // Reset scroll to top when lightbox opens
-            el.scrollTop = 0;
-            el.scrollTo({
-              top: 0,
-              behavior: 'smooth'
-            });
+            el.scrollTop = 0
           }
         }}
         className="relative z-10 w-full h-full lg:h-auto lg:max-h-[90vh] overflow-y-auto lg:overflow-visible flex flex-col lg:flex-row gap-0 lg:gap-8 max-w-6xl lg:mx-6 scroll-smooth"
@@ -91,8 +136,10 @@ export function PhotoLightbox({ photo, parentSeries, onClose }: PhotoLightboxPro
             alt={photo.alt}
             loading="eager"
             decoding="async"
+            onLoad={() => setImageLoaded(true)}
             className={cn(
-              "max-h-[50vh] lg:max-h-[80vh] w-auto object-contain",
+              "max-h-[50vh] lg:max-h-[80vh] w-auto object-contain transition-opacity duration-300",
+              imageLoaded ? "opacity-100" : "opacity-0",
               photo.orientation === "portrait" ? "max-w-[70vw] lg:max-w-[50vw]" : "max-w-[90vw] lg:max-w-full",
             )}
           />
